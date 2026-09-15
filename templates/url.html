@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('url_header_title') }} - {{ t('brand_title') }}{% endblock %}
+
+{% block content %}
+<div class="form-card">
+    <div class="card-header-bar">
+        <div class="card-header-icon" aria-hidden="true">🔗</div>
+        <div class="card-header-text">
+            <h2>{{ t('url_header_title') }}</h2>
+            <p>{{ t('url_header_desc') }}</p>
+        </div>
+    </div>
+
+    <!-- Mode Selection Tabs -->
+    <div class="input-tabs" role="tablist">
+        <button type="button" class="tab-btn active" data-tab="paste-tab" role="tab" aria-selected="true" aria-controls="paste-tab">
+            {{ t('tab_paste_url') }}
+        </button>
+        <button type="button" class="tab-btn" data-tab="upload-tab" role="tab" aria-selected="false" aria-controls="upload-tab">
+            {{ t('tab_upload_url_screenshot') }}
+        </button>
+    </div>
+
+    <!-- Form 1: Paste URL Link -->
+    <div id="paste-tab" class="tab-panel" role="tabpanel">
+        <form action="{{ url_for('analyze_url') }}" method="POST">
+            <input type="hidden" name="input_mode" value="text">
+            <div class="form-group">
+                <label for="url_input" class="form-label">{{ t('url_label') }}</label>
+                <input type="text" id="url_input" name="url_input" class="form-control" placeholder="{{ t('url_placeholder') }}" required>
+                <p class="form-help">{{ t('url_help') }}</p>
+            </div>
+
+            <button type="submit" class="btn-primary-large">{{ t('url_btn') }}</button>
+        </form>
+
+        <!-- Demo Samples -->
+        <div class="demo-samples-box">
+            <div class="demo-title">{{ t('try_example') }}</div>
+            <div class="demo-btn-group">
+                <button type="button" class="btn-demo" data-target="url_input" data-text="https://www.google.com">
+                    🟢 Safe: Google
+                </button>
+                <button type="button" class="btn-demo" data-target="url_input" data-text="https://en.wikipedia.org/wiki/Computer_security">
+                    🟢 Safe: Wikipedia
+                </button>
+                <button type="button" class="btn-demo" data-target="url_input" data-text="https://github.com/login">
+                    🟢 Safe: GitHub
+                </button>
+                <button type="button" class="btn-demo" data-target="url_input" data-text="http://192.168.1.100/secure-bank-login/verify/update-account">
+                    🔴 Scam: Raw IP Phishing
+                </button>
+                <button type="button" class="btn-demo" data-target="url_input" data-text="http://paypal-security-verification.update-account.free-login.xyz/signin">
+                    🔴 Scam: Subdomain Phish
+                </button>
+                <button type="button" class="btn-demo" data-target="url_input" data-text="http://bit.ly/claim-free-prize-bonus-winner">
+                    🔴 Scam: Shortened Scam Link
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form 2: Upload Screenshot -->
+    <div id="upload-tab" class="tab-panel" style="display: none;" role="tabpanel">
+        <form action="{{ url_for('analyze_url') }}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="input_mode" value="screenshot">
+            <div class="form-group">
+                <label class="form-label">{{ t('url_upload_label') | default('Upload a screenshot showing the website address or browser bar:') }}</label>
+                <div class="upload-zone" tabindex="0" role="button" aria-label="Upload URL screenshot file">
+                    <div class="upload-zone-icon">🖼️</div>
+                    <div class="upload-zone-text">{{ t('upload_drag_drop') }}</div>
+                    <div class="upload-zone-sub">{{ t('upload_formats') }}</div>
+                    <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" style="display: none;" required>
+                </div>
+                
+                <div class="file-preview">
+                    <div>
+                        <strong class="preview-filename">image.png</strong>
+                        <span class="preview-filesize" style="color: var(--text-muted);"></span>
+                    </div>
+                    <button type="button" class="btn-demo btn-clear-file" style="color: var(--danger-color);">{{ t('upload_remove') }}</button>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary-large">{{ t('url_scan_btn') }}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

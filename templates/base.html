@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="{{ current_lang }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ t('brand_title') }} - {{ t('brand_subtitle') }}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Site Header -->
+    <header class="site-header" role="banner">
+        <div class="header-container">
+            <a href="{{ url_for('index') }}" class="brand-link" aria-label="{{ t('brand_title') }} Home">
+                <div class="brand-icon" aria-hidden="true">🛡️</div>
+                <div class="brand-text">
+                    <h1>{{ t('brand_title') }}</h1>
+                    <p>{{ t('brand_subtitle') }}</p>
+                </div>
+            </a>
+            
+            <div class="header-right-controls">
+                <nav class="header-nav" aria-label="Main Navigation">
+                    <a href="{{ url_for('index') }}" class="nav-link">{{ t('nav_home') }}</a>
+                    <a href="{{ url_for('check_sms') }}" class="nav-link">{{ t('nav_sms') }}</a>
+                    <a href="{{ url_for('check_email') }}" class="nav-link">{{ t('nav_email') }}</a>
+                    <a href="{{ url_for('check_url') }}" class="nav-link">{{ t('nav_url') }}</a>
+                    <a href="{{ url_for('check_phone') }}" class="nav-link">{{ t('nav_phone') }}</a>
+                    <a href="{{ url_for('view_history') }}" class="nav-link">{{ t('nav_history') }}</a>
+                </nav>
+
+                <!-- Top Right Language Switcher -->
+                <div class="lang-switcher" aria-label="Language Selector">
+                    <span class="lang-globe" aria-hidden="true">🌐</span>
+                    <a href="{{ url_for('set_language', lang='en') }}" class="lang-link {% if current_lang == 'en' %}active{% endif %}" title="Switch to English">English</a>
+                    <span class="lang-separator">|</span>
+                    <a href="{{ url_for('set_language', lang='mr') }}" class="lang-link {% if current_lang == 'mr' %}active{% endif %}" title="मराठीमध्ये स्विच करा">मराठी (Marathi)</a>
+                    <span class="lang-separator">|</span>
+                    <a href="{{ url_for('set_language', lang='hi') }}" class="lang-link {% if current_lang == 'hi' %}active{% endif %}" title="हिंदी में बदलें">हिंदी (Hindi)</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="main-content" role="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Site Footer & Privacy Notice -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="disclaimer-banner">
+            {{ t('footer_disclaimer') }}
+        </div>
+        <p class="footer-copy">
+            {{ t('footer_copy') }}
+        </p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

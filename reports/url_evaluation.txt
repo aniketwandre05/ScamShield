@@ -1,0 +1,34 @@
+============================================================
+SCAMSHIELD URL MODEL EVALUATION REPORT
+============================================================
+Algorithm: Random Forest (100 estimators, max_depth=15) on 17 Handcrafted Lexical Features
+Features: url_length, hostname_length, path_length, query_length, count_dots, count_hyphens, count_at, count_question, count_equal, count_slash, count_digits, count_special_chars, subdomain_count, has_https, has_ip_address, is_shortened, suspicious_keyword_count
+Total Processed Samples: 40000
+Train Size: 32000, Test Size: 8000
+------------------------------------------------------------
+Accuracy:  0.9892
+Precision: 0.9982
+Recall:    0.9802
+F1 Score:  0.9892
+ROC-AUC:   0.9980
+
+Confusion Matrix:
+[[TN=3993, FP=7],
+ [FN=79, TP=3921]]
+
+Top 5 Feature Importances:
+  1. has_https: 0.6872
+  2. subdomain_count: 0.1157
+  3. count_special_chars: 0.0370
+  4. count_dots: 0.0331
+  5. count_slash: 0.0287
+
+Detailed Classification Report:
+                    precision    recall  f1-score   support
+
+        Benign URL       0.98      1.00      0.99      4000
+Malicious/Scam URL       1.00      0.98      0.99      4000
+
+          accuracy                           0.99      8000
+         macro avg       0.99      0.99      0.99      8000
+      weighted avg       0.99      0.99      0.99      8000

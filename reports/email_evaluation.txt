@@ -1,0 +1,26 @@
+============================================================
+SCAMSHIELD EMAIL MODEL EVALUATION REPORT
+============================================================
+Algorithm: TF-IDF (1-2 ngrams, 10,000 max features) + Logistic Regression (C=2.0, balanced)
+Total Processed Samples: 40000
+Train Size: 32000, Test Size: 8000
+------------------------------------------------------------
+Accuracy:  0.9821
+Precision: 0.9787
+Recall:    0.9858
+F1 Score:  0.9822
+ROC-AUC:   0.9977
+
+Confusion Matrix:
+[[TN=3914, FP=86],
+ [FN=57, TP=3943]]
+
+Detailed Classification Report:
+                     precision    recall  f1-score   support
+
+         Safe Email       0.99      0.98      0.98      4000
+Phishing/Scam Email       0.98      0.99      0.98      4000
+
+           accuracy                           0.98      8000
+          macro avg       0.98      0.98      0.98      8000
+       weighted avg       0.98      0.98      0.98      8000

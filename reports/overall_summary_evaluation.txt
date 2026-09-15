@@ -1,0 +1,10 @@
+======================================================================
+SCAMSHIELD: OVERALL HYBRID ML SYSTEM EVALUATION METRICS
+======================================================================
+
+        Module                                Model  Accuracy  Precision   Recall  F1-Score  ROC-AUC
+   SMS Message         TF-IDF + Logistic Regression    0.9890   0.943548 0.966942  0.955102 0.996361
+Email Phishing         TF-IDF + Logistic Regression    0.9855   0.982841 0.989443  0.986131 0.998563
+   URL / Links Handcrafted Features + Random Forest    0.9880   0.995859 0.979633  0.987680 0.997686
+
+Note: All metrics computed on held-out test distributions.

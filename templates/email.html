@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('email_header_title') }} - {{ t('brand_title') }}{% endblock %}
+
+{% block content %}
+<div class="form-card">
+    <div class="card-header-bar">
+        <div class="card-header-icon" aria-hidden="true">✉️</div>
+        <div class="card-header-text">
+            <h2>{{ t('email_header_title') }}</h2>
+            <p>{{ t('email_header_desc') }}</p>
+        </div>
+    </div>
+
+    <!-- Mode Selection Tabs -->
+    <div class="input-tabs" role="tablist">
+        <button type="button" class="tab-btn active" data-tab="paste-tab" role="tab" aria-selected="true" aria-controls="paste-tab">
+            {{ t('tab_paste_email') }}
+        </button>
+        <button type="button" class="tab-btn" data-tab="upload-tab" role="tab" aria-selected="false" aria-controls="upload-tab">
+            {{ t('tab_upload_email_screenshot') }}
+        </button>
+    </div>
+
+    <!-- Form 1: Paste Text -->
+    <div id="paste-tab" class="tab-panel" role="tabpanel">
+        <form action="{{ url_for('analyze_email') }}" method="POST">
+            <input type="hidden" name="input_mode" value="text">
+            
+            <div class="form-group">
+                <label for="email_sender" class="form-label">{{ t('email_sender_label') }}</label>
+                <input type="text" id="email_sender" name="email_sender" class="form-control" placeholder="{{ t('email_sender_placeholder') }}">
+            </div>
+
+            <div class="form-group">
+                <label for="email_subject" class="form-label">{{ t('email_subject_label') }}</label>
+                <input type="text" id="email_subject" name="email_subject" class="form-control" placeholder="{{ t('email_subject_placeholder') }}">
+            </div>
+
+            <div class="form-group">
+                <label for="email_body" class="form-label">{{ t('email_body_label') }}</label>
+                <textarea id="email_body" name="email_body" class="form-control" placeholder="{{ t('email_body_placeholder') }}" required rows="6"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary-large">{{ t('email_btn') }}</button>
+        </form>
+
+        <!-- Demo Samples -->
+        <div class="demo-samples-box">
+            <div class="demo-title">{{ t('try_example') }}</div>
+            <div class="demo-btn-group">
+                <button type="button" class="btn-demo" 
+                    data-target="email_body" data-text="Hi team, attached is the revised project roadmap for Q3 review. Please look it over before our Friday meeting."
+                    data-target-extra="email_subject" data-text-extra="Project Roadmap Q3"
+                    data-target-sender="email_sender" data-text-sender="manager@company.org">
+                    🟢 Safe: Work Roadmap
+                </button>
+                <button type="button" class="btn-demo" 
+                    data-target="email_body" data-text="Your recent invoice #9482 for $42.50 has been processed successfully. View your receipt at https://receipts.service.com"
+                    data-target-extra="email_subject" data-text-extra="Your Subscription Receipt"
+                    data-target-sender="email_sender" data-text-sender="billing@service.com">
+                    🟢 Safe: Receipt
+                </button>
+                <button type="button" class="btn-demo" 
+                    data-target="email_body" data-text="Dear Customer, we detected unauthorized sign-in attempts on your PayPal account. Your account has been temporarily restricted. To restore access and verify your debit card and password, please visit http://192.168.1.10/paypal-security/verify immediately or your account will be deleted permanently."
+                    data-target-extra="email_subject" data-text-extra="URGENT: Unauthorized Login Detected - Action Required"
+                    data-target-sender="email_sender" data-text-sender="security-alert@paypal-update-center.xyz">
+                    🔴 Scam: PayPal Phishing
+                </button>
+                <button type="button" class="btn-demo" 
+                    data-target="email_body" data-text="Attn: Beneficiary, this is the International Compensation Commission. We have approved $2,500,000 in unclaimed funds for you. Send your full bank account number, ID card copy, and $150 processing fee via Western Union to release funds."
+                    data-target-extra="email_subject" data-text-extra="OFFICIAL NOTICE: Unclaimed Funds Approved"
+                    data-target-sender="email_sender" data-text-sender="claims@fund-release-dept.net">
+                    🔴 Scam: Inheritance / Wire
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form 2: Upload Screenshot -->
+    <div id="upload-tab" class="tab-panel" style="display: none;" role="tabpanel">
+        <form action="{{ url_for('analyze_email') }}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="input_mode" value="screenshot">
+            <div class="form-group">
+                <label class="form-label">{{ t('email_upload_label') | default('Upload a screenshot of the email:') }}</label>
+                <div class="upload-zone" tabindex="0" role="button" aria-label="Upload email screenshot file">
+                    <div class="upload-zone-icon">🖼️</div>
+                    <div class="upload-zone-text">{{ t('upload_drag_drop') }}</div>
+                    <div class="upload-zone-sub">{{ t('upload_formats') }}</div>
+                    <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" style="display: none;" required>
+                </div>
+                
+                <div class="file-preview">
+                    <div>
+                        <strong class="preview-filename">image.png</strong>
+                        <span class="preview-filesize" style="color: var(--text-muted);"></span>
+                    </div>
+                    <button type="button" class="btn-demo btn-clear-file" style="color: var(--danger-color);">{{ t('upload_remove') }}</button>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary-large">{{ t('email_scan_btn') }}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

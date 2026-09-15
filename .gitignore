@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Environment variables
+.env
+.env.local
+
+# File uploads and temporary files
+uploads/*
+!uploads/.gitkeep
+temp/
+tmp/
+*.log
+
+# Large datasets in raw folder (keep raw folder itself)
+data/raw/*.csv
+data/processed/*.csv
+Email/
+SMS/
+URL/
+
+# Large model files if over GitHub limit
+*.pkl.bak
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Large datasets
+Email/CEAS_08.csv
+Email/phishing_email.csv

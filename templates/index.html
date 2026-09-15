@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('brand_title') }} - {{ t('hero_subtitle') }}{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <h2 class="hero-title">{{ t('hero_title') }}</h2>
+    <p class="hero-subtitle">
+        {{ t('hero_subtitle') }}
+    </p>
+</section>
+
+<div class="options-grid" role="region" aria-label="Safety Check Options">
+    <!-- 1. CHECK SMS -->
+    <a href="{{ url_for('check_sms') }}" class="option-card" aria-label="{{ t('card_sms_title') }}">
+        <div class="card-icon-wrapper" aria-hidden="true">💬</div>
+        <div>
+            <h3 class="option-title">{{ t('card_sms_title') }}</h3>
+            <p class="option-desc">{{ t('card_sms_desc') }}</p>
+        </div>
+        <span class="card-cta-btn">{{ t('card_sms_btn') }}</span>
+    </a>
+
+    <!-- 2. CHECK EMAIL -->
+    <a href="{{ url_for('check_email') }}" class="option-card" aria-label="{{ t('card_email_title') }}">
+        <div class="card-icon-wrapper" aria-hidden="true">✉️</div>
+        <div>
+            <h3 class="option-title">{{ t('card_email_title') }}</h3>
+            <p class="option-desc">{{ t('card_email_desc') }}</p>
+        </div>
+        <span class="card-cta-btn">{{ t('card_email_btn') }}</span>
+    </a>
+
+    <!-- 3. CHECK URL -->
+    <a href="{{ url_for('check_url') }}" class="option-card" aria-label="{{ t('card_url_title') }}">
+        <div class="card-icon-wrapper" aria-hidden="true">🔗</div>
+        <div>
+            <h3 class="option-title">{{ t('card_url_title') }}</h3>
+            <p class="option-desc">{{ t('card_url_desc') }}</p>
+        </div>
+        <span class="card-cta-btn">{{ t('card_url_btn') }}</span>
+    </a>
+
+    <!-- 4. CHECK PHONE CALL -->
+    <a href="{{ url_for('check_phone') }}" class="option-card" aria-label="{{ t('card_phone_title') }}">
+        <div class="card-icon-wrapper" aria-hidden="true">📞</div>
+        <div>
+            <h3 class="option-title">{{ t('card_phone_title') }}</h3>
+            <p class="option-desc">{{ t('card_phone_desc') }}</p>
+        </div>
+        <span class="card-cta-btn">{{ t('card_phone_btn') }}</span>
+    </a>
+</div>
+{% endblock %}

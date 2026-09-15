@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('result_title') }} - {{ t('brand_title') }}{% endblock %}
+
+{% block content %}
+<div class="result-card">
+    <div class="result-header">
+        <h2 class="result-title">{{ t('result_title') }}</h2>
+        <p style="color: var(--text-secondary); font-size: 16px;">
+            {{ t('content_checked') }} <strong>{{ display_type | default(content_type|upper) }}</strong> 
+            {% if ocr_used %}&bull; <span style="color: var(--primary-color);">{{ t('ocr_extracted_badge') }}</span>{% endif %}
+        </p>
+    </div>
+
+    <!-- Risk Gauge Box -->
+    <div class="risk-meter-container" style="border-color: {{ color }};">
+        <div class="risk-score-label">{{ t('risk_score_label') }}</div>
+        <div class="risk-score-number" style="color: {{ color }};">
+            {{ risk_score }} <span class="score-max">/ 100</span>
+        </div>
+        
+        <div class="score-bar-bg">
+            <div class="score-bar-fill" style="width: {{ risk_score }}%; background-color: {{ color }};"></div>
+        </div>
+
+        <div class="risk-badge {{ badge_class }}">
+            <span aria-hidden="true">
+                {% if risk_level == 'LOW' %}🛡️{% elif risk_level == 'MEDIUM' %}⚠️{% else %}🚨{% endif %}
+            </span>
+            {{ risk_label }}
+        </div>
+    </div>
+
+    <!-- Summary Sentence -->
+    <p style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto;">
+        {{ summary }}
+    </p>
+
+    <!-- Content Snippet Preview (if available) -->
+    {% if preview_text %}
+    <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px 18px; text-align: left; margin-bottom: 24px;">
+        <span style="font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">{{ t('snippet_label') }}</span>
+        <p style="font-size: 16px; color: var(--text-primary); margin-top: 4px; word-break: break-word;">
+            {{ preview_text }}
+        </p>
+    </div>
+    {% endif %}
+
+    <!-- Section 1: Why is this suspicious? -->
+    <div class="explanation-block">
+        <h3 class="section-heading" style="color: var(--text-primary);">
+            {{ t('why_heading') }}
+        </h3>
+        <ul class="reasons-list">
+            {% for reason in reasons %}
+            <li>{{ reason }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Section 2: What should you do? -->
+    <div class="explanation-block">
+        <h3 class="section-heading" style="color: var(--primary-color);">
+            {{ t('what_heading') }}
+        </h3>
+        <ul class="actions-list">
+            {% for action in actions %}
+            <li class="{% if 'NOT' in action or 'Never' in action or 'Reject' in action or 'नका' in action or 'न करें' in action %}action-dont{% else %}action-do{% endif %}">
+                {{ action }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Check Another CTA -->
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 36px; flex-wrap: wrap;">
+        <a href="{{ url_for('index') }}" class="btn-primary-large" style="max-width: 280px; margin: 0;">
+            {{ t('btn_check_another') }}
+        </a>
+        <a href="{{ url_for('view_history') }}" class="btn-secondary" style="display: flex; align-items: center; justify-content: center;">
+            {{ t('btn_view_history') }}
+        </a>
+    </div>
+</div>
+{% endblock %}

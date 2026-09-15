@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('phone_header_title') }} - {{ t('brand_title') }}{% endblock %}
+
+{% block content %}
+<div class="form-card">
+    <div class="card-header-bar">
+        <div class="card-header-icon" aria-hidden="true">📞</div>
+        <div class="card-header-text">
+            <h2>{{ t('phone_header_title') }}</h2>
+            <p>{{ t('phone_header_desc') }}</p>
+        </div>
+    </div>
+
+    <form action="{{ url_for('analyze_phone') }}" method="POST">
+        {% for q in questions %}
+        <div class="question-item">
+            <div class="question-title">
+                {{ loop.index }}. {{ q.question }}
+            </div>
+            <div class="radio-group" role="radiogroup" aria-label="Question {{ loop.index }}">
+                <label class="radio-label radio-label-no">
+                    <input type="radio" name="{{ q.id }}" value="no" class="radio-input" required>
+                    <span>{{ t('phone_no') }}</span>
+                </label>
+                <label class="radio-label radio-label-yes">
+                    <input type="radio" name="{{ q.id }}" value="yes" class="radio-input" required>
+                    <span style="color: var(--danger-color); font-weight: 800;">{{ t('phone_yes') }}</span>
+                </label>
+            </div>
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn-primary-large" style="margin-top: 24px;">
+            {{ t('phone_btn') }}
+        </button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+import pytest
+from app import app
+from risk.phone_risk import get_localized_phone_questions, assess_phone_call_risk
+
+
+@pytest.fixture
+def client():
+    app.config['TESTING'] = True
+    app.config['WTF_CSRF_ENABLED'] = False
+    with app.test_client() as client:
+        yield client
+
+
+def test_language_switch_marathi(client):
+    res = client.get('/set_language/mr', follow_redirects=True)
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    assert 'आज आपण काय तपासू इच्छिता?' in html
+    assert 'मराठी' in html
+    assert 'स्कॅमशील्ड' in html
+
+
+def test_language_switch_hindi(client):
+    res = client.get('/set_language/hi', follow_redirects=True)
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    assert 'आज आप क्या जांचना चाहते हैं?' in html
+    assert 'हिंदी' in html
+    assert 'स्कैमशील्ड' in html
+
+
+def test_language_switch_english(client):
+    client.get('/set_language/mr')
+    res = client.get('/set_language/en', follow_redirects=True)
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    assert 'What would you like to check today?' in html
+    assert 'SCAMSHIELD' in html
+
+
+def test_phone_questions_marathi(client):
+    client.get('/set_language/mr')
+    res = client.get('/check/phone')
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    assert 'संशयास्पद फोन कॉल तपासा' in html
+    assert 'होय (YES)' in html
+    assert 'नाही (NO)' in html
+
+
+def test_phone_questions_hindi(client):
+    client.get('/set_language/hi')
+    res = client.get('/check/phone')
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    assert 'संदिग्ध फोन कॉल की जांच करें' in html
+    assert 'हाँ (YES)' in html
+    assert 'नहीं (NO)' in html
+
+
+def test_sms_check_in_marathi(client):
+    client.get('/set_language/mr')
+    res = client.get('/check/sms')
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    assert 'एसएमएस किंवा व्हॉट्सअॅप संदेश तपासा' in html
+    assert 'संदेश मजकूर पेस्ट करा' in html
+
+
+def test_email_check_in_hindi(client):
+    client.get('/set_language/hi')
+    res = client.get('/check/email')
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    assert 'ईमेल सामग्री जांचें' in html
+    assert 'ईमेल विवरण पेस्ट करें' in html
+
+
+def test_url_check_in_marathi(client):
+    client.get('/set_language/mr')
+    res = client.get('/check/url')
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    assert 'वेबसाइट लिंक (URL) तपासा' in html
