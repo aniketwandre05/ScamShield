@@ -28,18 +28,11 @@ except ImportError:
     HAS_PYTESSERACT = False
 
 
-def extract_text_from_image(image_input: Union[str, bytes, Image.Image]) -> Dict[str, Any]:
+def extract_text_from_image(image_input: Union[str, bytes, Image.Image], lang: str = "en") -> Dict[str, Any]:
     """
     Extracts text from screenshot using available local OCR engine.
+    Supports English ('en'), Marathi ('mr'), and Hindi ('hi') with fallback.
     Applies image enhancement preprocessing first.
-    Returns:
-        {
-            "success": bool,
-            "text": str,
-            "char_count": int,
-            "engine": str,
-            "error": Optional[str]
-        }
     """
     try:
         # 1. Preprocess
@@ -56,10 +49,17 @@ def extract_text_from_image(image_input: Union[str, bytes, Image.Image]) -> Dict
     extracted_text = ""
     engine_used = "none"
 
+    # Map ScamShield language codes to OCR language tags
+    ocr_lang_map = {
+        "en": "en",
+        "mr": "mr",
+        "hi": "hi"
+    }
+    target_ocr_lang = ocr_lang_map.get(lang, "en")
+
     # Try Windows Native OCR first
     if HAS_WINOCR:
         try:
-            # winocr requires an event loop
             try:
                 loop = asyncio.get_event_loop()
                 if loop.is_closed():
@@ -69,27 +69,37 @@ def extract_text_from_image(image_input: Union[str, bytes, Image.Image]) -> Dict
                 loop = asyncio.new_event_loop()
                 asyncio.set_event_loop(loop)
 
-            if loop.is_running():
-                import concurrent.futures
-                with concurrent.futures.ThreadPoolExecutor() as pool:
-                    result = pool.submit(lambda: asyncio.run(winocr.recognize_pil(processed_img, 'en'))).result()
-            else:
-                result = loop.run_until_complete(winocr.recognize_pil(processed_img, 'en'))
+            # Try target language first, then fallback to 'en'
+            for lang_code in [target_ocr_lang, "en"] if target_ocr_lang != "en" else ["en"]:
+                try:
+                    if loop.is_running():
+                        import concurrent.futures
+                        with concurrent.futures.ThreadPoolExecutor() as pool:
+                            result = pool.submit(lambda: asyncio.run(winocr.recognize_pil(processed_img, lang_code))).result()
+                    else:
+                        result = loop.run_until_complete(winocr.recognize_pil(processed_img, lang_code))
 
-            if result and hasattr(result, 'text'):
-                extracted_text = result.text.strip()
-                engine_used = "winocr (Windows Native OCR)"
-        except Exception as e:
-            # Fallback to pytesseract if winocr fails
+                    if result and hasattr(result, 'text') and result.text.strip():
+                        extracted_text = result.text.strip()
+                        engine_used = f"winocr ({lang_code})"
+                        break
+                except Exception:
+                    continue
+        except Exception:
             pass
 
     # Fallback to Tesseract if needed
     if not extracted_text and HAS_PYTESSERACT:
         try:
-            extracted_text = pytesseract.image_to_string(processed_img).strip()
-            if extracted_text:
-                engine_used = "pytesseract"
-        except Exception as e:
+            for t_lang in [f"{target_ocr_lang}+eng", "eng"] if target_ocr_lang != "en" else ["eng"]:
+                try:
+                    extracted_text = pytesseract.image_to_string(processed_img, lang=t_lang).strip()
+                    if extracted_text:
+                        engine_used = f"pytesseract ({t_lang})"
+                        break
+                except Exception:
+                    continue
+        except Exception:
             pass
 
     if not extracted_text:

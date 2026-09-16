@@ -101,6 +101,7 @@ def check_sms():
 @app.route('/analyze/sms', methods=['POST'])
 def analyze_sms():
     """Processes SMS text or uploaded screenshot."""
+    lang = session.get('lang', 'en')
     input_mode = request.form.get('input_mode', 'text')
     ocr_used = False
     analyzed_text = ""
@@ -131,7 +132,7 @@ def analyze_sms():
         temp_path = UPLOADS_DIR / safe_name
         try:
             file.save(temp_path)
-            ocr_res = extract_text_from_image(str(temp_path))
+            ocr_res = extract_text_from_image(str(temp_path), lang=lang)
         finally:
             # Clean up temp file immediately
             if temp_path.exists():
@@ -162,8 +163,7 @@ def analyze_sms():
                 return_url=url_for('check_sms'))
                 
     # Run hybrid risk assessment
-    lang = session.get('lang', 'en')
-    result = compute_hybrid_risk('sms', text=analyzed_text, override_urls=override_urls)
+    result = compute_hybrid_risk('sms', text=analyzed_text, override_urls=override_urls, lang=lang)
     result['risk_label'] = get_text(f"risk_{result['risk_level'].lower()}", lang)
     result['summary'] = get_text(f"risk_{result['risk_level'].lower()}_summary", lang)
     add_to_history('SMS', analyzed_text, result)
@@ -184,6 +184,7 @@ def check_email():
 @app.route('/analyze/email', methods=['POST'])
 def analyze_email():
     """Processes Email content or uploaded screenshot."""
+    lang = session.get('lang', 'en')
     input_mode = request.form.get('input_mode', 'text')
     ocr_used = False
     subject = ""
@@ -215,7 +216,7 @@ def analyze_email():
         temp_path = UPLOADS_DIR / safe_name
         try:
             file.save(temp_path)
-            ocr_res = extract_text_from_image(str(temp_path))
+            ocr_res = extract_text_from_image(str(temp_path), lang=lang)
         finally:
             if temp_path.exists():
                 try:
@@ -250,8 +251,7 @@ def analyze_email():
                 return_url=url_for('check_email'))
                 
     # Run hybrid risk assessment
-    lang = session.get('lang', 'en')
-    result = compute_hybrid_risk('email', subject=subject, body=body, sender=sender, override_urls=override_urls)
+    result = compute_hybrid_risk('email', subject=subject, body=body, sender=sender, override_urls=override_urls, lang=lang)
     result['risk_label'] = get_text(f"risk_{result['risk_level'].lower()}", lang)
     result['summary'] = get_text(f"risk_{result['risk_level'].lower()}_summary", lang)
     preview_snippet = f"Subject: {subject} | Body: {body}" if subject else body
@@ -273,6 +273,7 @@ def check_url():
 @app.route('/analyze/url', methods=['POST'])
 def analyze_url():
     """Processes URL safety check from pasted link or uploaded screenshot."""
+    lang = session.get('lang', 'en')
     input_mode = request.form.get('input_mode', 'text')
     ocr_used = False
     target_url = ""
@@ -301,7 +302,7 @@ def analyze_url():
         temp_path = UPLOADS_DIR / safe_name
         try:
             file.save(temp_path)
-            ocr_res = extract_text_from_image(str(temp_path))
+            ocr_res = extract_text_from_image(str(temp_path), lang=lang)
         finally:
             if temp_path.exists():
                 try:
@@ -345,8 +346,7 @@ def analyze_url():
                 error_message="Please paste a website link (URL) to check.",
                 return_url=url_for('check_url'))
             
-    lang = session.get('lang', 'en')
-    result = compute_hybrid_risk('url', url=target_url)
+    result = compute_hybrid_risk('url', url=target_url, lang=lang)
     result['risk_label'] = get_text(f"risk_{result['risk_level'].lower()}", lang)
     result['summary'] = get_text(f"risk_{result['risk_level'].lower()}_summary", lang)
     add_to_history('URL', target_url, result)

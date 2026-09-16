@@ -82,3 +82,45 @@ def test_url_check_in_marathi(client):
     assert res.status_code == 200
     html = res.data.decode('utf-8')
     assert 'वेबसाइट लिंक (URL) तपासा' in html
+
+
+def test_marathi_backend_sms_analysis(client):
+    client.get('/set_language/mr')
+    res = client.post('/analyze/sms', data={
+        'sms_text': 'तुमचा बँक खाते तात्काळ ब्लॉक केले जाईल. कृपया OTP शेअर करा आणि व्हेरिफाय करा.'
+    })
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    # Risk score should be high/medium
+    assert 'धोका पातळी' in html or 'जोखीम' in html or 'सुरक्षा' in html
+    # Check that Marathi action/reasons are present
+    assert 'OTP किंवा पासवर्ड' in html or 'कधीही शेअर करू नका' in html or 'खाते' in html
+
+
+def test_hindi_backend_sms_analysis(client):
+    client.get('/set_language/hi')
+    res = client.post('/analyze/sms', data={
+        'sms_text': 'बधाई हो! आपने 25 लाख की लॉटरी जीती है। तुरंत क्लेम करने के लिए OTP भेजें।'
+    })
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    # Risk score should be high
+    assert 'जोखिम' in html or 'सुरक्षा' in html or 'खतरा' in html
+    # Check that Hindi reasons/actions are present
+    assert 'ओटीपी' in html or 'इनाम' in html or 'साझा न करें' in html
+
+
+def test_marathi_backend_phone_analysis(client):
+    client.get('/set_language/mr')
+    res = client.post('/analyze/phone', data={
+        'q_urgent': 'yes',
+        'q_remote_access': 'yes',
+        'q_money': 'yes',
+        'q_otp': 'yes',
+        'q_threat': 'yes',
+        'q_unknown': 'yes'
+    })
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    # Should have Marathi explanations and checklist
+    assert 'तात्काळ' in html or 'स्क्रीन शेअरिंग' in html or 'कॉल' in html

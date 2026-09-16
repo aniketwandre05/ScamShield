@@ -37,6 +37,104 @@ def is_domain_trusted(url: str) -> bool:
         return False
 
 
+RISK_MESSAGES = {
+    "ip_reason": {
+        "en": "The link uses a raw IP address instead of a recognized domain name.",
+        "mr": "हा लिंक अधिकृत डोमेन नावाऐवजी थेट आयपी (IP) ॲड्रेस वापरत आहे.",
+        "hi": "यह लिंक किसी मान्यता प्राप्त डोमेन के बजाय सीधे आईपी (IP) एड्रेस का उपयोग करता है।"
+    },
+    "ip_action": {
+        "en": "Never enter passwords or personal details on websites using raw IP addresses.",
+        "mr": "थेट आयपी ॲड्रेस वापरणाऱ्या वेबसाइटवर कधीही पासवर्ड किंवा वैयक्तिक माहिती टाकू नका.",
+        "hi": "सीधे आईपी एड्रेस वाली वेबसाइटों पर कभी भी पासवर्ड या व्यक्तिगत विवरण दर्ज न करें।"
+    },
+    "shortened_reason": {
+        "en": "The link uses a URL shortener service which hides the true destination.",
+        "mr": "हा लिंक मूळ वेबसाइट लपवण्यासाठी शॉर्ट यूआरएल सेवेचा वापर करतो.",
+        "hi": "यह लिंक असली वेबसाइट को छिपाने के लिए यूआरएल शॉर्टनर सेवा का उपयोग करता है।"
+    },
+    "shortened_action": {
+        "en": "Be cautious with shortened links; expand them before clicking.",
+        "mr": "शॉर्ट लिंक्सबाबत सावध राहा; क्लिक करण्यापूर्वी त्यांची खात्री करा.",
+        "hi": "शॉर्ट किए गए लिंक से सावधान रहें; क्लिक करने से पहले उनकी जांच करें।"
+    },
+    "subdomain_reason": {
+        "en": "Excessive subdomains detected ({count} levels), often used in phishing.",
+        "mr": "अनेक सबडोमेन आढळले ({count} स्तर), जे फिशिंगसाठी मोठ्या प्रमाणावर वापरले जातात.",
+        "hi": "अत्यधिक सबडोमेन पाए गए ({count} स्तर), जो अक्सर फ़िशिंग में उपयोग किए जाते हैं।"
+    },
+    "no_https_reason": {
+        "en": "The link does not use secure HTTPS encryption (http://).",
+        "mr": "हा लिंक सुरक्षित HTTPS एन्क्रिप्शन वापरत नाही (http://).",
+        "hi": "यह लिंक सुरक्षित HTTPS एन्क्रिप्शन का उपयोग नहीं करता है (http://)।"
+    },
+    "banking_kw_reason": {
+        "en": "Contains security/banking keywords ({count} detected) in an unverified link.",
+        "mr": "असत्यापित लिंकमध्ये बँक/सुरक्षा संबंधित शब्द ({count} आढळले) आहेत.",
+        "hi": "असत्यापित लिंक में सुरक्षा/बैंकिंग संबंधित शब्द ({count} पाए गए) शामिल हैं।"
+    },
+    "url_ml_scam_reason": {
+        "en": "Machine learning URL classifier detected structural patterns consistent with phishing or malicious sites.",
+        "mr": "मशीन लर्निंग मॉडेलने या लिंकमध्ये फिशिंग किंवा धोकादायक वेबसाइटसारखी रचना ओळखली आहे.",
+        "hi": "मशीन लर्निंग मॉडल ने इस लिंक में फ़िशिंग या दुर्भावनापूर्ण वेबसाइट जैसी संरचना की पहचान की है।"
+    },
+    "url_ml_scam_action": {
+        "en": "Do not open this website in your browser.",
+        "mr": "ही वेबसाइट तुमच्या ब्राउझरमध्ये उघडू नका.",
+        "hi": "इस वेबसाइट को अपने ब्राउज़र में न खोलें।"
+    },
+    "embedded_url_scam_reason": {
+        "en": "Embedded link within the message was classified as high risk by our URL security model.",
+        "mr": "संदेशातील लिंक आमच्या सुरक्षा मॉडेलद्वारे अत्यंत धोकादायक आढळली आहे.",
+        "hi": "संदेश में दिया गया लिंक हमारे सुरक्षा मॉडल द्वारा उच्च जोखिम वाला पाया गया है।"
+    },
+    "embedded_url_scam_action": {
+        "en": "Do not click or tap the link in the message.",
+        "mr": "संदेशातील कोणत्याही लिंकवर क्लिक करू नका.",
+        "hi": "संदेश में दिए गए लिंक पर क्लिक न करें।"
+    },
+    "text_ml_scam_reason": {
+        "en": "Machine learning text model identified spam/scam wording patterns.",
+        "mr": "मशीन लर्निंग मॉडेलने या संदेशात फसवणुकीची भाषा आणि पद्धती ओळखल्या आहेत.",
+        "hi": "मशीन लर्निंग मॉडल ने इस संदेश में धोखाधड़ी की भाषा और पैटर्न की पहचान की है।"
+    },
+    "sender_mismatch_reason": {
+        "en": "Sender address '{sender}' does not match official service domain.",
+        "mr": "पाठवणाऱ्याचा पत्ता '{sender}' अधिकृत सेवेच्या डोमेनशी जुळत नाही.",
+        "hi": "भेजने वाले का पता '{sender}' आधिकारिक सेवा के डोमेन से मेल नहीं खाता है।"
+    },
+    "sender_mismatch_action": {
+        "en": "Check the sender email address carefully. Impersonators often use free or misnamed email accounts.",
+        "mr": "पाठवणाऱ्याचा ईमेल काळजीपूर्वक तपासा. तोतया व्यक्ती अनेकदा मोफत किंवा बनावट ईमेल खाती वापरतात.",
+        "hi": "भेजने वाले का ईमेल ध्यान से जांचें। धोखेबाज अक्सर मुफ्त या फर्जी ईमेल खातों का उपयोग करते हैं।"
+    },
+    "email_embedded_url_reason": {
+        "en": "Links inside this email were flagged as suspicious by our URL security classifier.",
+        "mr": "या ईमेलमधील लिंक्स आमच्या सुरक्षा तपासणीत संशयास्पद आढळल्या आहेत.",
+        "hi": "इस ईमेल में दिए गए लिंक हमारी सुरक्षा जांच में संदिग्ध पाए गए हैं।"
+    },
+    "email_embedded_url_action": {
+        "en": "Do not click any buttons or links in this email.",
+        "mr": "या ईमेलमधील कोणत्याही बटणावर किंवा लिंकवर क्लिक करू नका.",
+        "hi": "इस ईमेल के किसी भी बटन या लिंक पर क्लिक न करें।"
+    },
+    "email_ml_phishing_reason": {
+        "en": "Machine learning email classifier identified phishing intent in email content.",
+        "mr": "मशीन लर्निंग ईमेल मॉडेलने या मजकुरात फिशिंगचा हेतू ओळखला आहे.",
+        "hi": "मशीन लर्निंग ईमेल मॉडल ने इस सामग्री में फ़िशिंग के इरादे की पहचान की है।"
+    }
+}
+
+
+def _get_msg(key: str, lang: str = "en", **kwargs) -> str:
+    """Helper to retrieve localized risk explanation string."""
+    msg_dict = RISK_MESSAGES.get(key, {})
+    template = msg_dict.get(lang, msg_dict.get("en", ""))
+    if kwargs:
+        return template.format(**kwargs)
+    return template
+
+
 def compute_hybrid_risk(
     content_type: str,
     text: str = "",
@@ -44,11 +142,14 @@ def compute_hybrid_risk(
     body: str = "",
     sender: str = "",
     url: str = "",
-    override_urls: Optional[List[str]] = None
+    override_urls: Optional[List[str]] = None,
+    lang: str = "en"
 ) -> Dict[str, Any]:
     """
     Main risk assessment entry point for SMS, Email, URL, or Screenshot inputs.
+    Supports multi-language explanations for 'en', 'mr', and 'hi'.
     """
+    valid_lang = lang if lang in ("en", "mr", "hi") else "en"
     reasons = []
     actions = []
     ml_results = {}
@@ -75,7 +176,7 @@ def compute_hybrid_risk(
         ml_results["url"] = url_pred
         
         # Rule evaluation on clean URL
-        rule_eval = evaluate_rules(target_url)
+        rule_eval = evaluate_rules(target_url, lang=valid_lang)
         feats = url_pred.get("features", {})
         
         # Check if URL belongs to a trusted verified domain
@@ -98,24 +199,24 @@ def compute_hybrid_risk(
             
         # Specific URL reasons
         if feats.get("has_ip_address"):
-            reasons.append("The link uses a raw IP address instead of a recognized domain name.")
-            actions.append("Never enter passwords or personal details on websites using raw IP addresses.")
+            reasons.append(_get_msg("ip_reason", valid_lang))
+            actions.append(_get_msg("ip_action", valid_lang))
         if feats.get("is_shortened"):
-            reasons.append("The link uses a URL shortener service which hides the true destination.")
-            actions.append("Be cautious with shortened links; expand them before clicking.")
+            reasons.append(_get_msg("shortened_reason", valid_lang))
+            actions.append(_get_msg("shortened_action", valid_lang))
         if feats.get("subdomain_count", 0) >= 3:
-            reasons.append(f"Excessive subdomains detected ({feats.get('subdomain_count')} levels), often used in phishing.")
+            reasons.append(_get_msg("subdomain_reason", valid_lang, count=feats.get('subdomain_count')))
         if not feats.get("has_https") and not target_url.lower().startswith("https://") and not trusted:
-            reasons.append("The link does not use secure HTTPS encryption (http://).")
+            reasons.append(_get_msg("no_https_reason", valid_lang))
         if feats.get("suspicious_keyword_count", 0) > 0 and not trusted:
-            reasons.append(f"Contains security/banking keywords ({feats.get('suspicious_keyword_count')} detected) in an unverified link.")
+            reasons.append(_get_msg("banking_kw_reason", valid_lang, count=feats.get('suspicious_keyword_count')))
             
         reasons.extend(rule_eval["reasons"])
         actions.extend(rule_eval["actions"])
         
         if url_pred.get("prediction") == 1 and not trusted:
-            reasons.append("Machine learning URL classifier detected structural patterns consistent with phishing or malicious sites.")
-            actions.append("Do not open this website in your browser.")
+            reasons.append(_get_msg("url_ml_scam_reason", valid_lang))
+            actions.append(_get_msg("url_ml_scam_action", valid_lang))
             
         risk_score = int(round(min(100, max(0, raw_score))))
         
@@ -128,7 +229,7 @@ def compute_hybrid_risk(
         ml_results["sms"] = sms_pred
         
         # Evaluate rules
-        rule_eval = evaluate_rules(raw_text)
+        rule_eval = evaluate_rules(raw_text, lang=valid_lang)
         reasons.extend(rule_eval["reasons"])
         actions.extend(rule_eval["actions"])
         
@@ -156,13 +257,13 @@ def compute_hybrid_risk(
                 base_score = max(68, (0.45 * text_prob * 100) + (0.35 * max_url_prob * 100) + (0.20 * rule_eval["rule_score"]))
                 raw_score = min(100, base_score + 10)
                 if max_url_prob >= 0.7:
-                    reasons.append("Embedded link within the message was classified as high risk by our URL security model.")
-                    actions.append("Do not click or tap the link in the message.")
+                    reasons.append(_get_msg("embedded_url_scam_reason", valid_lang))
+                    actions.append(_get_msg("embedded_url_scam_action", valid_lang))
             else:
                 raw_score = (0.60 * text_prob * 100) + (0.40 * rule_eval["rule_score"])
                 
             if sms_pred.get("prediction") == 1 and has_scam_rules:
-                reasons.append("Machine learning text model identified spam/scam wording patterns.")
+                reasons.append(_get_msg("text_ml_scam_reason", valid_lang))
         else:
             raw_score = rule_eval["rule_score"]
             
@@ -180,7 +281,7 @@ def compute_hybrid_risk(
         ml_results["email"] = email_pred
         
         # Rule evaluation
-        rule_eval = evaluate_rules(combined_text)
+        rule_eval = evaluate_rules(combined_text, lang=valid_lang)
         reasons.extend(rule_eval["reasons"])
         actions.extend(rule_eval["actions"])
         
@@ -211,8 +312,8 @@ def compute_hybrid_risk(
             if any(brand in combined_text.lower() for brand in ["paypal", "amazon", "apple", "netflix", "bank", "chase"]):
                 if not any(trusted in sender_lower for trusted in ["@paypal.com", "@amazon.com", "@apple.com", "@netflix.com", "@chase.com", "@usps.com"]):
                     sender_is_mismatched = True
-                    reasons.append(f"Sender address '{sender}' does not match official service domain.")
-                    actions.append("Check the sender email address carefully. Impersonators often use free or misnamed email accounts.")
+                    reasons.append(_get_msg("sender_mismatch_reason", valid_lang, sender=sender))
+                    actions.append(_get_msg("sender_mismatch_action", valid_lang))
                     rule_eval["rule_score"] = min(100, rule_eval["rule_score"] + 35)
                     
         if email_pred.get("available", False):
@@ -227,13 +328,13 @@ def compute_hybrid_risk(
                 base_score = max(68, (0.45 * text_prob * 100) + (0.35 * max_url_prob * 100) + (0.20 * rule_eval["rule_score"]))
                 raw_score = min(100, base_score + 10)
                 if max_url_prob >= 0.7:
-                    reasons.append("Links inside this email were flagged as suspicious by our URL security classifier.")
-                    actions.append("Do not click any buttons or links in this email.")
+                    reasons.append(_get_msg("email_embedded_url_reason", valid_lang))
+                    actions.append(_get_msg("email_embedded_url_action", valid_lang))
             else:
                 raw_score = (0.60 * text_prob * 100) + (0.40 * rule_eval["rule_score"])
                 
             if email_pred.get("prediction") == 1 and has_scam_rules:
-                reasons.append("Machine learning email classifier identified phishing intent in email content.")
+                reasons.append(_get_msg("email_ml_phishing_reason", valid_lang))
         else:
             raw_score = rule_eval["rule_score"]
             
@@ -256,7 +357,8 @@ def compute_hybrid_risk(
     explanation = build_explanation_summary(
         risk_level=risk_level,
         reasons=reasons,
-        actions=actions
+        actions=actions,
+        lang=valid_lang
     )
     
     return {
