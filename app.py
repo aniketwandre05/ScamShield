@@ -24,6 +24,7 @@ from ocr.ocr_engine import extract_text_from_image
 from ocr.content_detector import detect_content_structure
 from risk.risk_engine import compute_hybrid_risk
 from risk.phone_risk import PHONE_QUESTIONS, assess_phone_call_risk, get_localized_phone_questions
+from risk.privacy import mask_sensitive_data, highlight_suspicious_keywords
 from translations import get_text, TRANSLATIONS
 
 app = Flask(__name__)
@@ -63,8 +64,9 @@ def add_to_history(content_type: str, snippet: str, result: dict):
         
     history = session['scan_history']
     
-    # Truncate snippet for privacy and size
-    clean_snippet = (snippet[:80] + '...') if len(snippet) > 80 else snippet
+    # Mask sensitive credentials and truncate snippet for privacy and size
+    masked_snippet = mask_sensitive_data(snippet)
+    clean_snippet = (masked_snippet[:80] + '...') if len(masked_snippet) > 80 else masked_snippet
     if not clean_snippet.strip():
         clean_snippet = f"{content_type.upper()} Assessment"
         
@@ -166,11 +168,14 @@ def analyze_sms():
     result = compute_hybrid_risk('sms', text=analyzed_text, override_urls=override_urls, lang=lang)
     result['risk_label'] = get_text(f"risk_{result['risk_level'].lower()}", lang)
     result['summary'] = get_text(f"risk_{result['risk_level'].lower()}_summary", lang)
-    add_to_history('SMS', analyzed_text, result)
+    masked_preview = mask_sensitive_data(analyzed_text)
+    add_to_history('SMS', masked_preview, result)
     
     result['display_type'] = get_text('sms_display_type', lang)
     result['ocr_used'] = ocr_used
-    result['preview_text'] = (analyzed_text[:180] + '...') if len(analyzed_text) > 180 else analyzed_text
+    clean_preview = (masked_preview[:280] + '...') if len(masked_preview) > 280 else masked_preview
+    result['preview_text'] = clean_preview
+    result['highlighted_preview'] = highlight_suspicious_keywords(clean_preview)
     
     return render_template('result.html', **result)
 
@@ -255,11 +260,14 @@ def analyze_email():
     result['risk_label'] = get_text(f"risk_{result['risk_level'].lower()}", lang)
     result['summary'] = get_text(f"risk_{result['risk_level'].lower()}_summary", lang)
     preview_snippet = f"Subject: {subject} | Body: {body}" if subject else body
-    add_to_history('Email', preview_snippet, result)
+    masked_preview = mask_sensitive_data(preview_snippet)
+    add_to_history('Email', masked_preview, result)
     
     result['display_type'] = get_text('email_display_type', lang)
     result['ocr_used'] = ocr_used
-    result['preview_text'] = (preview_snippet[:180] + '...') if len(preview_snippet) > 180 else preview_snippet
+    clean_preview = (masked_preview[:280] + '...') if len(masked_preview) > 280 else masked_preview
+    result['preview_text'] = clean_preview
+    result['highlighted_preview'] = highlight_suspicious_keywords(clean_preview)
     
     return render_template('result.html', **result)
 
@@ -349,11 +357,13 @@ def analyze_url():
     result = compute_hybrid_risk('url', url=target_url, lang=lang)
     result['risk_label'] = get_text(f"risk_{result['risk_level'].lower()}", lang)
     result['summary'] = get_text(f"risk_{result['risk_level'].lower()}_summary", lang)
-    add_to_history('URL', target_url, result)
+    masked_url = mask_sensitive_data(target_url)
+    add_to_history('URL', masked_url, result)
     
     result['display_type'] = get_text('url_display_type', lang)
     result['ocr_used'] = ocr_used
-    result['preview_text'] = target_url
+    result['preview_text'] = masked_url
+    result['highlighted_preview'] = highlight_suspicious_keywords(masked_url)
     
     return render_template('result.html', **result)
 
@@ -383,6 +393,7 @@ def analyze_phone():
     result['display_type'] = get_text('phone_display_type', lang)
     result['ocr_used'] = False
     result['preview_text'] = snippet
+    result['highlighted_preview'] = highlight_suspicious_keywords(snippet)
     
     return render_template('result.html', **result)
 
@@ -401,6 +412,55 @@ def clear_history():
     session.modified = True
     flash("Scan history has been cleared.", "info")
     return redirect(url_for('view_history'))
+
+
+@app.route('/history/export')
+def export_history():
+    """Exports scan history as a CSV file for HCI data portability."""
+    import csv
+    import io
+    from flask import Response
+    
+    history = session.get('scan_history', [])
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(['ID', 'Content Type', 'Snippet', 'Risk Score', 'Risk Level', 'Date & Time'])
+    for item in history:
+        writer.writerow([
+            item.get('id', ''),
+            item.get('content_type', ''),
+            item.get('snippet', ''),
+            item.get('risk_score', ''),
+            item.get('risk_level', ''),
+            item.get('timestamp', '')
+        ])
+    return Response(
+        output.getvalue(),
+        mimetype="text/csv",
+        headers={"Content-disposition": "attachment; filename=scamshield_history.csv"}
+    )
+
+
+@app.route('/learn')
+def learn():
+    """Scam Awareness & Learning Center with common scam patterns, FAQ, and quiz."""
+    return render_template('learn.html')
+
+
+@app.route('/report', methods=['GET', 'POST'])
+def report_scam():
+    """Official cybercrime helplines & community scam reporting flow."""
+    submitted = False
+    if request.method == 'POST':
+        # Log report in session or mock community log
+        submitted = True
+    return render_template('report.html', submitted=submitted)
+
+
+@app.route('/api/feedback', methods=['POST'])
+def submit_feedback():
+    """Receives user feedback (helpful / report incorrect) on result."""
+    return {"status": "success", "message": "Feedback received"}
 
 
 @app.errorhandler(404)
@@ -428,7 +488,9 @@ def internal_server_error(e):
 
 
 if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
+    debug = os.environ.get("FLASK_DEBUG", "true").lower() in ("true", "1")
     print("=" * 60)
-    print("Starting ScamShield Server on http://127.0.0.1:5000")
+    print(f"Starting ScamShield Server on http://0.0.0.0:{port}")
     print("=" * 60)
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=debug)

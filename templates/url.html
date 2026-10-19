@@ -12,6 +12,12 @@
         </div>
     </div>
 
+    <!-- Privacy & Sensitive Data Warning Banner -->
+    <div class="privacy-warning-banner" role="note">
+        <span class="privacy-icon" aria-hidden="true">🔒</span>
+        <span><strong>{{ t('privacy_tip_title') }}</strong>: {{ t('privacy_tip_desc') }}</span>
+    </div>
+
     <!-- Mode Selection Tabs -->
     <div class="input-tabs" role="tablist">
         <button type="button" class="tab-btn active" data-tab="paste-tab" role="tab" aria-selected="true" aria-controls="paste-tab">
@@ -27,7 +33,20 @@
         <form action="{{ url_for('analyze_url') }}" method="POST">
             <input type="hidden" name="input_mode" value="text">
             <div class="form-group">
-                <label for="url_input" class="form-label">{{ t('url_label') }}</label>
+                <div class="form-label-row">
+                    <label for="url_input" class="form-label">{{ t('url_label') }}</label>
+                    <div class="input-actions-bar">
+                        <button type="button" class="btn-action-tool btn-action-paste" data-target="url_input" title="{{ t('btn_paste') }}">
+                            📋 {{ t('btn_paste') }}
+                        </button>
+                        <button type="button" class="btn-action-tool btn-action-voice" data-target="url_input" data-lang="{{ current_lang }}" title="{{ t('btn_voice') }}">
+                            🎙️ {{ t('btn_voice') }}
+                        </button>
+                        <button type="button" class="btn-action-tool btn-action-clear" data-target="url_input" title="{{ t('btn_clear') }}">
+                            🧹 {{ t('btn_clear') }}
+                        </button>
+                    </div>
+                </div>
                 <input type="text" id="url_input" name="url_input" class="form-control" placeholder="{{ t('url_placeholder') }}" required>
                 <p class="form-help">{{ t('url_help') }}</p>
             </div>
@@ -66,8 +85,8 @@
         <form action="{{ url_for('analyze_url') }}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="input_mode" value="screenshot">
             <div class="form-group">
-                <label class="form-label">{{ t('url_upload_label') | default('Upload a screenshot showing the website address or browser bar:') }}</label>
-                <div class="upload-zone" tabindex="0" role="button" aria-label="Upload URL screenshot file">
+                <label class="form-label">{{ t('tab_upload_url_screenshot') }}</label>
+                <div class="upload-zone" tabindex="0" role="button" aria-label="Upload link screenshot file">
                     <div class="upload-zone-icon">🖼️</div>
                     <div class="upload-zone-text">{{ t('upload_drag_drop') }}</div>
                     <div class="upload-zone-sub">{{ t('upload_formats') }}</div>
@@ -76,7 +95,7 @@
                 
                 <div class="file-preview">
                     <div>
-                        <strong class="preview-filename">image.png</strong>
+                        <strong class="preview-filename">url.png</strong>
                         <span class="preview-filesize" style="color: var(--text-muted);"></span>
                     </div>
                     <button type="button" class="btn-demo btn-clear-file" style="color: var(--danger-color);">{{ t('upload_remove') }}</button>

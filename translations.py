@@ -1,6 +1,8 @@
 """
 ScamShield Multi-Language Localization Module
 Provides comprehensive translations for English (en), Marathi (mr), and Hindi (hi).
+Includes full HCI checklist localizations for Usability, Accessibility, Feedback,
+Reporting, and Learning.
 """
 
 TRANSLATIONS = {
@@ -14,8 +16,18 @@ TRANSLATIONS = {
         "nav_url": "URL",
         "nav_phone": "Phone",
         "nav_history": "History",
+        "nav_learn": "Learn",
+        "nav_report": "Report Scam",
+        "skip_to_content": "Skip to main content",
 
-        # Home Page
+        # Theming & Accessibility Controls
+        "theme_toggle": "Toggle Dark / Light Mode",
+        "theme_dark": "🌙 Dark",
+        "theme_light": "☀️ Light",
+        "a11y_dyslexia": "🔤 Dyslexia Font",
+        "a11y_contrast": "👁️ High Contrast",
+
+        # Home Page & Onboarding
         "hero_title": "What would you like to check today?",
         "hero_subtitle": "Check suspicious messages, emails, links, and phone calls before you act or click.",
         "card_sms_title": "CHECK SMS",
@@ -30,8 +42,20 @@ TRANSLATIONS = {
         "card_phone_title": "CHECK PHONE CALL",
         "card_phone_desc": "Answer a few questions about a suspicious call.",
         "card_phone_btn": "Start Questions →",
+        "onboarding_title": "🛡️ New to ScamShield? Quick 3-Step Guide",
+        "onboarding_step1": "1. Choose what to check (SMS, Email, URL, or Phone Call).",
+        "onboarding_step2": "2. Paste the message text or drop a screenshot.",
+        "onboarding_step3": "3. View instant risk evaluation and a clear checklist of what to do.",
+        "onboarding_dismiss": "Got it, thanks! ✕",
 
-        # Common Tabs & Upload
+        # Form Controls & Privacy Banner
+        "privacy_tip_title": "Privacy Guard",
+        "privacy_tip_desc": "Never paste active OTPs, passwords, or complete credit cards. ScamShield automatically masks sensitive numbers for your safety.",
+        "btn_paste": "Paste",
+        "btn_clear": "Clear",
+        "btn_voice": "Voice Input",
+        "voice_listening": "Listening... speak now",
+        "voice_not_supported": "Voice input is not supported in this browser.",
         "tab_paste_text": "✏️ Paste Message Text",
         "tab_upload_screenshot": "📷 Upload Screenshot",
         "tab_paste_email": "✏️ Paste Email Details",
@@ -79,7 +103,7 @@ TRANSLATIONS = {
         "phone_no": "NO",
         "phone_btn": "🔍 Calculate Call Scam Risk",
 
-        # Results Page
+        # Results Page & Explainability
         "result_title": "ScamShield Assessment Result",
         "content_checked": "Content Checked:",
         "ocr_extracted_badge": "Extracted via OCR Screenshot Scanner",
@@ -93,8 +117,22 @@ TRANSLATIONS = {
         "email_display_type": "Email Message",
         "url_display_type": "Website Link (URL)",
         "phone_display_type": "Phone Call Assessment",
+        "btn_read_aloud": "🔊 Read Aloud",
+        "btn_stop_audio": "⏹️ Stop Audio",
+        "btn_copy_summary": "📋 Copy Summary",
+        "btn_share_warning": "📤 Share Warning",
+        "toast_copied": "Summary copied to clipboard!",
+        "feedback_title": "Was this assessment helpful?",
+        "feedback_yes": "👍 Yes, helpful",
+        "feedback_no": "👎 Report incorrect",
+        "feedback_thanks": "Thank you for helping improve ScamShield!",
+        "disclaimer_result": "Disclaimer: ScamShield uses automated heuristic rules and machine learning models to detect fraud indicators. Always verify directly with official institution channels before taking financial action.",
 
-        # Risk Labels
+        # Analyzing Loading Overlay
+        "analyzing_title": "Analyzing Content for Fraud Markers...",
+        "analyzing_subtitle": "Inspecting text patterns, urgency signals, and security risks...",
+
+        # Risk Labels & Summaries
         "risk_safe": "Potentially Safe",
         "risk_medium": "Suspicious (Medium Risk)",
         "risk_high": "Potential Scam (High Risk)",
@@ -109,6 +147,32 @@ TRANSLATIONS = {
         "history_empty_title": "No Scans Performed Yet",
         "history_empty_desc": "Check an SMS, Email, URL, or Phone call to see results here.",
         "history_go_home": "Go to Home",
+        "history_search_placeholder": "Search history by keyword...",
+        "history_filter_all": "All Risk Levels",
+        "history_filter_high": "High Risk",
+        "history_filter_medium": "Medium Risk",
+        "history_filter_safe": "Safe",
+        "history_export_csv": "📥 Export CSV",
+        "history_print": "🖨️ Print / Save Report",
+
+        # Learn Page
+        "learn_header_title": "Scam Awareness & Learning Center",
+        "learn_header_desc": "Learn how scammers manipulate victims, spot warning red flags, and test your knowledge.",
+        "learn_patterns_title": "Common Scam Tactics & Red Flags",
+        "learn_quiz_title": "Test Your Scam Detection Instincts",
+        "learn_faq_title": "Frequently Asked Questions (FAQ)",
+
+        # Report Page
+        "report_header_title": "Report a Scam & Official Helplines",
+        "report_header_desc": "Emergency helplines and quick incident submission to safeguard your community.",
+        "helpline_title": "National Cybercrime Helplines (India)",
+        "helpline_1930_desc": "Dial 1930 immediately if you suffered financial fraud within the last 24 hours to freeze transferred money.",
+        "portal_desc": "Official Cyber Crime Portal: cybercrime.gov.in (Ministry of Home Affairs, India)",
+        "report_form_title": "Submit a Community Scam Report",
+        "report_form_type": "Scam Channel / Type:",
+        "report_form_details": "Details / Message Text:",
+        "report_form_submit": "🚨 Submit Threat Report",
+        "report_form_success": "Your incident report has been submitted to assist threat awareness. Thank you for protecting the community!",
 
         # Footer & Disclaimer
         "footer_disclaimer": "🔒 Privacy & Safety Notice: ScamShield provides an estimated risk assessment to assist your decision-making and is not a guaranteed security verdict. Avoid uploading sensitive passwords or banking credentials.",
@@ -125,8 +189,18 @@ TRANSLATIONS = {
         "nav_url": "वेब लिंक",
         "nav_phone": "फोन कॉल",
         "nav_history": "इतिहास",
+        "nav_learn": "माहिती व शिक्षण",
+        "nav_report": "तक्रार नोंदवा",
+        "skip_to_content": "मुख्य मजकुराकडे थेट जा",
 
-        # Home Page
+        # Theming & Accessibility Controls
+        "theme_toggle": "डार्क / लाइट मोड बदला",
+        "theme_dark": "🌙 डार्क",
+        "theme_light": "☀️ लाइट",
+        "a11y_dyslexia": "🔤 डिस्लेक्सिया फॉन्ट",
+        "a11y_contrast": "👁️ हाय कॉन्ट्रास्ट",
+
+        # Home Page & Onboarding
         "hero_title": "आज आपण काय तपासू इच्छिता?",
         "hero_subtitle": "कोणतीही कृती किंवा क्लिक करण्यापूर्वी संशयास्पद संदेश, ईमेल, लिंक्स आणि फोन कॉल्स तपासा.",
         "card_sms_title": "एसएमएस तपासा",
@@ -141,8 +215,20 @@ TRANSLATIONS = {
         "card_phone_title": "फोन कॉल तपासा",
         "card_phone_desc": "संशयास्पद कॉलबाबत काही सोप्या प्रश्नांची उत्तरे द्या.",
         "card_phone_btn": "प्रश्न सुरू करा →",
+        "onboarding_title": "🛡️ स्कॅमशील्डवर नवीन आहात? ३ सोप्या पायऱ्या",
+        "onboarding_step1": "१. तपासणीचा प्रकार निवडा (एसएमएस, ईमेल, वेब लिंक किंवा फोन कॉल).",
+        "onboarding_step2": "२. मजकूर पेस्ट करा किंवा स्क्रीनशॉट अपलोड करा.",
+        "onboarding_step3": "३. त्वरित धोका गुण आणि पुढील सुरक्षितता पावलांची यादी पहा.",
+        "onboarding_dismiss": "समजले, धन्यवाद! ✕",
 
-        # Common Tabs & Upload
+        # Form Controls & Privacy Banner
+        "privacy_tip_title": "गोपनीयता सुरक्षा",
+        "privacy_tip_desc": "सक्रिय ओटीपी, पासवर्ड किंवा संपूर्ण कार्ड तपशील कधीही पेस्ट करू नका. आपल्या संरक्षणासाठी स्कॅमशील्ड आपोआप संवेदनशील नंबर मास्क करते.",
+        "btn_paste": "पेस्ट करा",
+        "btn_clear": "साफ करा",
+        "btn_voice": "आवाज इनपुट",
+        "voice_listening": "ऐकत आहे... कृपया बोला",
+        "voice_not_supported": "या ब्राऊझरमध्ये व्हॉइस इनपुट समर्थित नाही.",
         "tab_paste_text": "✏️ संदेश मजकूर पेस्ट करा",
         "tab_upload_screenshot": "📷 स्क्रीनशॉट अपलोड करा",
         "tab_paste_email": "✏️ ईमेल तपशील पेस्ट करा",
@@ -158,44 +244,44 @@ TRANSLATIONS = {
         "sms_header_title": "एसएमएस किंवा व्हॉट्सअॅप संदेश तपासा",
         "sms_header_desc": "फसवणूक तपासण्यासाठी संदेश पेस्ट करा किंवा स्क्रीनशॉट अपलोड करा.",
         "sms_label": "येथे संदेश पेस्ट करा:",
-        "sms_placeholder": "उदाहरण: URGENT: तुमचे बँक खाते ब्लॉक केले आहे. अनलॉक करण्यासाठी http://bit.ly/verify वर क्लिक करा...",
-        "sms_btn": "🔍 संदेश आताच तपासा",
+        "sms_placeholder": "उदा: URGENT: तुमचे बँक खाते ब्लॉक केले आहे. अनलॉक करण्यासाठी येथे क्लिक करा http://bit.ly/verify...",
+        "sms_btn": "🔍 संदेश आता तपासा",
         "sms_scan_btn": "🔍 स्क्रीनशॉट स्कॅन करा",
 
         # Email Page
-        "email_header_title": "ईमेल मजकूर तपासा",
+        "email_header_title": "ईमेल सामग्री तपासा",
         "email_header_desc": "फिशिंग आणि फसवणूक ओळखण्यासाठी ईमेल तपशील पेस्ट करा किंवा स्क्रीनशॉट अपलोड करा.",
-        "email_sender_label": "पाठवणाऱ्याचा ईमेल पत्ता (पर्यायी):",
-        "email_sender_placeholder": "उदाहरण: support@service-security-alert.com",
+        "email_sender_label": "प्रेषक ईमेल पत्ता (पर्यायी):",
+        "email_sender_placeholder": "उदा: support@service-security-alert.com",
         "email_subject_label": "ईमेल विषय (Subject):",
-        "email_subject_placeholder": "उदाहरण: Important: Security Notice Regarding Your Account",
-        "email_body_label": "ईमेल मजकूर (Body):",
-        "email_body_placeholder": "ईमेलचा संपूर्ण मजकूर येथे पेस्ट करा...",
-        "email_btn": "🔍 ईमेल आताच तपासा",
-        "email_scan_btn": "🔍 ईमेल स्क्रीनशॉट स्कॅन करा",
+        "email_subject_placeholder": "उदा: Important: Security Notice Regarding Your Account",
+        "email_body_label": "ईमेल मुख्य मजकूर:",
+        "email_body_placeholder": "ईमेलमधील मजकूर येथे पेस्ट करा...",
+        "email_btn": "🔍 ईमेल आता तपासा",
+        "email_scan_btn": "🔍 स्क्रीनशॉट स्कॅन करा",
 
         # URL Page
         "url_header_title": "वेबसाइट लिंक (URL) तपासा",
-        "url_header_desc": "क्लिक करण्यापूर्वी लिंक सुरक्षित आहे की धोकादायक ते तपासा.",
-        "url_label": "येथे वेबसाइट लिंक (URL) पेस्ट करा:",
-        "url_placeholder": "उदाहरण: https://example.com/login किंवा http://192.168.1.1/claim",
-        "url_help": "स्कॅमशील्ड धोकादायक वेबसाइटवर न जाता लिंकची सुरक्षितपणे तपासणी करते.",
+        "url_header_desc": "वेबसाईट लिंक सुरक्षित आहे की धोकादायक ते तपासण्यासाठी लिंक पेस्ट करा किंवा स्क्रीनशॉट अपलोड करा.",
+        "url_label": "वेबसाइट लिंक (URL) येथे पेस्ट करा:",
+        "url_placeholder": "उदा: https://example.com/login किंवा http://192.168.1.1/claim",
+        "url_help": "स्कॅमशील्ड दुर्भावनापूर्ण वेबसाइट्सना भेट न देता लिंकची सुरक्षितता तपासते.",
         "url_btn": "🔍 लिंक सुरक्षितता तपासा",
-        "url_scan_btn": "🔍 लिंक स्क्रीनशॉट स्कॅन करा",
+        "url_scan_btn": "🔍 स्क्रीनशॉट स्कॅन करा",
 
         # Phone Page
         "phone_header_title": "संशयास्पद फोन कॉल तपासा",
-        "phone_header_desc": "कॉल करणाऱ्याने काय विचारले याबद्दल १० सोप्या प्रश्नांची उत्तरे द्या.",
+        "phone_header_desc": "कॉल करणाऱ्या व्यक्तीने काय सांगितले याविषयी या १० सोप्या प्रश्नांची उत्तरे द्या.",
         "phone_yes": "होय (YES)",
         "phone_no": "नाही (NO)",
-        "phone_btn": "🔍 कॉल जोखीम मोजा",
+        "phone_btn": "🔍 कॉलचा धोका गुण मोजा",
 
-        # Results Page
-        "result_title": "स्कॅमशील्ड तपासणी निकाल",
+        # Results Page & Explainability
+        "result_title": "स्कॅमशील्ड मूल्यांकन निकाल",
         "content_checked": "तपासलेला प्रकार:",
-        "ocr_extracted_badge": "स्क्रीनशॉट ओसीआर द्वारे वाचले गेले",
-        "risk_score_label": "अंदाजित जोखीम गुण (Risk Score)",
-        "why_heading": "🔍 हा निकाल का देण्यात आला?",
+        "ocr_extracted_badge": "स्क्रीनशॉट स्कॅनरद्वारे काढलेला मजकूर",
+        "risk_score_label": "अंदाजित धोका गुण (Risk Score)",
+        "why_heading": "🔍 आम्ही हा गुण का दिला?",
         "what_heading": "🛡️ आता तुम्ही काय करावे?",
         "btn_check_another": "🔄 दुसरी तपासणी करा",
         "btn_view_history": "📋 तपासणी इतिहास पहा",
@@ -203,23 +289,63 @@ TRANSLATIONS = {
         "sms_display_type": "एसएमएस / व्हॉट्सअॅप संदेश",
         "email_display_type": "ईमेल संदेश",
         "url_display_type": "वेबसाइट लिंक (URL)",
-        "phone_display_type": "फोन कॉल मूल्यमापन",
+        "phone_display_type": "फोन कॉल मूल्यांकन",
+        "btn_read_aloud": "🔊 निकाल ऐका",
+        "btn_stop_audio": "⏹️ आवाज थांबवा",
+        "btn_copy_summary": "📋 सारांश कॉपी करा",
+        "btn_share_warning": "📤 इशारा शेअर करा",
+        "toast_copied": "निकाल सारांश क्लिपबोर्डवर कॉपी केला!",
+        "feedback_title": "हे मूल्यमापन उपयुक्त ठरले का?",
+        "feedback_yes": "👍 होय, उपयुक्त",
+        "feedback_no": "👎 चुकीचे नोंदवा",
+        "feedback_thanks": "स्कॅमशील्ड सुधारण्यात मदत केल्याबद्दल धन्यवाद!",
+        "disclaimer_result": "सूचना: स्कॅमशील्ड स्वयंचलित विश्लेषणावर आधारित जोखीम दर्शवते. कोणतीही आर्थिक कृती करण्यापूर्वी नेहमी अधिकृत बँकेशी संपर्क साधा.",
 
-        # Risk Labels
-        "risk_safe": "सुरक्षित वाटत आहे (Safe)",
-        "risk_medium": "संशयास्पद (मध्यम जोखीम)",
-        "risk_high": "संभाव्य फसवणूक (धोकादायक)",
-        "risk_safe_summary": "या मजकुरात फसवणुकीचे कोणतेही त्वरित चिन्ह आढळले नाही, तरीही नेहमी सावध राहा.",
-        "risk_medium_summary": "या मजकुरात काही संशयास्पद गोष्टी आढळल्या आहेत. काळजीपूर्वक व्यवहार करा.",
-        "risk_high_summary": "फसवणूक किंवा फिशिंगची दाट शक्यता आहे. कोणतीही माहिती देऊ नका किंवा लिंकवर क्लिक करू नका.",
+        # Analyzing Loading Overlay
+        "analyzing_title": "फसवणुकीच्या संकेतांची तपासणी चालू आहे...",
+        "analyzing_subtitle": "मजकूर, तात्काळ भाषेचे धोके आणि सुरक्षा विश्लेषणाचे काम सुरू आहे...",
+
+        # Risk Labels & Summaries
+        "risk_safe": "संभाव्य सुरक्षित (Safe)",
+        "risk_medium": "संशयास्पद (मध्यम धोका)",
+        "risk_high": "संभाव्य फसवणूक (उच्च धोका)",
+        "risk_safe_summary": "या मजकुरात फसवणुकीचे कोणतेही थेट संकेत आढळले नाहीत, तरीही नेहमी सतर्क राहा.",
+        "risk_medium_summary": "या मजकुरात काही संशयास्पद बाबी आढळल्या आहेत. काळजीपूर्वक व्यवहार करा.",
+        "risk_high_summary": "फसवणूक किंवा फिशिंगची दाट शक्यता आहे. कोणतीही माहिती शेअर करू नका आणि लिंकवर क्लिक करू नका.",
 
         # History Page
-        "history_title": "अलीकडील तपासणी इतिहास",
-        "history_desc": "केवळ तुमच्या सध्याच्या सत्रात सेव्ह केले आहे. कोणतीही खाजगी माहिती कायमस्वरूपी साठवली जात नाही.",
+        "history_title": "मागील तपासणी इतिहास",
+        "history_desc": "केवळ तुमच्या चालू सत्रामध्ये सुरक्षित. कोणताही संवेदनशील डेटा कायमस्वरूपी साठवला जात नाही.",
         "history_clear_btn": "🗑️ इतिहास साफ करा",
         "history_empty_title": "अद्याप कोणतीही तपासणी केलेली नाही",
         "history_empty_desc": "इतिहास पाहण्यासाठी एसएमएस, ईमेल, लिंक किंवा फोन कॉल तपासा.",
         "history_go_home": "मुख्यपृष्ठावर जा",
+        "history_search_placeholder": "कीवर्डद्वारे मागील स्कॅन शोधा...",
+        "history_filter_all": "सर्व जोखीम पातळी",
+        "history_filter_high": "उच्च धोका",
+        "history_filter_medium": "मध्यम धोका",
+        "history_filter_safe": "सुरक्षित",
+        "history_export_csv": "📥 CSV डाउनलोड",
+        "history_print": "🖨️ अहवाल प्रिंट करा",
+
+        # Learn Page
+        "learn_header_title": "फसवणूक जागृती आणि शिक्षण केंद्र",
+        "learn_header_desc": "सायबर गुन्हेगारांच्या युक्त्या ओळखा, सावधगिरी बाळगा आणि सुरक्षित राहण्याचे नियम शिका.",
+        "learn_patterns_title": "सामान्य फसवणुकीचे प्रकार आणि धोक्याचे इशारे",
+        "learn_quiz_title": "तुमची फसवणूक ओळखण्याची क्षमता तपासा",
+        "learn_faq_title": "वारंवार विचारले जाणारे प्रश्न (FAQ)",
+
+        # Report Page
+        "report_header_title": "सायबर फसवणुकीची तक्रार आणि अधिकृत हेल्पलाईन",
+        "report_header_desc": "तातडीच्या मदतीसाठी संपर्क क्रमांक आणि सायबर गुन्हे नोंदणी मार्गदर्शन.",
+        "helpline_title": "राष्ट्रीय सायबर गुन्हा हेल्पलाईन (भारत)",
+        "helpline_1930_desc": "गेल्या २४ तासांत आर्थिक फसवणूक झाली असल्यास तत्काळ पैसे गोठवण्यासाठी १९३० वर त्वरित कॉल करा.",
+        "portal_desc": "अधिकृत राष्ट्रीय सायबर गुन्हा तक्रार पोर्टल: cybercrime.gov.in (गृह मंत्रालय, भारत सरकार)",
+        "report_form_title": "समुदाय सुरक्षा इशारा नोंदवा",
+        "report_form_type": "फसवणुकीचा प्रकार:",
+        "report_form_details": "तपशील / संदेश मजकूर:",
+        "report_form_submit": "🚨 तक्रार सादर करा",
+        "report_form_success": "इतरांचे संरक्षण करण्यासाठी तुमची तक्रार नोंदवली गेली आहे. सहकार्याबद्दल धन्यवाद!",
 
         # Footer & Disclaimer
         "footer_disclaimer": "🔒 गोपनीयता आणि सुरक्षितता सूचना: स्कॅमशील्ड तुमच्या निर्णयाला मदत करण्यासाठी अंदाजित जोखीम मूल्यमापन देते. संवेदनशील पासवर्ड किंवा बँक तपशील अपलोड करणे टाळा.",
@@ -236,8 +362,18 @@ TRANSLATIONS = {
         "nav_url": "वेब लिंक",
         "nav_phone": "फोन कॉल",
         "nav_history": "इतिहास",
+        "nav_learn": "सीखें व जागरूकता",
+        "nav_report": "रिपोर्ट करें",
+        "skip_to_content": "सीधे मुख्य सामग्री पर जाएं",
 
-        # Home Page
+        # Theming & Accessibility Controls
+        "theme_toggle": "डार्क / लाइट मोड बदलें",
+        "theme_dark": "🌙 डार्क",
+        "theme_light": "☀️ लाइट",
+        "a11y_dyslexia": "🔤 डिस्लेक्सिया फ़ॉन्ट",
+        "a11y_contrast": "👁️ हाई कंट्रास्ट",
+
+        # Home Page & Onboarding
         "hero_title": "आज आप क्या जांचना चाहते हैं?",
         "hero_subtitle": "कोई भी कदम उठाने या क्लिक करने से पहले संदिग्ध संदेश, ईमेल, लिंक और फोन कॉल की जांच करें।",
         "card_sms_title": "एसएमएस जांचें",
@@ -252,71 +388,97 @@ TRANSLATIONS = {
         "card_phone_title": "फोन कॉल जांचें",
         "card_phone_desc": "संदिग्ध कॉल के बारे में कुछ सरल प्रश्नों के उत्तर दें।",
         "card_phone_btn": "प्रश्न शुरू करें →",
+        "onboarding_title": "🛡️ स्कैमशील्ड पर नए हैं? ३ आसान कदम",
+        "onboarding_step1": "१. जांच का प्रकार चुनें (एसएमएस, ईमेल, वेब लिंक या फोन कॉल)।",
+        "onboarding_step2": "२. संदेश टेक्स्ट पेस्ट करें या स्क्रीनशॉट डालें।",
+        "onboarding_step3": "३. तुरंत जोखिम स्कोर और सुरक्षा उपाय सूची प्राप्त करें।",
+        "onboarding_dismiss": "समझ गया, धन्यवाद! ✕",
 
-        # Common Tabs & Upload
-        "tab_paste_text": "✏️ संदेश पेस्ट करें",
+        # Form Controls & Privacy Banner
+        "privacy_tip_title": "गोपनीयता सुरक्षा",
+        "privacy_tip_desc": "सक्रिय ओटीपी, पासवर्ड या पूरा कार्ड विवरण कभी पेस्ट न करें। आपकी सुरक्षा के लिए स्कैमशील्ड संवेदनशील नंबरों को स्वतः मास्क करता है।",
+        "btn_paste": "पेस्ट करें",
+        "btn_clear": "साफ़ करें",
+        "btn_voice": "वॉइस इनपुट",
+        "voice_listening": "सुन रहे हैं... कृपया बोलें",
+        "voice_not_supported": "इस ब्राउज़र में वॉइस इनपुट समर्थित नहीं है।",
+        "tab_paste_text": "✏️ संदेश टेक्स्ट पेस्ट करें",
         "tab_upload_screenshot": "📷 स्क्रीनशॉट अपलोड करें",
         "tab_paste_email": "✏️ ईमेल विवरण पेस्ट करें",
         "tab_upload_email_screenshot": "📷 ईमेल स्क्रीनशॉट अपलोड करें",
-        "tab_paste_url": "✏️ लिंक पेस्ट करें",
+        "tab_paste_url": "✏️ वेब लिंक पेस्ट करें",
         "tab_upload_url_screenshot": "📷 लिंक स्क्रीनशॉट अपलोड करें",
         "upload_drag_drop": "स्क्रीनशॉट यहां क्लिक करें या ड्रैग करें",
-        "upload_formats": "PNG, JPG, JPEG, WEBP समर्थित (अधिकतम 16 MB)",
+        "upload_formats": "PNG, JPG, JPEG, WEBP समर्थित (अधिकतम १६ MB)",
         "upload_remove": "✕ हटाएं",
         "try_example": "उदाहरण आज़माएं:",
 
         # SMS Page
         "sms_header_title": "एसएमएस या व्हाट्सएप संदेश जांचें",
-        "sms_header_desc": "धोखाधड़ी जांचने के लिए संदेश पेस्ट करें या स्क्रीनशॉट अपलोड करें।",
-        "sms_label": "संदेश यहां पेस्ट करें:",
-        "sms_placeholder": "उदाहरण: URGENT: आपका बैंक खाता ब्लॉक कर दिया गया है। अनलॉक करने के लिए http://bit.ly/verify पर क्लिक करें...",
+        "sms_header_desc": "धोखाधड़ी जांचने के लिए संदेश टेक्स्ट पेस्ट करें या स्क्रीनशॉट अपलोड करें।",
+        "sms_label": "यहां संदेश पेस्ट करें:",
+        "sms_placeholder": "उदा: URGENT: आपका बैंक खाता ब्लॉक कर दिया गया है। अनलॉक करने के लिए http://bit.ly/verify पर क्लिक करें...",
         "sms_btn": "🔍 संदेश अभी जांचें",
         "sms_scan_btn": "🔍 स्क्रीनशॉट स्कैन करें",
 
         # Email Page
         "email_header_title": "ईमेल सामग्री जांचें",
-        "email_header_desc": "फ़िशिंग और धोखाधड़ी पकड़ने के लिए ईमेल विवरण पेस्ट करें या स्क्रीनशॉट अपलोड करें।",
-        "email_sender_label": "भेजने वाले का ईमेल पता (वैकल्पिक):",
-        "email_sender_placeholder": "उदाहरण: support@service-security-alert.com",
+        "email_header_desc": "फ़िशिंग और धोखाधड़ी का पता लगाने के लिए ईमेल विवरण पेस्ट करें या स्क्रीनशॉट अपलोड करें।",
+        "email_sender_label": "प्रेषक का ईमेल पता (वैकल्पिक):",
+        "email_sender_placeholder": "उदा: support@service-security-alert.com",
         "email_subject_label": "ईमेल विषय (Subject):",
-        "email_subject_placeholder": "उदाहरण: Important: Security Notice Regarding Your Account",
-        "email_body_label": "ईमेल मुख्य भाग (Body):",
-        "email_body_placeholder": "ईमेल का पूरा विवरण यहां पेस्ट करें...",
+        "email_subject_placeholder": "उदा: Important: Security Notice Regarding Your Account",
+        "email_body_label": "ईमेल मुख्य संदेश टेक्स्ट:",
+        "email_body_placeholder": "ईमेल का टेक्स्ट यहां पेस्ट करें...",
         "email_btn": "🔍 ईमेल अभी जांचें",
-        "email_scan_btn": "🔍 ईमेल स्क्रीनशॉट स्कैन करें",
+        "email_scan_btn": "🔍 स्क्रीनशॉट स्कैन करें",
 
         # URL Page
         "url_header_title": "वेबसाइट लिंक (URL) जांचें",
-        "url_header_desc": "क्लिक करने से पहले जांचें कि लिंक सुरक्षित है या दुर्भावनापूर्ण।",
+        "url_header_desc": "वेबसाइट लिंक सुरक्षित है या दुर्भावनापूर्ण, यह जांचने के लिए लिंक पेस्ट करें या स्क्रीनशॉट अपलोड करें।",
         "url_label": "वेबसाइट लिंक (URL) यहां पेस्ट करें:",
-        "url_placeholder": "उदाहरण: https://example.com/login या http://192.168.1.1/claim",
-        "url_help": "स्कैमशील्ड दुर्भावनापूर्ण वेबसाइटों पर जाए बिना लिंक की सुरक्षित जांच करता है।",
+        "url_placeholder": "उदा: https://example.com/login या http://192.168.1.1/claim",
+        "url_help": "स्कैमशील्ड दुर्भावनापूर्ण वेबसाइटों पर जाए बिना लिंक की सुरक्षा की सुरक्षित रूप से जांच करता है।",
         "url_btn": "🔍 लिंक सुरक्षा जांचें",
-        "url_scan_btn": "🔍 लिंक स्क्रीनशॉट स्कैन करें",
+        "url_scan_btn": "🔍 स्क्रीनशॉट स्कैन करें",
 
         # Phone Page
         "phone_header_title": "संदिग्ध फोन कॉल की जांच करें",
-        "phone_header_desc": "कॉलर ने आपसे क्या कहा, इसके बारे में 10 सरल प्रश्नों के उत्तर दें।",
+        "phone_header_desc": "कॉलर ने आपसे क्या करने को कहा, इस बारे में इन १० सरल प्रश्नों के उत्तर दें।",
         "phone_yes": "हाँ (YES)",
         "phone_no": "नहीं (NO)",
         "phone_btn": "🔍 कॉल जोखिम की गणना करें",
 
-        # Results Page
+        # Results Page & Explainability
         "result_title": "स्कैमशील्ड मूल्यांकन परिणाम",
-        "content_checked": "जांचा गया प्रकार:",
-        "ocr_extracted_badge": "स्क्रीनशॉट ओसीआर द्वारा निकाला गया",
+        "content_checked": "जांची गई सामग्री:",
+        "ocr_extracted_badge": "स्क्रीनशॉट स्कैनर द्वारा निकाला गया टेक्स्ट",
         "risk_score_label": "अनुमानित जोखिम स्कोर (Risk Score)",
         "why_heading": "🔍 हमने यह स्कोर क्यों दिया?",
         "what_heading": "🛡️ अब आपको क्या करना चाहिए?",
-        "btn_check_another": "🔄 दूसरा आइटम जांचें",
+        "btn_check_another": "🔄 दूसरी जांच करें",
         "btn_view_history": "📋 स्कैन इतिहास देखें",
-        "snippet_label": "विश्लेषण किया गया विवरण:",
+        "snippet_label": "विश्लेषित सामग्री सारांश:",
         "sms_display_type": "एसएमएस / व्हाट्सएप संदेश",
         "email_display_type": "ईमेल संदेश",
         "url_display_type": "वेबसाइट लिंक (URL)",
         "phone_display_type": "फोन कॉल मूल्यांकन",
+        "btn_read_aloud": "🔊 परिणाम सुनें",
+        "btn_stop_audio": "⏹️ ऑडियो रोकें",
+        "btn_copy_summary": "📋 सारांश कॉपी करें",
+        "btn_share_warning": "📤 चेतावनी साझा करें",
+        "toast_copied": "परिणाम सारांश क्लिपबोर्ड पर कॉपी किया गया!",
+        "feedback_title": "क्या यह मूल्यांकन मददगार रहा?",
+        "feedback_yes": "👍 हाँ, मददगार",
+        "feedback_no": "👎 गलत रिपोर्ट करें",
+        "feedback_thanks": "स्कैमशील्ड को बेहतर बनाने में मदद के लिए धन्यवाद!",
+        "disclaimer_result": "अस्वीकरण: स्कैमशील्ड धोखाधड़ी के संकेतों का पता लगाने के लिए स्वचालित नियमों और मशीन लर्निंग का उपयोग करता है। वित्तीय कदम उठाने से पहले हमेशा बैंक से सीधे पुष्टि करें।",
 
-        # Risk Labels
+        # Analyzing Loading Overlay
+        "analyzing_title": "धोखाधड़ी के संकेतों का विश्लेषण जारी है...",
+        "analyzing_subtitle": "टेक्स्ट पैटर्न, तात्कालिकता के संकेत और सुरक्षा जोखिमों की जांच की जा रही है...",
+
+        # Risk Labels & Summaries
         "risk_safe": "संभावित रूप से सुरक्षित (Safe)",
         "risk_medium": "संदिग्ध (मध्यम जोखिम)",
         "risk_high": "संभावित धोखाधड़ी (उच्च जोखिम)",
@@ -331,6 +493,32 @@ TRANSLATIONS = {
         "history_empty_title": "अभी तक कोई स्कैन नहीं किया गया",
         "history_empty_desc": "परिणाम देखने के लिए एसएमएस, ईमेल, लिंक या फोन कॉल की जांच करें।",
         "history_go_home": "होम पर जाएं",
+        "history_search_placeholder": "कीवर्ड द्वारा पिछले स्कैन खोजें...",
+        "history_filter_all": "सभी जोखिम स्तर",
+        "history_filter_high": "उच्च जोखिम",
+        "history_filter_medium": "मध्यम जोखिम",
+        "history_filter_safe": "सुरक्षित",
+        "history_export_csv": "📥 CSV डाउनलोड",
+        "history_print": "🖨️ रिपोर्ट प्रिंट करें",
+
+        # Learn Page
+        "learn_header_title": "धोखाधड़ी जागरूकता और शिक्षा केंद्र",
+        "learn_header_desc": "धोखेबाजों की तकनीकों को पहचानना सीखें, चेतावनियों को समझें और सुरक्षित रहने के नियम जानें।",
+        "learn_patterns_title": "सामान्य धोखाधड़ी के तरीके और खतरे के संकेत",
+        "learn_quiz_title": "अपनी धोखाधड़ी पहचान क्षमता की जांच करें",
+        "learn_faq_title": "अक्सर पूछे जाने वाले प्रश्न (FAQ)",
+
+        # Report Page
+        "report_header_title": "धोखाधड़ी की रिपोर्ट और आधिकारिक हेल्पलाइन",
+        "report_header_desc": "त्वरित आपातकालीन हेल्पलाइन नंबर और घटना रिपोर्टिंग गाइड।",
+        "helpline_title": "राष्ट्रीय साइबर अपराध हेल्पलाइन (भारत)",
+        "helpline_1930_desc": "यदि पिछले २४ घंटों में वित्तीय धोखाधड़ी हुई है, तो स्थानांतरित धन रोकने के लिए तुरंत १९३० पर कॉल करें।",
+        "portal_desc": "आधिकारिक राष्ट्रीय साइबर अपराध रिपोर्टिंग पोर्टल: cybercrime.gov.in (गृह मंत्रालय, भारत सरकार)",
+        "report_form_title": "समुदाय सुरक्षा चेतावनी दर्ज करें",
+        "report_form_type": "धोखाधड़ी का प्रकार:",
+        "report_form_details": "विवरण / संदेश टेक्स्ट:",
+        "report_form_submit": "🚨 रिपोर्ट दर्ज करें",
+        "report_form_success": "दूसरों की सुरक्षा में मदद के लिए आपकी रिपोर्ट दर्ज कर ली गई है। धन्यवाद!",
 
         # Footer & Disclaimer
         "footer_disclaimer": "🔒 गोपनीयता और सुरक्षा सूचना: स्कैमशील्ड आपके निर्णय में सहायता के लिए अनुमानित जोखिम मूल्यांकन प्रदान करता है। संवेदनशील पासवर्ड या बैंकिंग विवरण अपलोड करने से बचें।",

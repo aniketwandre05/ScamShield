@@ -12,6 +12,12 @@
         </div>
     </div>
 
+    <!-- Privacy & Sensitive Data Warning Banner (HCI Checklist Item 8) -->
+    <div class="privacy-warning-banner" role="note">
+        <span class="privacy-icon" aria-hidden="true">🔒</span>
+        <span><strong>{{ t('privacy_tip_title') }}</strong>: {{ t('privacy_tip_desc') }}</span>
+    </div>
+
     <!-- Mode Selection Tabs -->
     <div class="input-tabs" role="tablist">
         <button type="button" class="tab-btn active" data-tab="paste-tab" role="tab" aria-selected="true" aria-controls="paste-tab">
@@ -27,7 +33,20 @@
         <form action="{{ url_for('analyze_sms') }}" method="POST">
             <input type="hidden" name="input_mode" value="text">
             <div class="form-group">
-                <label for="sms_text" class="form-label">{{ t('sms_label') }}</label>
+                <div class="form-label-row">
+                    <label for="sms_text" class="form-label">{{ t('sms_label') }}</label>
+                    <div class="input-actions-bar">
+                        <button type="button" class="btn-action-tool btn-action-paste" data-target="sms_text" title="{{ t('btn_paste') }}">
+                            📋 {{ t('btn_paste') }}
+                        </button>
+                        <button type="button" class="btn-action-tool btn-action-voice" data-target="sms_text" data-lang="{{ current_lang }}" title="{{ t('btn_voice') }}">
+                            🎙️ {{ t('btn_voice') }}
+                        </button>
+                        <button type="button" class="btn-action-tool btn-action-clear" data-target="sms_text" title="{{ t('btn_clear') }}">
+                            🧹 {{ t('btn_clear') }}
+                        </button>
+                    </div>
+                </div>
                 <textarea id="sms_text" name="sms_text" class="form-control" placeholder="{{ t('sms_placeholder') }}" required rows="5"></textarea>
             </div>
             <button type="submit" class="btn-primary-large">{{ t('sms_btn') }}</button>

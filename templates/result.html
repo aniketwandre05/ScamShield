@@ -32,16 +32,29 @@
     </div>
 
     <!-- Summary Sentence -->
-    <p style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto;">
+    <p id="result-summary-text" style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 18px; max-width: 700px; margin-left: auto; margin-right: auto;">
         {{ summary }}
     </p>
 
-    <!-- Content Snippet Preview (if available) -->
+    <!-- Quick Result Actions: Read Aloud, Copy Summary, Share Warning (HCI Checklist Item 6 & 9) -->
+    <div class="result-quick-actions" role="toolbar" aria-label="Result Actions">
+        <button type="button" id="btn-read-aloud" class="btn-result-action" data-lang="{{ current_lang }}">
+            {{ t('btn_read_aloud') }}
+        </button>
+        <button type="button" id="btn-copy-summary" class="btn-result-action">
+            {{ t('btn_copy_summary') }}
+        </button>
+        <button type="button" id="btn-share-warning" class="btn-result-action">
+            {{ t('btn_share_warning') }}
+        </button>
+    </div>
+
+    <!-- Content Snippet Preview with Suspicious Keywords Highlighted (HCI Checklist Item 5) -->
     {% if preview_text %}
-    <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 14px 18px; text-align: left; margin-bottom: 24px;">
-        <span style="font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">{{ t('snippet_label') }}</span>
-        <p style="font-size: 16px; color: var(--text-primary); margin-top: 4px; word-break: break-word;">
-            {{ preview_text }}
+    <div class="snippet-preview-box">
+        <span class="snippet-tag">{{ t('snippet_label') }}</span>
+        <p class="snippet-text">
+            {{ highlighted_preview | default(preview_text) | safe }}
         </p>
     </div>
     {% endif %}
@@ -72,8 +85,26 @@
         </ul>
     </div>
 
+    <!-- Feedback Mechanism: "Was this helpful?" (HCI Checklist Item 7) -->
+    <div class="result-feedback-widget" role="region" aria-label="Feedback">
+        <span class="feedback-question">{{ t('feedback_title') }}</span>
+        <div class="feedback-btns">
+            <button type="button" class="btn-feedback" data-val="yes">{{ t('feedback_yes') }}</button>
+            <button type="button" class="btn-feedback" data-val="no">{{ t('feedback_no') }}</button>
+        </div>
+        <div class="feedback-response" style="display: none;" role="status">
+            {{ t('feedback_thanks') }}
+        </div>
+    </div>
+
+    <!-- Result Disclaimer Callout (HCI Checklist Item 7) -->
+    <div class="result-disclaimer-note">
+        <span class="disclaimer-icon" aria-hidden="true">ℹ️</span>
+        <span>{{ t('disclaimer_result') }}</span>
+    </div>
+
     <!-- Check Another CTA -->
-    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 36px; flex-wrap: wrap;">
+    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 32px; flex-wrap: wrap;">
         <a href="{{ url_for('index') }}" class="btn-primary-large" style="max-width: 280px; margin: 0;">
             {{ t('btn_check_another') }}
         </a>

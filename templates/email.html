@@ -12,6 +12,12 @@
         </div>
     </div>
 
+    <!-- Privacy & Sensitive Data Warning Banner -->
+    <div class="privacy-warning-banner" role="note">
+        <span class="privacy-icon" aria-hidden="true">🔒</span>
+        <span><strong>{{ t('privacy_tip_title') }}</strong>: {{ t('privacy_tip_desc') }}</span>
+    </div>
+
     <!-- Mode Selection Tabs -->
     <div class="input-tabs" role="tablist">
         <button type="button" class="tab-btn active" data-tab="paste-tab" role="tab" aria-selected="true" aria-controls="paste-tab">
@@ -38,7 +44,20 @@
             </div>
 
             <div class="form-group">
-                <label for="email_body" class="form-label">{{ t('email_body_label') }}</label>
+                <div class="form-label-row">
+                    <label for="email_body" class="form-label">{{ t('email_body_label') }}</label>
+                    <div class="input-actions-bar">
+                        <button type="button" class="btn-action-tool btn-action-paste" data-target="email_body" title="{{ t('btn_paste') }}">
+                            📋 {{ t('btn_paste') }}
+                        </button>
+                        <button type="button" class="btn-action-tool btn-action-voice" data-target="email_body" data-lang="{{ current_lang }}" title="{{ t('btn_voice') }}">
+                            🎙️ {{ t('btn_voice') }}
+                        </button>
+                        <button type="button" class="btn-action-tool btn-action-clear" data-target="email_body" title="{{ t('btn_clear') }}">
+                            🧹 {{ t('btn_clear') }}
+                        </button>
+                    </div>
+                </div>
                 <textarea id="email_body" name="email_body" class="form-control" placeholder="{{ t('email_body_placeholder') }}" required rows="6"></textarea>
             </div>
 
@@ -59,19 +78,19 @@
                     data-target="email_body" data-text="Your recent invoice #9482 for $42.50 has been processed successfully. View your receipt at https://receipts.service.com"
                     data-target-extra="email_subject" data-text-extra="Your Subscription Receipt"
                     data-target-sender="email_sender" data-text-sender="billing@service.com">
-                    🟢 Safe: Receipt
+                    🟢 Safe: Billing Receipt
                 </button>
                 <button type="button" class="btn-demo" 
-                    data-target="email_body" data-text="Dear Customer, we detected unauthorized sign-in attempts on your PayPal account. Your account has been temporarily restricted. To restore access and verify your debit card and password, please visit http://192.168.1.10/paypal-security/verify immediately or your account will be deleted permanently."
-                    data-target-extra="email_subject" data-text-extra="URGENT: Unauthorized Login Detected - Action Required"
-                    data-target-sender="email_sender" data-text-sender="security-alert@paypal-update-center.xyz">
+                    data-target="email_body" data-text="URGENT: Your PayPal account has been limited due to unusual login attempts. You must confirm your identity within 24 hours at http://paypal-security-update.account-verification.com/login or your account will be permanently closed."
+                    data-target-extra="email_subject" data-text-extra="Account Limited: Immediate Action Required"
+                    data-target-sender="email_sender" data-text-sender="security-alert@paypaI-notice.com">
                     🔴 Scam: PayPal Phishing
                 </button>
                 <button type="button" class="btn-demo" 
-                    data-target="email_body" data-text="Attn: Beneficiary, this is the International Compensation Commission. We have approved $2,500,000 in unclaimed funds for you. Send your full bank account number, ID card copy, and $150 processing fee via Western Union to release funds."
-                    data-target-extra="email_subject" data-text-extra="OFFICIAL NOTICE: Unclaimed Funds Approved"
-                    data-target-sender="email_sender" data-text-sender="claims@fund-release-dept.net">
-                    🔴 Scam: Inheritance / Wire
+                    data-target="email_body" data-text="Dear Taxpayer, our records show you are entitled to a refund of $1,280.00 from the Internal Revenue Service. To process your direct deposit payment, verify your SSN and bank details at http://192.168.1.50/irs-gov/refund-claim"
+                    data-target-extra="email_subject" data-text-extra="Tax Refund Notification #TX-9842"
+                    data-target-sender="email_sender" data-text-sender="refunds@irs-tax-gov-portal.com">
+                    🔴 Scam: Tax Refund IRS
                 </button>
             </div>
         </div>
@@ -82,7 +101,7 @@
         <form action="{{ url_for('analyze_email') }}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="input_mode" value="screenshot">
             <div class="form-group">
-                <label class="form-label">{{ t('email_upload_label') | default('Upload a screenshot of the email:') }}</label>
+                <label class="form-label">{{ t('email_upload_label') | default('Select or drop a screenshot of the email:') }}</label>
                 <div class="upload-zone" tabindex="0" role="button" aria-label="Upload email screenshot file">
                     <div class="upload-zone-icon">🖼️</div>
                     <div class="upload-zone-text">{{ t('upload_drag_drop') }}</div>
@@ -92,7 +111,7 @@
                 
                 <div class="file-preview">
                     <div>
-                        <strong class="preview-filename">image.png</strong>
+                        <strong class="preview-filename">email.png</strong>
                         <span class="preview-filesize" style="color: var(--text-muted);"></span>
                     </div>
                     <button type="button" class="btn-demo btn-clear-file" style="color: var(--danger-color);">{{ t('upload_remove') }}</button>

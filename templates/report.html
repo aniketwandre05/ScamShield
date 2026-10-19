@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}{{ t('report_header_title') }} - {{ t('brand_title') }}{% endblock %}
+
+{% block content %}
+<div class="form-card" style="max-width: 900px;">
+    <!-- Page Header -->
+    <div class="card-header-bar">
+        <div class="card-header-icon" aria-hidden="true">🚨</div>
+        <div class="card-header-text">
+            <h2>{{ t('report_header_title') }}</h2>
+            <p>{{ t('report_header_desc') }}</p>
+        </div>
+    </div>
+
+    <!-- Official Helplines Banner (HCI Checklist Item 16) -->
+    <div class="helplines-grid">
+        <div class="helpline-card emergency-card">
+            <div class="helpline-badge">Emergency Helpline</div>
+            <h3>📞 Dial 1930</h3>
+            <p>{{ t('helpline_1930_desc') }}</p>
+            <a href="tel:1930" class="btn-primary-large" style="padding: 10px 20px; font-size: 16px; margin-top: 10px; text-decoration: none; display: inline-block;">
+                Call 1930 Now
+            </a>
+        </div>
+
+        <div class="helpline-card portal-card">
+            <div class="helpline-badge">Official Portal</div>
+            <h3>🌐 cybercrime.gov.in</h3>
+            <p>{{ t('portal_desc') }}</p>
+            <a href="https://cybercrime.gov.in" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="padding: 10px 20px; font-size: 16px; margin-top: 10px; text-decoration: none; display: inline-block;">
+                Visit Portal ↗
+            </a>
+        </div>
+    </div>
+
+    <!-- Emergency Checklist If Already Scammed -->
+    <div class="emergency-checklist-box">
+        <h4>⚡ Immediate Emergency Steps If Money Was Taken:</h4>
+        <ol class="emergency-steps-list">
+            <li><strong>Block Your Cards Immediately:</strong> Use your bank's mobile app to switch off international and domestic transactions, or call your bank's 24/7 toll-free helpline.</li>
+            <li><strong>Call 1930 within the Golden Hour:</strong> The Citizen Financial Cyber Fraud Reporting System can freeze stolen funds in transit if reported promptly.</li>
+            <li><strong>Save All Evidence:</strong> Take clear screenshots of the SMS, call records, WhatsApp chats, payment transaction reference (UTR) numbers, and debit alerts.</li>
+            <li><strong>Lodge Formal Complaint:</strong> File a formal cyber complaint on <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a> and obtain your Acknowledgement Number.</li>
+        </ol>
+    </div>
+
+    <!-- Community Threat Reporting Form -->
+    <div class="report-form-container">
+        <h3>{{ t('report_form_title') }}</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">Help warn the community by submitting new scam phone numbers, links, or messages you encountered.</p>
+
+        {% if submitted %}
+        <div class="report-success-alert" role="alert">
+            <div style="font-size: 32px;">✅</div>
+            <div>
+                <h4>Report Received!</h4>
+                <p>{{ t('report_form_success') }}</p>
+            </div>
+        </div>
+        {% else %}
+        <form action="{{ url_for('report_scam') }}" method="POST">
+            <div class="form-group">
+                <label for="scam_type" class="form-label">{{ t('report_form_type') }}</label>
+                <select id="scam_type" name="scam_type" class="form-control" required>
+                    <option value="sms">SMS / WhatsApp Scam</option>
+                    <option value="email">Phishing Email</option>
+                    <option value="url">Fake / Phishing Website Link</option>
+                    <option value="phone">Fake Bank / Police Phone Call</option>
+                    <option value="other">Other Online Fraud</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="offender_info" class="form-label">Offender Phone Number, Email, or Website Link (Optional):</label>
+                <input type="text" id="offender_info" name="offender_info" class="form-control" placeholder="e.g. +91 9876543210 or claim-reward-win.xyz">
+            </div>
+
+            <div class="form-group">
+                <label for="scam_details" class="form-label">{{ t('report_form_details') }}</label>
+                <textarea id="scam_details" name="scam_details" class="form-control" placeholder="Paste the message or describe what happened..." required rows="5"></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary-large" style="background-color: var(--danger-color);">
+                {{ t('report_form_submit') }}
+            </button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

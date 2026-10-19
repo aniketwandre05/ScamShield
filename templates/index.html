@@ -3,6 +3,21 @@
 {% block title %}{{ t('brand_title') }} - {{ t('hero_subtitle') }}{% endblock %}
 
 {% block content %}
+<!-- Onboarding / Quick Start Guide (HCI Nielsen Heuristic #10 & Checklist Item 12) -->
+<div id="onboarding-guide" class="onboarding-guide" role="region" aria-label="Quick Start Guide">
+    <div class="onboarding-content">
+        <h3 class="onboarding-title">{{ t('onboarding_title') }}</h3>
+        <div class="onboarding-steps">
+            <div class="onboarding-step-item">{{ t('onboarding_step1') }}</div>
+            <div class="onboarding-step-item">{{ t('onboarding_step2') }}</div>
+            <div class="onboarding-step-item">{{ t('onboarding_step3') }}</div>
+        </div>
+    </div>
+    <button type="button" id="btn-dismiss-onboarding" class="btn-dismiss-guide">
+        {{ t('onboarding_dismiss') }}
+    </button>
+</div>
+
 <section class="hero-section">
     <h2 class="hero-title">{{ t('hero_title') }}</h2>
     <p class="hero-subtitle">
