@@ -463,6 +463,12 @@ def submit_feedback():
     return {"status": "success", "message": "Feedback received"}
 
 
+@app.route('/healthz')
+def health_check():
+    """Health check endpoint for Render/cloud deployment monitoring."""
+    return {"status": "healthy", "service": "ScamShield"}, 200
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('error.html',
