@@ -9,7 +9,7 @@ import sys
 import uuid
 import datetime
 from pathlib import Path
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, send_file
 from werkzeug.utils import secure_filename
 
 # Ensure root directory is on python path
@@ -467,6 +467,23 @@ def submit_feedback():
 def health_check():
     """Health check endpoint for Render/cloud deployment monitoring."""
     return {"status": "healthy", "service": "ScamShield"}, 200
+
+
+@app.route('/download/assignment-pdf')
+def download_assignment_pdf():
+    """Serves the generated HCI continuous evaluation assignment PDF for 1-click browser download."""
+    pdf_path = BASE_DIR / "ScamShield_HCI_Continuous_Evaluation_Assignment.pdf"
+    if pdf_path.exists():
+        return send_file(
+            pdf_path,
+            as_attachment=True,
+            download_name="ScamShield_HCI_Continuous_Evaluation_Assignment.pdf",
+            mimetype="application/pdf"
+        )
+    return render_template('error.html',
+        error_title="File Not Found",
+        error_message="The assignment PDF has not been generated yet.",
+        return_url=url_for('index')), 404
 
 
 @app.errorhandler(404)

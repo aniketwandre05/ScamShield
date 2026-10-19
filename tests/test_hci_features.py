@@ -133,3 +133,10 @@ def test_result_page_hci_elements(client):
     assert 'result-feedback-widget' in html
     assert 'result-disclaimer-note' in html
     assert 'suspicious-keyword' in html
+
+
+def test_download_assignment_pdf(client):
+    res = client.get('/download/assignment-pdf')
+    assert res.status_code == 200
+    assert 'application/pdf' in res.content_type
+    assert len(res.data) > 10000  # valid PDF binary content
