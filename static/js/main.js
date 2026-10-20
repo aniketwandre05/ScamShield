@@ -2,7 +2,7 @@
  * ScamShield - Accessible Senior-Friendly Frontend Controller
  * Implements full HCI Usability Checklist:
  * 1. Tab switching & drag-and-drop file preview
- * 2. Form usability: Paste from clipboard, clear input, voice dictation (Web Speech API)
+ * 2. Form usability: Paste from clipboard and clear input
  * 3. Loading overlay ("Analyzing for scams...") for visibility of system status
  * 4. Text-to-Speech (TTS) audio narration for result accessibility
  * 5. Copy summary & native Web Share API
@@ -198,62 +198,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // =========================================================================
-    // 5. Form Usability: Voice Input Dictation (Web Speech API)
-    // =========================================================================
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    document.querySelectorAll(".btn-action-voice").forEach(btn => {
-        if (!SpeechRecognition) {
-            btn.style.display = "none";
-            return;
-        }
-        const targetId = btn.getAttribute("data-target");
-        const targetEl = document.getElementById(targetId);
-        const langCode = btn.getAttribute("data-lang") || "en";
-        
-        let recognition = new SpeechRecognition();
-        recognition.continuous = false;
-        recognition.interimResults = false;
-        
-        if (langCode === "mr") recognition.lang = "mr-IN";
-        else if (langCode === "hi") recognition.lang = "hi-IN";
-        else recognition.lang = "en-US";
-        
-        let isRecording = false;
-        btn.addEventListener("click", () => {
-            if (isRecording) {
-                recognition.stop();
-                return;
-            }
-            try {
-                recognition.start();
-                isRecording = true;
-                btn.classList.add("recording");
-                showToast("Listening... please speak clearly.");
-            } catch (e) {
-                isRecording = false;
-                btn.classList.remove("recording");
-            }
-        });
-        
-        recognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript;
-            if (targetEl) {
-                targetEl.value = (targetEl.value ? targetEl.value + " " : "") + transcript;
-                targetEl.focus();
-            }
-            showToast("Speech recognized!");
-        };
-        recognition.onerror = () => {
-            isRecording = false;
-            btn.classList.remove("recording");
-            showToast("Could not recognize speech. Please try again.");
-        };
-        recognition.onend = () => {
-            isRecording = false;
-            btn.classList.remove("recording");
-        };
-    });
 
     // =========================================================================
     // 6. Visibility of System Status: Analyzing Loading Overlay

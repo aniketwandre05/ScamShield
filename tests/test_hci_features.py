@@ -117,8 +117,8 @@ def test_privacy_banner_and_tools_on_forms(client):
         html = res.data.decode('utf-8')
         assert 'privacy-warning-banner' in html
         assert 'btn-action-paste' in html
-        assert 'btn-action-voice' in html
         assert 'btn-action-clear' in html
+        assert 'btn-action-voice' not in html
 
 
 def test_result_page_hci_elements(client):

@@ -1064,7 +1064,7 @@ body.high-contrast * {
   flex-shrink: 0;
 }
 
-/* Form Action Buttons Bar (Paste, Voice, Clear) */
+/* Form Action Buttons Bar (Paste, Clear) */
 .form-label-row {
   display: flex;
   justify-content: space-between;
@@ -1096,17 +1096,6 @@ body.high-contrast * {
   background: #e2e8f0;
   border-color: #94a3b8;
   color: #0f172a;
-}
-.btn-action-tool.recording {
-  background: #fee2e2;
-  border-color: #ef4444;
-  color: #b91c1c;
-  animation: pulseRecord 1.2s infinite;
-}
-@keyframes pulseRecord {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
 }
 
 /* Analyzing Loading Overlay (Nielsen Heuristic #1) */

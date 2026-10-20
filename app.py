@@ -486,6 +486,41 @@ def download_assignment_pdf():
         return_url=url_for('index')), 404
 
 
+@app.route('/download/poster-image')
+def download_poster_image():
+    """Serves the high-definition academic poster image for 1-click browser download."""
+    img_path = BASE_DIR / "ScamShield_Project_Poster.png"
+    if img_path.exists():
+        return send_file(
+            img_path,
+            as_attachment=True,
+            download_name="ScamShield_Project_Poster.png",
+            mimetype="image/png"
+        )
+    return render_template('error.html',
+        error_title="File Not Found",
+        error_message="The poster image has not been generated yet.",
+        return_url=url_for('index')), 404
+
+
+@app.route('/download/poster-pdf')
+def download_poster_pdf():
+    """Serves the publication-grade vector poster PDF for 1-click browser download."""
+    pdf_path = BASE_DIR / "ScamShield_Project_Poster.pdf"
+    if pdf_path.exists():
+        return send_file(
+            pdf_path,
+            as_attachment=True,
+            download_name="ScamShield_Project_Poster.pdf",
+            mimetype="application/pdf"
+        )
+    return render_template('error.html',
+        error_title="File Not Found",
+        error_message="The poster PDF has not been generated yet.",
+        return_url=url_for('index')), 404
+
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('error.html',

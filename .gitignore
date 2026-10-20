@@ -40,3 +40,7 @@ Thumbs.db
 # Large datasets
 Email/CEAS_08.csv
 Email/phishing_email.csv
+
+# Intermediate poster build files
+poster_qr.png
+poster_render.html
