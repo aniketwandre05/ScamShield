@@ -1528,3 +1528,705 @@ mark.suspicious-keyword {
     padding: 0 !important;
   }
 }
+
+
+/* ==========================================================================
+   HCI & Accessibility Framework Component Extensions
+   Principles: Shneiderman, Nielsen, Norman, Gestalt, Fitts, Hick-Hyman, Miller
+   ========================================================================== */
+
+/* Font Size Scaling Controls (ISO 9241 Individualisation) */
+.font-size-controls {
+  display: inline-flex;
+  align-items: center;
+  background: #f1f5f9;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-right: 4px;
+}
+.font-ctrl-btn {
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 6px 10px !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-primary);
+  min-width: 36px;
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+.font-ctrl-btn:hover, .font-ctrl-btn:focus-visible {
+  background: var(--primary-light);
+  color: var(--primary-color);
+}
+.font-ctrl-btn.active {
+  background: var(--primary-color);
+  color: #ffffff;
+}
+
+/* Home Trust Badges Bar (Norman's Conceptual Model & Trust Assurance) */
+.trust-badges-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.trust-badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+.trust-badge-icon {
+  font-size: 18px;
+}
+
+/* Card Shortcut Badges (Shneiderman Rule #2 Shortcuts) */
+.option-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  min-height: 220px;
+}
+.option-card:hover, .option-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+.card-shortcut-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #f1f5f9;
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+}
+.card-content-body {
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+/* Back Navigation in Check Forms (Shneiderman Rule #6 Easy Reversal) */
+.card-top-nav {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--primary-light);
+  border: 1px solid #bfdbfe;
+  transition: all 0.15s ease;
+}
+.back-link:hover, .back-link:focus-visible {
+  background: #dbeafe;
+  text-decoration: underline;
+}
+
+/* Form Action Buttons Row (Fitts's Law Target Size >= 48px) */
+.form-buttons-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.form-buttons-row .btn-primary-large {
+  margin-top: 0 !important;
+  flex: 1;
+  min-width: 220px;
+}
+.btn-reset-form {
+  min-height: 52px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-color);
+  background: #ffffff;
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+}
+.btn-reset-form:hover, .btn-reset-form:focus-visible {
+  background: #f1f5f9;
+  color: var(--text-primary);
+  border-color: #94a3b8;
+}
+
+/* Input Hints */
+.input-char-hint {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+.label-required {
+  color: var(--danger-color);
+  font-weight: 800;
+}
+.label-optional {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Demo Samples Grouping (Gestalt Similarity & Proximity) */
+.demo-samples-box {
+  margin-top: 28px;
+  padding: 20px;
+  background: #f8fafc;
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+}
+.demo-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.demo-hint {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.demo-category-group {
+  margin-bottom: 10px;
+}
+.demo-category-label {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.demo-category-label.safe-label {
+  color: var(--safe-color);
+}
+.demo-category-label.scam-label {
+  color: var(--danger-color);
+}
+.btn-demo-safe {
+  border-color: #86efac !important;
+  background: #f0fdf4 !important;
+  color: #14532d !important;
+  font-weight: 600 !important;
+}
+.btn-demo-safe:hover, .btn-demo-safe:focus-visible {
+  background: #dcfce7 !important;
+}
+.btn-demo-scam {
+  border-color: #fca5a5 !important;
+  background: #fef2f2 !important;
+  color: #7f1d1d !important;
+  font-weight: 600 !important;
+}
+.btn-demo-scam:hover, .btn-demo-scam:focus-visible {
+  background: #fee2e2 !important;
+}
+
+/* Upload Drop Zone File Button (Norman's Signifiers) */
+.btn-browse-file {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary-color);
+  background: #ffffff;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  pointer-events: none; /* Allows click through to drop zone */
+}
+
+/* Phone Questionnaire Progress & Chunking (Miller's Law & Nielsen Heuristic #1) */
+.phone-progress-box {
+  margin-bottom: 24px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+.phone-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.progress-percent {
+  color: var(--primary-color);
+  font-weight: 900;
+}
+.progress-track {
+  width: 100%;
+  height: 12px;
+  background: #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+.phone-section-chunk {
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.chunk-header-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e2e8f0;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.chunk-step-badge {
+  background: var(--primary-color);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+.question-header-row {
+  margin-bottom: 6px;
+}
+.question-number-badge {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.radio-btn-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.radio-label {
+  min-height: 52px;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: 2px solid var(--border-color);
+  background: #ffffff;
+  transition: all 0.15s ease;
+}
+.radio-label-no:hover, .radio-label-no:has(input:checked) {
+  border-color: var(--safe-color);
+  background: var(--safe-bg);
+}
+.radio-label-yes:hover, .radio-label-yes:has(input:checked) {
+  border-color: var(--danger-color);
+  background: var(--danger-bg);
+}
+
+/* Result Page: Closure, Immediate Directive & Progressive Disclosure */
+.result-completion-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 20px;
+  color: #14532d;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+.ocr-badge-pill {
+  font-size: 13px;
+  font-weight: 800;
+}
+.result-summary-statement {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 16px auto 20px;
+  max-width: 720px;
+  line-height: 1.4;
+  text-align: center;
+}
+.top-action-callout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  border-radius: var(--radius-md);
+  margin: 0 auto 24px;
+  max-width: 760px;
+  font-size: 17px;
+  line-height: 1.5;
+  text-align: left;
+}
+.callout-danger {
+  background: #fef2f2;
+  border: 2px solid #ef4444;
+  color: #7f1d1d;
+}
+.callout-warning {
+  background: #fffbeb;
+  border: 2px solid #f59e0b;
+  color: #78350f;
+}
+.callout-safe {
+  background: #f0fdf4;
+  border: 2px solid #22c55e;
+  color: #14532d;
+}
+.callout-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+/* Details Accordion (Hick-Hyman Law & Progressive Disclosure) */
+.details-accordion-wrapper {
+  margin: 28px auto 0;
+  max-width: 820px;
+  text-align: left;
+}
+.btn-toggle-details {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  background: #f1f5f9;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.btn-toggle-details:hover, .btn-toggle-details:focus-visible {
+  background: #e2e8f0;
+}
+.details-content-box {
+  margin-top: 16px;
+  padding: 20px;
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+.result-closure-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+/* Accessible Modal Dialog (Shneiderman Rule #5 & #6) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+.accessible-dialog {
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.modal-icon {
+  font-size: 40px;
+}
+.modal-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.modal-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.btn-modal-cancel {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-color);
+  background: #ffffff;
+  color: var(--text-secondary);
+  cursor: pointer;
+  min-height: 48px;
+}
+.btn-modal-cancel:hover {
+  background: #f1f5f9;
+}
+.btn-modal-confirm {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--danger-color);
+  background: var(--danger-color);
+  color: #ffffff;
+  cursor: pointer;
+  min-height: 48px;
+}
+.btn-modal-confirm:hover {
+  background: #991b1b;
+}
+
+/* History & Error Enhancements */
+.history-count-pill {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-muted);
+  padding: 8px 14px;
+  background: #f1f5f9;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.error-recovery-panel {
+  margin-top: 24px;
+  padding: 20px;
+  background: #f8fafc;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+.recovery-heading {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+.recovery-links-grid {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.recovery-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary-color);
+  background: #ffffff;
+  border: 2px solid #bfdbfe;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  min-height: 48px;
+  transition: all 0.15s ease;
+}
+.recovery-chip:hover, .recovery-chip:focus-visible {
+  background: var(--primary-light);
+  border-color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Responsive Mobile-First Media Queries (320px & 375px Viewports)
+   ========================================================================== */
+@media (max-width: 640px) {
+  .site-header {
+    padding: 12px 14px;
+  }
+  .header-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .header-right-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .header-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: flex-start;
+  }
+  .header-tools-group {
+    justify-content: space-between;
+  }
+  .main-content {
+    padding: 16px 12px 32px;
+  }
+  .hero-section {
+    padding: 24px 12px 16px;
+  }
+  .hero-title {
+    font-size: 28px;
+  }
+  .hero-subtitle {
+    font-size: 17px;
+  }
+  .options-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .form-card, .result-card {
+    padding: 20px 16px;
+  }
+  .input-tabs {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .tab-btn {
+    width: 100%;
+    min-height: 48px;
+  }
+  .form-buttons-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-primary-large {
+    width: 100%;
+    max-width: 100%;
+  }
+  .btn-reset-form {
+    width: 100%;
+  }
+  .radio-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .radio-label {
+    width: 100%;
+    min-height: 52px;
+  }
+  .result-closure-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .result-closure-buttons a {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .result-quick-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .btn-result-action {
+    width: 100%;
+    min-height: 48px;
+  }
+  .trust-badges-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+  }
+  .history-item-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .site-header {
+    padding: 10px 8px;
+  }
+  .brand-text h1 {
+    font-size: 22px;
+  }
+  .form-card, .result-card {
+    padding: 16px 10px;
+  }
+  .lang-switcher {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+}
+
+/* Print CSS */
+@media print {
+  .site-header, .site-footer, .history-actions-group, .history-filter-bar, .btn-primary-large, .btn-secondary, .result-quick-actions, .result-feedback-widget {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .form-card, .result-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+}

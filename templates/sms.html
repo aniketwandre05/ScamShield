@@ -1,88 +1,122 @@
 {% extends "base.html" %}
 
-{% block title %}{{ t('sms_header_title') }} - {{ t('brand_title') }}{% endblock %}
+{% block title %}{{ t('sms_title') }} - {{ t('brand_title') }}{% endblock %}
 
 {% block content %}
 <div class="form-card">
+    <!-- Back to Choices Navigation (Shneiderman Rule #6 Easy Reversal) -->
+    <div class="card-top-nav">
+        <a href="{{ url_for('index') }}" class="back-link">
+            &larr; {{ t('nav_home') | default('Home') }} / Choose Another Check
+        </a>
+    </div>
+
     <div class="card-header-bar">
         <div class="card-header-icon" aria-hidden="true">💬</div>
         <div class="card-header-text">
-            <h2>{{ t('sms_header_title') }}</h2>
-            <p>{{ t('sms_header_desc') }}</p>
+            <h2 class="form-title">{{ t('sms_header_title') }}</h2>
+            <p class="form-subtitle">{{ t('sms_header_desc') }}</p>
         </div>
     </div>
 
-    <!-- Privacy & Sensitive Data Warning Banner (HCI Checklist Item 8) -->
-    <div class="privacy-warning-banner" role="note">
-        <span class="privacy-icon" aria-hidden="true">🔒</span>
+    <!-- Privacy Reassurance Tip (Norman's Conceptual Model & Trust Assurance) -->
+    <div class="privacy-warning-banner privacy-tip-banner" role="note">
+        <span class="privacy-icon privacy-tip-icon" aria-hidden="true">🔒</span>
         <span><strong>{{ t('privacy_tip_title') }}</strong>: {{ t('privacy_tip_desc') }}</span>
     </div>
 
-    <!-- Mode Selection Tabs -->
-    <div class="input-tabs" role="tablist">
+    <!-- Mode Selection Tabs (Norman's Signifiers) -->
+    <div class="input-tabs" role="tablist" aria-label="Input Method">
         <button type="button" class="tab-btn active" data-tab="paste-tab" role="tab" aria-selected="true" aria-controls="paste-tab">
-            {{ t('tab_paste_text') }}
+            ✍️ {{ t('tab_paste_text') }}
         </button>
         <button type="button" class="tab-btn" data-tab="upload-tab" role="tab" aria-selected="false" aria-controls="upload-tab">
-            {{ t('tab_upload_screenshot') }}
+            📸 {{ t('tab_upload_screenshot') }}
         </button>
     </div>
 
     <!-- Form 1: Paste Text -->
     <div id="paste-tab" class="tab-panel" role="tabpanel">
-        <form action="{{ url_for('analyze_sms') }}" method="POST">
+        <form action="{{ url_for('analyze_sms') }}" method="POST" id="sms-text-form">
             <input type="hidden" name="input_mode" value="text">
             <div class="form-group">
                 <div class="form-label-row">
                     <label for="sms_text" class="form-label">{{ t('sms_label') }}</label>
                     <div class="input-actions-bar">
-                        <button type="button" class="btn-action-tool btn-action-paste" data-target="sms_text" title="{{ t('btn_paste') }}">
+                        <button type="button" class="btn-action-tool btn-action-paste" data-target="sms_text" title="{{ t('btn_paste') }}" aria-label="{{ t('btn_paste') }} message from clipboard">
                             📋 {{ t('btn_paste') }}
                         </button>
-                        <button type="button" class="btn-action-tool btn-action-clear" data-target="sms_text" title="{{ t('btn_clear') }}">
+                        <button type="button" class="btn-action-tool btn-action-clear" data-target="sms_text" title="{{ t('btn_clear') }}" aria-label="{{ t('btn_clear') }} message">
                             🧹 {{ t('btn_clear') }}
                         </button>
                     </div>
                 </div>
-                <textarea id="sms_text" name="sms_text" class="form-control" placeholder="{{ t('sms_placeholder') }}" required rows="5"></textarea>
+                <textarea id="sms_text" name="sms_text" class="form-control" placeholder="{{ t('sms_placeholder') }}" required rows="5" aria-describedby="sms-char-hint"></textarea>
+                <div id="sms-char-hint" class="input-char-hint" aria-live="polite">
+                    Tip: Paste the complete message including any phone numbers or links.
+                </div>
             </div>
-            <button type="submit" class="btn-primary-large">{{ t('sms_btn') }}</button>
+
+            <div class="form-buttons-row">
+                <button type="submit" class="btn-primary-large" id="btn-submit-sms">
+                    🔍 {{ t('sms_btn') }}
+                </button>
+                <button type="button" class="btn-secondary btn-reset-form" data-target="sms_text">
+                    🔄 Clear Form
+                </button>
+            </div>
         </form>
 
-        <!-- Demo Samples -->
-        <div class="demo-samples-box">
-            <div class="demo-title">{{ t('try_example') }}</div>
-            <div class="demo-btn-group">
-                <button type="button" class="btn-demo" data-target="sms_text" data-text="Hey John, are we still meeting for lunch tomorrow at 1 PM?">
-                    🟢 Safe: Lunch Meeting
-                </button>
-                <button type="button" class="btn-demo" data-target="sms_text" data-text="Your package #US-9821 has arrived at the regional depot. Please confirm delivery address: https://usps.com/track">
-                    🟢 Safe: Package Update
-                </button>
-                <button type="button" class="btn-demo" data-target="sms_text" data-text="URGENT: Your Bank account has been blocked due to suspicious activity. Verify your identity now at http://bit.ly/bank-security-verify or service will be closed.">
-                    🔴 Scam: Bank KYC Block
-                </button>
-                <button type="button" class="btn-demo" data-target="sms_text" data-text="CONGRATULATIONS! You have won $5,000 in our anniversary giveaway! Claim your prize now at http://192.168.0.50/winner-claim before it expires in 2 hours!">
-                    🔴 Scam: Prize Winner
-                </button>
+        <!-- Demo Samples (Nielsen Heuristic #6 Recognition Over Recall) -->
+        <div class="demo-samples-box" role="region" aria-label="Demo Examples">
+            <div class="demo-title">
+                <span>💡 {{ t('try_example') }}</span>
+                <span class="demo-hint">(Click any example below to test immediately)</span>
+            </div>
+            
+            <div class="demo-category-group">
+                <div class="demo-category-label safe-label">🟢 Legitimate Messages (Safe):</div>
+                <div class="demo-btn-group">
+                    <button type="button" class="btn-demo btn-demo-safe" data-target="sms_text" data-text="Hey John, are we still meeting for lunch tomorrow at 1 PM?">
+                        Lunch Meeting
+                    </button>
+                    <button type="button" class="btn-demo btn-demo-safe" data-target="sms_text" data-text="Your package #US-9821 has arrived at the regional depot. Please confirm delivery address: https://usps.com/track">
+                        Postal Package Update
+                    </button>
+                </div>
+            </div>
+
+            <div class="demo-category-group" style="margin-top: 10px;">
+                <div class="demo-category-label scam-label">🔴 Common Scam Messages (High Risk):</div>
+                <div class="demo-btn-group">
+                    <button type="button" class="btn-demo btn-demo-scam" data-target="sms_text" data-text="URGENT: Your Bank account has been blocked due to suspicious activity. Verify your identity now at http://bit.ly/bank-security-verify or service will be closed.">
+                        Bank KYC Block Threat
+                    </button>
+                    <button type="button" class="btn-demo btn-demo-scam" data-target="sms_text" data-text="CONGRATULATIONS! You have won $5,000 in our anniversary giveaway! Claim your prize now at http://192.168.0.50/winner-claim before it expires in 2 hours!">
+                        Lottery Winner Scam
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Form 2: Upload Screenshot -->
+    <!-- Form 2: Upload Screenshot (Mobile Camera Capture Support) -->
     <div id="upload-tab" class="tab-panel" style="display: none;" role="tabpanel">
-        <form action="{{ url_for('analyze_sms') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url_for('analyze_sms') }}" method="POST" enctype="multipart/form-data" id="sms-upload-form">
             <input type="hidden" name="input_mode" value="screenshot">
             <div class="form-group">
-                <label class="form-label">{{ t('sms_upload_label') | default('Select or drop a screenshot of the message:') }}</label>
-                <div class="upload-zone" tabindex="0" role="button" aria-label="Upload screenshot file">
-                    <div class="upload-zone-icon">🖼️</div>
+                <label class="form-label" id="sms-upload-label">{{ t('sms_upload_label') | default('Select or drop a screenshot of the message:') }}</label>
+                <div class="upload-zone" tabindex="0" role="button" aria-labelledby="sms-upload-label" aria-describedby="upload-help-text">
+                    <div class="upload-zone-icon" aria-hidden="true">🖼️</div>
                     <div class="upload-zone-text">{{ t('upload_drag_drop') }}</div>
-                    <div class="upload-zone-sub">{{ t('upload_formats') }}</div>
-                    <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" style="display: none;" required>
+                    <div class="upload-zone-sub" id="upload-help-text">{{ t('upload_formats') }} &bull; Max 16 MB</div>
+                    <button type="button" class="btn-browse-file" tabindex="-1">
+                        📁 Choose File or Take Photo
+                    </button>
+                    <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" capture="environment" style="display: none;" required aria-label="Upload message screenshot">
                 </div>
                 
-                <div class="file-preview">
+                <div class="file-preview" aria-live="polite">
                     <div>
                         <strong class="preview-filename">image.png</strong>
                         <span class="preview-filesize" style="color: var(--text-muted);"></span>
@@ -90,7 +124,12 @@
                     <button type="button" class="btn-demo btn-clear-file" style="color: var(--danger-color);">{{ t('upload_remove') }}</button>
                 </div>
             </div>
-            <button type="submit" class="btn-primary-large">{{ t('sms_scan_btn') }}</button>
+            
+            <div class="form-buttons-row">
+                <button type="submit" class="btn-primary-large">
+                    🔍 {{ t('sms_scan_btn') }}
+                </button>
+            </div>
         </form>
     </div>
 </div>

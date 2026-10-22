@@ -35,6 +35,19 @@
                 </nav>
 
                 <div class="header-tools-group">
+                    <!-- Font Size Scaling Controls (ISO 9241 Individualisation & WCAG 1.4.4) -->
+                    <div class="font-size-controls" role="group" aria-label="Text Size Controls">
+                        <button type="button" id="btn-font-decrease" class="header-btn-tool font-ctrl-btn" aria-label="Decrease text size" title="Smaller Text (A-)">
+                            A-
+                        </button>
+                        <button type="button" id="btn-font-reset" class="header-btn-tool font-ctrl-btn" aria-label="Reset text size" title="Default Text Size (A)">
+                            A
+                        </button>
+                        <button type="button" id="btn-font-increase" class="header-btn-tool font-ctrl-btn" aria-label="Increase text size" title="Larger Text (A+)">
+                            A+
+                        </button>
+                    </div>
+
                     <!-- Dark / Light Mode Toggle -->
                     <button type="button" id="theme-toggle-btn" class="header-btn-tool" aria-label="{{ t('theme_toggle') }}" title="{{ t('theme_toggle') }}">
                         <span id="theme-icon" aria-hidden="true">🌙</span>
@@ -42,7 +55,7 @@
 
                     <!-- Accessibility Controls Menu Button -->
                     <div class="a11y-dropdown-wrapper">
-                        <button type="button" id="a11y-menu-btn" class="header-btn-tool" aria-haspopup="true" aria-expanded="false" title="Accessibility Options">
+                        <button type="button" id="a11y-menu-btn" class="header-btn-tool" aria-haspopup="true" aria-expanded="false" title="Accessibility Options" aria-label="Accessibility options menu">
                             ♿
                         </button>
                         <div id="a11y-dropdown" class="a11y-dropdown" role="menu">
@@ -74,12 +87,27 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Analyzing Loading Overlay (Nielsen Heuristic #1) -->
-    <div id="analyzing-overlay" class="analyzing-overlay" role="dialog" aria-modal="true" aria-labelledby="analyzing-title">
+    <!-- Analyzing Loading Overlay (Nielsen Heuristic #1 & Shneiderman Rule #3) -->
+    <div id="analyzing-overlay" class="analyzing-overlay" role="dialog" aria-modal="true" aria-labelledby="analyzing-title" aria-live="assertive">
         <div class="analyzing-box">
             <div class="analyzing-spinner" aria-hidden="true"></div>
             <h3 id="analyzing-title" class="analyzing-title">{{ t('analyzing_title') }}</h3>
             <p class="analyzing-subtitle">{{ t('analyzing_subtitle') }}</p>
+        </div>
+    </div>
+
+    <!-- Accessible Modal for Confirmations (Shneiderman Rule #5 & #6) -->
+    <div id="accessible-modal-backdrop" class="modal-backdrop" style="display: none;" role="presentation">
+        <div id="accessible-modal" class="accessible-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+            <div class="modal-header">
+                <span class="modal-icon" aria-hidden="true">⚠️</span>
+                <h3 id="modal-title" class="modal-title">Confirm Action</h3>
+            </div>
+            <p id="modal-desc" class="modal-desc">Are you sure you want to proceed?</p>
+            <div class="modal-actions">
+                <button type="button" id="modal-btn-cancel" class="btn-modal-cancel">Cancel</button>
+                <button type="button" id="modal-btn-confirm" class="btn-modal-confirm">Confirm</button>
+            </div>
         </div>
     </div>
 

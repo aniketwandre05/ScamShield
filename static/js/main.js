@@ -476,4 +476,179 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     });
+
+    // =========================================================================
+    // 14. Font Size Scaling Controls (ISO 9241 Individualisation & WCAG 1.4.4)
+    // =========================================================================
+    const btnFontDec = document.getElementById("btn-font-decrease");
+    const btnFontReset = document.getElementById("btn-font-reset");
+    const btnFontInc = document.getElementById("btn-font-increase");
+
+    const FONT_CLASSES = ["font-size-sm", "font-size-md", "font-size-lg", "font-size-xl"];
+    let currentFontIndex = 1; // default md (18px)
+
+    const savedFont = localStorage.getItem("scamshield_font_size");
+    if (savedFont && FONT_CLASSES.includes(savedFont)) {
+        currentFontIndex = FONT_CLASSES.indexOf(savedFont);
+        applyFontSize(currentFontIndex, false);
+    }
+
+    function applyFontSize(index, notify = true) {
+        currentFontIndex = Math.max(0, Math.min(FONT_CLASSES.length - 1, index));
+        FONT_CLASSES.forEach(cls => document.body.classList.remove(cls));
+        const selectedClass = FONT_CLASSES[currentFontIndex];
+        document.body.classList.add(selectedClass);
+        localStorage.setItem("scamshield_font_size", selectedClass);
+
+        [btnFontDec, btnFontReset, btnFontInc].forEach(b => b?.classList.remove("active"));
+        if (currentFontIndex === 1) btnFontReset?.classList.add("active");
+        else if (currentFontIndex > 1) btnFontInc?.classList.add("active");
+        else btnFontDec?.classList.add("active");
+
+        if (notify) {
+            const labels = ["Smaller (16px)", "Standard (18px)", "Large (21px)", "Extra Large (24px)"];
+            showToast(`Text size: ${labels[currentFontIndex]}`);
+        }
+    }
+
+    btnFontDec?.addEventListener("click", () => applyFontSize(currentFontIndex - 1));
+    btnFontReset?.addEventListener("click", () => applyFontSize(1));
+    btnFontInc?.addEventListener("click", () => applyFontSize(currentFontIndex + 1));
+
+    // =========================================================================
+    // 15. Keyboard Navigation Shortcuts (Shneiderman Rule #2 Shortcuts)
+    // =========================================================================
+    document.addEventListener("keydown", function (e) {
+        // Do not trigger shortcuts when typing inside form inputs
+        const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : "";
+        if (activeTag === "input" || activeTag === "textarea" || activeTag === "select") {
+            return;
+        }
+
+        // Close modal on Escape
+        if (e.key === "Escape") {
+            const modalBackdrop = document.getElementById("accessible-modal-backdrop");
+            if (modalBackdrop && modalBackdrop.style.display !== "none") {
+                modalBackdrop.style.display = "none";
+            }
+        }
+
+        // Shortcuts on Home Page
+        if (window.location.pathname === "/" || window.location.pathname === "") {
+            if (e.key === "1") {
+                document.getElementById("card-sms")?.click();
+            } else if (e.key === "2") {
+                document.getElementById("card-email")?.click();
+            } else if (e.key === "3") {
+                document.getElementById("card-url")?.click();
+            } else if (e.key === "4") {
+                document.getElementById("card-phone")?.click();
+            }
+        }
+    });
+
+    // =========================================================================
+    // 16. Phone Questionnaire Live Progress Bar (Nielsen Heuristic #1)
+    // =========================================================================
+    const phoneForm = document.getElementById("phone-form");
+    if (phoneForm) {
+        const radios = phoneForm.querySelectorAll("input[type='radio']");
+        const countEl = document.getElementById("answered-count");
+        const percentEl = document.getElementById("answered-percent");
+        const fillEl = document.getElementById("phone-progress-fill");
+
+        function updatePhoneProgress() {
+            const answeredIds = new Set();
+            radios.forEach(r => {
+                if (r.checked) answeredIds.add(r.name);
+            });
+            const count = answeredIds.size;
+            const pct = Math.round((count / 10) * 100);
+
+            if (countEl) countEl.textContent = count;
+            if (percentEl) percentEl.textContent = `${pct}%`;
+            if (fillEl) fillEl.style.width = `${pct}%`;
+        }
+
+        radios.forEach(r => r.addEventListener("change", updatePhoneProgress));
+        updatePhoneProgress();
+
+        document.getElementById("btn-reset-phone")?.addEventListener("click", () => {
+            setTimeout(updatePhoneProgress, 50);
+            showToast("All answers have been reset.");
+        });
+    }
+
+    // =========================================================================
+    // 17. Progressive Disclosure Accordion (Hick-Hyman Law)
+    // =========================================================================
+    const btnToggleDetails = document.getElementById("btn-toggle-details");
+    const detailsContent = document.getElementById("result-details-content");
+
+    btnToggleDetails?.addEventListener("click", () => {
+        const isExpanded = btnToggleDetails.getAttribute("aria-expanded") === "true";
+        if (isExpanded) {
+            btnToggleDetails.setAttribute("aria-expanded", "false");
+            if (detailsContent) detailsContent.style.display = "none";
+            const icon = btnToggleDetails.querySelector(".toggle-icon");
+            if (icon) icon.textContent = "▶";
+        } else {
+            btnToggleDetails.setAttribute("aria-expanded", "true");
+            if (detailsContent) detailsContent.style.display = "block";
+            const icon = btnToggleDetails.querySelector(".toggle-icon");
+            if (icon) icon.textContent = "▼";
+        }
+    });
+
+    // =========================================================================
+    // 18. Accessible Confirmation Modal for Clear History (Shneiderman #5 & #6)
+    // =========================================================================
+    const btnOpenClearModal = document.getElementById("btn-open-clear-modal");
+    const modalBackdrop = document.getElementById("accessible-modal-backdrop");
+    const btnModalCancel = document.getElementById("modal-btn-cancel");
+    const btnModalConfirm = document.getElementById("modal-btn-confirm");
+    const formClearHistory = document.getElementById("form-clear-history");
+
+    if (btnOpenClearModal && modalBackdrop) {
+        btnOpenClearModal.addEventListener("click", () => {
+            modalBackdrop.style.display = "flex";
+            btnModalCancel?.focus();
+        });
+
+        btnModalCancel?.addEventListener("click", () => {
+            modalBackdrop.style.display = "none";
+            btnOpenClearModal.focus();
+        });
+
+        btnModalConfirm?.addEventListener("click", () => {
+            modalBackdrop.style.display = "none";
+            formClearHistory?.submit();
+        });
+    }
+
+    // =========================================================================
+    // 19. Form Reset Helpers & Validation (Shneiderman Rule #6)
+    // =========================================================================
+    document.querySelectorAll(".btn-reset-form").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const targetId = btn.getAttribute("data-target");
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) targetEl.value = "";
+
+            const targetExtra = btn.getAttribute("data-target-extra");
+            if (targetExtra) {
+                const extraEl = document.getElementById(targetExtra);
+                if (extraEl) extraEl.value = "";
+            }
+
+            const targetSender = btn.getAttribute("data-target-sender");
+            if (targetSender) {
+                const senderEl = document.getElementById(targetSender);
+                if (senderEl) senderEl.value = "";
+            }
+
+            showToast("Form cleared.");
+            targetEl?.focus();
+        });
+    });
 });

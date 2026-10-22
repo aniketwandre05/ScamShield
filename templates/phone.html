@@ -4,36 +4,112 @@
 
 {% block content %}
 <div class="form-card">
+    <!-- Back to Choices Navigation (Shneiderman Rule #6 Easy Reversal) -->
+    <div class="card-top-nav">
+        <a href="{{ url_for('index') }}" class="back-link">
+            &larr; {{ t('nav_home') | default('Home') }} / Choose Another Check
+        </a>
+    </div>
+
     <div class="card-header-bar">
         <div class="card-header-icon" aria-hidden="true">📞</div>
         <div class="card-header-text">
-            <h2>{{ t('phone_header_title') }}</h2>
-            <p>{{ t('phone_header_desc') }}</p>
+            <h2 class="form-title">{{ t('phone_header_title') }}</h2>
+            <p class="form-subtitle">{{ t('phone_header_desc') }}</p>
         </div>
     </div>
 
-    <form action="{{ url_for('analyze_phone') }}" method="POST">
-        {% for q in questions %}
-        <div class="question-item">
-            <div class="question-title">
-                {{ loop.index }}. {{ q.question }}
-            </div>
-            <div class="radio-group" role="radiogroup" aria-label="Question {{ loop.index }}">
-                <label class="radio-label radio-label-no">
-                    <input type="radio" name="{{ q.id }}" value="no" class="radio-input" required>
-                    <span>{{ t('phone_no') }}</span>
-                </label>
-                <label class="radio-label radio-label-yes">
-                    <input type="radio" name="{{ q.id }}" value="yes" class="radio-input" required>
-                    <span style="color: var(--danger-color); font-weight: 800;">{{ t('phone_yes') }}</span>
-                </label>
-            </div>
+    <!-- Questionnaire Progress Bar (Nielsen Heuristic #1 Visibility of System Status) -->
+    <div class="phone-progress-box" role="region" aria-label="Questionnaire Progress">
+        <div class="phone-progress-header">
+            <span class="progress-title" id="progress-status-text">Questions Answered: <strong id="answered-count">0</strong> of 10</span>
+            <span class="progress-percent" id="answered-percent">0%</span>
         </div>
-        {% endfor %}
+        <div class="progress-track" aria-hidden="true">
+            <div id="phone-progress-fill" class="progress-fill" style="width: 0%;"></div>
+        </div>
+    </div>
 
-        <button type="submit" class="btn-primary-large" style="margin-top: 24px;">
-            {{ t('phone_btn') }}
-        </button>
+    <form action="{{ url_for('analyze_phone') }}" method="POST" id="phone-form">
+        <!-- Chunk 1: Questions 1 to 5 (Miller's Law - 5 items chunk) -->
+        <div class="phone-section-chunk" id="chunk-1">
+            <div class="chunk-header-pill">
+                <span class="chunk-step-badge">Part 1</span>
+                <span>Immediate Demands: Passwords, Banking & Wire Transfers</span>
+            </div>
+
+            {% for q in questions[:5] %}
+            <div class="question-item" data-q-index="{{ loop.index }}">
+                <div class="question-header-row">
+                    <span class="question-number-badge">Question {{ loop.index }} of 10</span>
+                </div>
+                <div class="question-title" id="label-{{ q.id }}">
+                    {{ loop.index }}. {{ q.question }}
+                </div>
+                <div class="radio-group" role="radiogroup" aria-labelledby="label-{{ q.id }}">
+                    <label class="radio-label radio-label-no">
+                        <input type="radio" name="{{ q.id }}" value="no" class="radio-input" required>
+                        <span class="radio-btn-content">
+                            <span class="radio-icon" aria-hidden="true">🛡️</span>
+                            <span>{{ t('phone_no') }} (No)</span>
+                        </span>
+                    </label>
+                    <label class="radio-label radio-label-yes">
+                        <input type="radio" name="{{ q.id }}" value="yes" class="radio-input" required>
+                        <span class="radio-btn-content">
+                            <span class="radio-icon" aria-hidden="true">⚠️</span>
+                            <span>{{ t('phone_yes') }} (Yes)</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Chunk 2: Questions 6 to 10 (Miller's Law - 5 items chunk) -->
+        <div class="phone-section-chunk" id="chunk-2" style="margin-top: 24px;">
+            <div class="chunk-header-pill">
+                <span class="chunk-step-badge">Part 2</span>
+                <span>Caller Behavior: Impersonation, Screen Sharing & Threats</span>
+            </div>
+
+            {% for q in questions[5:] %}
+            {% set q_num = loop.index + 5 %}
+            <div class="question-item" data-q-index="{{ q_num }}">
+                <div class="question-header-row">
+                    <span class="question-number-badge">Question {{ q_num }} of 10</span>
+                </div>
+                <div class="question-title" id="label-{{ q.id }}">
+                    {{ q_num }}. {{ q.question }}
+                </div>
+                <div class="radio-group" role="radiogroup" aria-labelledby="label-{{ q.id }}">
+                    <label class="radio-label radio-label-no">
+                        <input type="radio" name="{{ q.id }}" value="no" class="radio-input" required>
+                        <span class="radio-btn-content">
+                            <span class="radio-icon" aria-hidden="true">🛡️</span>
+                            <span>{{ t('phone_no') }} (No)</span>
+                        </span>
+                    </label>
+                    <label class="radio-label radio-label-yes">
+                        <input type="radio" name="{{ q.id }}" value="yes" class="radio-input" required>
+                        <span class="radio-btn-content">
+                            <span class="radio-icon" aria-hidden="true">⚠️</span>
+                            <span>{{ t('phone_yes') }} (Yes)</span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="form-buttons-row" style="margin-top: 28px;">
+            <button type="submit" class="btn-primary-large" id="btn-submit-phone">
+                {{ t('phone_btn') }}
+            </button>
+            <button type="reset" class="btn-secondary" id="btn-reset-phone">
+                🔄 Clear All Answers
+            </button>
+        </div>
     </form>
 </div>
 {% endblock %}

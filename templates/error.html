@@ -3,24 +3,33 @@
 {% block title %}{{ error_title | default(t('error_default_title')) }} - {{ t('brand_title') }}{% endblock %}
 
 {% block content %}
-<div class="form-card" style="text-align: center; padding: 48px 24px;">
-    <div style="font-size: 64px; margin-bottom: 16px;" aria-hidden="true">⚠️</div>
-    
-    <h2 style="font-size: 28px; font-weight: 800; color: var(--text-primary); margin-bottom: 12px;">
+<div class="result-card" style="text-align: center; max-width: 600px;">
+    <div style="font-size: 64px; margin-bottom: 16px;">⚠️</div>
+    <h2 class="result-title" style="margin-bottom: 12px;">
         {{ error_title | default(t('error_default_title')) }}
     </h2>
-    
-    <p style="font-size: 19px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 32px; line-height: 1.5;">
+    <p style="color: var(--text-secondary); font-size: 18px; margin-bottom: 24px; line-height: 1.6;">
         {{ error_message | default(t('error_default_message')) }}
     </p>
 
-    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
         <a href="{{ return_url | default(url_for('index')) }}" class="btn-primary-large" style="max-width: 260px; margin: 0;">
-            {{ t('error_try_again') }}
+            🔄 {{ t('error_try_again') }}
         </a>
         <a href="{{ url_for('index') }}" class="btn-secondary" style="display: flex; align-items: center; justify-content: center;">
-            {{ t('error_back_home') }}
+            🏠 {{ t('error_back_home') }}
         </a>
+    </div>
+
+    <!-- Error Recovery Shortcuts (Nielsen Heuristic #9 Help Users Recover from Errors) -->
+    <div class="error-recovery-panel" role="region" aria-label="Quick Navigation Options">
+        <h3 class="recovery-heading">Or jump directly to a safety check:</h3>
+        <div class="recovery-links-grid">
+            <a href="{{ url_for('check_sms') }}" class="recovery-chip">💬 Check SMS</a>
+            <a href="{{ url_for('check_email') }}" class="recovery-chip">✉️ Check Email</a>
+            <a href="{{ url_for('check_url') }}" class="recovery-chip">🔗 Check Website Link</a>
+            <a href="{{ url_for('check_phone') }}" class="recovery-chip">📞 Check Phone Call</a>
+        </div>
     </div>
 </div>
 {% endblock %}

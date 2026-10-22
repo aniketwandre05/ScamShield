@@ -1,96 +1,126 @@
 {% extends "base.html" %}
 
-{% block title %}{{ t('url_header_title') }} - {{ t('brand_title') }}{% endblock %}
+{% block title %}{{ t('url_title') }} - {{ t('brand_title') }}{% endblock %}
 
 {% block content %}
 <div class="form-card">
+    <!-- Back to Choices Navigation (Shneiderman Rule #6 Easy Reversal) -->
+    <div class="card-top-nav">
+        <a href="{{ url_for('index') }}" class="back-link">
+            &larr; {{ t('nav_home') | default('Home') }} / Choose Another Check
+        </a>
+    </div>
+
     <div class="card-header-bar">
         <div class="card-header-icon" aria-hidden="true">🔗</div>
         <div class="card-header-text">
-            <h2>{{ t('url_header_title') }}</h2>
-            <p>{{ t('url_header_desc') }}</p>
+            <h2 class="form-title">{{ t('url_header_title') }}</h2>
+            <p class="form-subtitle">{{ t('url_header_desc') }}</p>
         </div>
     </div>
 
-    <!-- Privacy & Sensitive Data Warning Banner -->
-    <div class="privacy-warning-banner" role="note">
-        <span class="privacy-icon" aria-hidden="true">🔒</span>
+    <!-- Privacy Reassurance Tip -->
+    <div class="privacy-warning-banner privacy-tip-banner" role="note">
+        <span class="privacy-icon privacy-tip-icon" aria-hidden="true">🔒</span>
         <span><strong>{{ t('privacy_tip_title') }}</strong>: {{ t('privacy_tip_desc') }}</span>
     </div>
 
     <!-- Mode Selection Tabs -->
-    <div class="input-tabs" role="tablist">
+    <div class="input-tabs" role="tablist" aria-label="Input Method">
         <button type="button" class="tab-btn active" data-tab="paste-tab" role="tab" aria-selected="true" aria-controls="paste-tab">
-            {{ t('tab_paste_url') }}
+            ✍️ {{ t('tab_paste_url') }}
         </button>
         <button type="button" class="tab-btn" data-tab="upload-tab" role="tab" aria-selected="false" aria-controls="upload-tab">
-            {{ t('tab_upload_url_screenshot') }}
+            📸 {{ t('tab_upload_url_screenshot') }}
         </button>
     </div>
 
     <!-- Form 1: Paste URL Link -->
     <div id="paste-tab" class="tab-panel" role="tabpanel">
-        <form action="{{ url_for('analyze_url') }}" method="POST">
+        <form action="{{ url_for('analyze_url') }}" method="POST" id="url-text-form">
             <input type="hidden" name="input_mode" value="text">
             <div class="form-group">
                 <div class="form-label-row">
-                    <label for="url_input" class="form-label">{{ t('url_label') }}</label>
+                    <label for="url_input" class="form-label">{{ t('url_label') }} <span class="label-required">*</span></label>
                     <div class="input-actions-bar">
-                        <button type="button" class="btn-action-tool btn-action-paste" data-target="url_input" title="{{ t('btn_paste') }}">
+                        <button type="button" class="btn-action-tool btn-action-paste" data-target="url_input" title="{{ t('btn_paste') }}" aria-label="{{ t('btn_paste') }} link from clipboard">
                             📋 {{ t('btn_paste') }}
                         </button>
-                        <button type="button" class="btn-action-tool btn-action-clear" data-target="url_input" title="{{ t('btn_clear') }}">
+                        <button type="button" class="btn-action-tool btn-action-clear" data-target="url_input" title="{{ t('btn_clear') }}" aria-label="{{ t('btn_clear') }} link">
                             🧹 {{ t('btn_clear') }}
                         </button>
                     </div>
                 </div>
-                <input type="text" id="url_input" name="url_input" class="form-control" placeholder="{{ t('url_placeholder') }}" required>
-                <p class="form-help">{{ t('url_help') }}</p>
+                <input type="url" id="url_input" name="url_input" class="form-control" placeholder="{{ t('url_placeholder') }}" required autocomplete="off" aria-describedby="url-help-text">
+                <p id="url-help-text" class="form-help">{{ t('url_help') }}</p>
             </div>
 
-            <button type="submit" class="btn-primary-large">{{ t('url_btn') }}</button>
+            <div class="form-buttons-row">
+                <button type="submit" class="btn-primary-large" id="btn-submit-url">
+                    🔍 {{ t('url_btn') }}
+                </button>
+                <button type="button" class="btn-secondary btn-reset-form" data-target="url_input">
+                    🔄 Clear Form
+                </button>
+            </div>
         </form>
 
         <!-- Demo Samples -->
-        <div class="demo-samples-box">
-            <div class="demo-title">{{ t('try_example') }}</div>
-            <div class="demo-btn-group">
-                <button type="button" class="btn-demo" data-target="url_input" data-text="https://www.google.com">
-                    🟢 Safe: Google
-                </button>
-                <button type="button" class="btn-demo" data-target="url_input" data-text="https://en.wikipedia.org/wiki/Computer_security">
-                    🟢 Safe: Wikipedia
-                </button>
-                <button type="button" class="btn-demo" data-target="url_input" data-text="https://github.com/login">
-                    🟢 Safe: GitHub
-                </button>
-                <button type="button" class="btn-demo" data-target="url_input" data-text="http://192.168.1.100/secure-bank-login/verify/update-account">
-                    🔴 Scam: Raw IP Phishing
-                </button>
-                <button type="button" class="btn-demo" data-target="url_input" data-text="http://paypal-security-verification.update-account.free-login.xyz/signin">
-                    🔴 Scam: Subdomain Phish
-                </button>
-                <button type="button" class="btn-demo" data-target="url_input" data-text="http://bit.ly/claim-free-prize-bonus-winner">
-                    🔴 Scam: Shortened Scam Link
-                </button>
+        <div class="demo-samples-box" role="region" aria-label="Demo Examples">
+            <div class="demo-title">
+                <span>💡 {{ t('try_example') }}</span>
+                <span class="demo-hint">(Click any example below to test immediately)</span>
+            </div>
+            
+            <div class="demo-category-group">
+                <div class="demo-category-label safe-label">🟢 Legitimate Websites (Safe):</div>
+                <div class="demo-btn-group">
+                    <button type="button" class="btn-demo btn-demo-safe" data-target="url_input" data-text="https://www.google.com">
+                        Google Search
+                    </button>
+                    <button type="button" class="btn-demo btn-demo-safe" data-target="url_input" data-text="https://en.wikipedia.org/wiki/Computer_security">
+                        Wikipedia Article
+                    </button>
+                    <button type="button" class="btn-demo btn-demo-safe" data-target="url_input" data-text="https://github.com/login">
+                        GitHub Portal
+                    </button>
+                </div>
+            </div>
+
+            <div class="demo-category-group" style="margin-top: 10px;">
+                <div class="demo-category-label scam-label">🔴 Common Scam & Phishing Links (High Risk):</div>
+                <div class="demo-btn-group">
+                    <button type="button" class="btn-demo btn-demo-scam" data-target="url_input" data-text="http://192.168.1.100/secure-bank-login/verify/update-account">
+                        Raw IP Address Phishing
+                    </button>
+                    <button type="button" class="btn-demo btn-demo-scam" data-target="url_input" data-text="http://paypal-security-verification.update-account.free-login.xyz/signin">
+                        Deceptive Subdomain Phishing
+                    </button>
+                    <button type="button" class="btn-demo btn-demo-scam" data-target="url_input" data-text="http://bit.ly/claim-free-prize-bonus-winner">
+                        Shortened Obfuscated Link
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Form 2: Upload Screenshot -->
     <div id="upload-tab" class="tab-panel" style="display: none;" role="tabpanel">
-        <form action="{{ url_for('analyze_url') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url_for('analyze_url') }}" method="POST" enctype="multipart/form-data" id="url-upload-form">
             <input type="hidden" name="input_mode" value="screenshot">
             <div class="form-group">
-                <label class="form-label">{{ t('tab_upload_url_screenshot') }}</label>
-                <div class="upload-zone" tabindex="0" role="button" aria-label="Upload link screenshot file">
-                    <div class="upload-zone-icon">🖼️</div>
+                <label class="form-label" id="url-upload-label">{{ t('tab_upload_url_screenshot') }}</label>
+                <div class="upload-zone" tabindex="0" role="button" aria-labelledby="url-upload-label" aria-describedby="url-upload-help">
+                    <div class="upload-zone-icon" aria-hidden="true">🖼️</div>
                     <div class="upload-zone-text">{{ t('upload_drag_drop') }}</div>
-                    <div class="upload-zone-sub">{{ t('upload_formats') }}</div>
-                    <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" style="display: none;" required>
+                    <div class="upload-zone-sub" id="url-upload-help">{{ t('upload_formats') }} &bull; Max 16 MB</div>
+                    <button type="button" class="btn-browse-file" tabindex="-1">
+                        📁 Choose File or Take Photo
+                    </button>
+                    <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" capture="environment" style="display: none;" required aria-label="Upload link screenshot">
                 </div>
                 
-                <div class="file-preview">
+                <div class="file-preview" aria-live="polite">
                     <div>
                         <strong class="preview-filename">url.png</strong>
                         <span class="preview-filesize" style="color: var(--text-muted);"></span>
@@ -98,7 +128,12 @@
                     <button type="button" class="btn-demo btn-clear-file" style="color: var(--danger-color);">{{ t('upload_remove') }}</button>
                 </div>
             </div>
-            <button type="submit" class="btn-primary-large">{{ t('url_scan_btn') }}</button>
+            
+            <div class="form-buttons-row">
+                <button type="submit" class="btn-primary-large">
+                    🔍 {{ t('url_scan_btn') }}
+                </button>
+            </div>
         </form>
     </div>
 </div>

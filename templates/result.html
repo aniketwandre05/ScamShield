@@ -3,113 +3,143 @@
 {% block title %}{{ t('result_title') }} - {{ t('brand_title') }}{% endblock %}
 
 {% block content %}
-<div class="result-card">
-    <div class="result-header">
-        <h2 class="result-title">{{ t('result_title') }}</h2>
-        <p style="color: var(--text-secondary); font-size: 16px;">
-            {{ t('content_checked') }} <strong>{{ display_type | default(content_type|upper) }}</strong> 
-            {% if ocr_used %}&bull; <span style="color: var(--primary-color);">{{ t('ocr_extracted_badge') }}</span>{% endif %}
-        </p>
+<div class="result-card" role="region" aria-label="Risk Assessment Results" aria-live="polite">
+    <!-- Task Closure Notification (Shneiderman Rule #4) -->
+    <div class="result-completion-banner" role="status">
+        <span class="completion-icon" aria-hidden="true">✅</span>
+        <span><strong>Assessment Complete</strong> &bull; {{ t('content_checked') }} <strong>{{ display_type | default(content_type|upper) }}</strong></span>
+        {% if ocr_used %}<span class="ocr-badge-pill" style="color: var(--primary-color);">({{ t('ocr_extracted_badge') }})</span>{% endif %}
     </div>
 
-    <!-- Risk Gauge Box -->
+    <div class="result-header">
+        <h2 class="result-title">{{ t('result_title') }}</h2>
+    </div>
+
+    <!-- Risk Gauge Box (Jakob's Law Traffic Light + WCAG 2.2 Text & Icon Pairing) -->
     <div class="risk-meter-container" style="border-color: {{ color }};">
         <div class="risk-score-label">{{ t('risk_score_label') }}</div>
         <div class="risk-score-number" style="color: {{ color }};">
             {{ risk_score }} <span class="score-max">/ 100</span>
         </div>
         
-        <div class="score-bar-bg">
+        <div class="score-bar-bg" role="progressbar" aria-valuenow="{{ risk_score }}" aria-valuemin="0" aria-valuemax="100" aria-label="Risk score bar">
             <div class="score-bar-fill" style="width: {{ risk_score }}%; background-color: {{ color }};"></div>
         </div>
 
         <div class="risk-badge {{ badge_class }}">
-            <span aria-hidden="true">
+            <span aria-hidden="true" class="risk-badge-icon">
                 {% if risk_level == 'LOW' %}🛡️{% elif risk_level == 'MEDIUM' %}⚠️{% else %}🚨{% endif %}
             </span>
-            {{ risk_label }}
+            <span class="risk-badge-text">{{ risk_label }}</span>
         </div>
     </div>
 
-    <!-- Summary Sentence -->
-    <p id="result-summary-text" style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 18px; max-width: 700px; margin-left: auto; margin-right: auto;">
+    <!-- Plain-Language Summary Sentence (Norman's Conceptual Model & Nielsen Heuristic #2) -->
+    <p id="result-summary-text" class="result-summary-statement">
         {{ summary }}
     </p>
+
+    <!-- Top Immediate Safety Directive (Hick-Hyman Law & Cognitive Load Reduction) -->
+    <div class="top-action-callout {% if risk_level == 'HIGH' %}callout-danger{% elif risk_level == 'MEDIUM' %}callout-warning{% else %}callout-safe{% endif %}" role="alert">
+        <div class="callout-icon" aria-hidden="true">
+            {% if risk_level == 'HIGH' %}🛑{% elif risk_level == 'MEDIUM' %}⚠️{% else %}✅{% endif %}
+        </div>
+        <div class="callout-text">
+            <strong>What to do right now:</strong>
+            {% if risk_level == 'HIGH' %}
+                Do NOT click any links, do not reply, and NEVER share passwords or OTP codes. Block the sender.
+            {% elif risk_level == 'MEDIUM' %}
+                Proceed with extreme caution. Do not share confidential personal information or send money.
+            {% else %}
+                This content appears safe. Still exercise normal caution before sending financial information.
+            {% endif %}
+        </div>
+    </div>
 
     <!-- Quick Result Actions: Read Aloud, Copy Summary, Share Warning (HCI Checklist Item 6 & 9) -->
     <div class="result-quick-actions" role="toolbar" aria-label="Result Actions">
         <button type="button" id="btn-read-aloud" class="btn-result-action" data-lang="{{ current_lang }}">
-            {{ t('btn_read_aloud') }}
+            🔊 {{ t('btn_read_aloud') }}
         </button>
         <button type="button" id="btn-copy-summary" class="btn-result-action">
-            {{ t('btn_copy_summary') }}
+            📋 {{ t('btn_copy_summary') }}
         </button>
         <button type="button" id="btn-share-warning" class="btn-result-action">
-            {{ t('btn_share_warning') }}
+            📲 {{ t('btn_share_warning') }}
         </button>
     </div>
 
-    <!-- Content Snippet Preview with Suspicious Keywords Highlighted (HCI Checklist Item 5) -->
-    {% if preview_text %}
-    <div class="snippet-preview-box">
-        <span class="snippet-tag">{{ t('snippet_label') }}</span>
-        <p class="snippet-text">
-            {{ highlighted_preview | default(preview_text) | safe }}
-        </p>
-    </div>
-    {% endif %}
+    <!-- Progressive Disclosure Accordion Toggle (Hick-Hyman Law & Nielsen Heuristic #8) -->
+    <div class="details-accordion-wrapper">
+        <button type="button" id="btn-toggle-details" class="btn-toggle-details" aria-expanded="true" aria-controls="result-details-content">
+            <span class="toggle-icon" aria-hidden="true">▼</span>
+            <span class="toggle-text">Detailed Scam Analysis & Safety Steps</span>
+        </button>
 
-    <!-- Section 1: Why is this suspicious? -->
-    <div class="explanation-block">
-        <h3 class="section-heading" style="color: var(--text-primary);">
-            {{ t('why_heading') }}
-        </h3>
-        <ul class="reasons-list">
-            {% for reason in reasons %}
-            <li>{{ reason }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+        <div id="result-details-content" class="details-content-box" style="display: block;">
+            <!-- Content Snippet Preview with Suspicious Keywords Highlighted (HCI Checklist Item 5) -->
+            {% if preview_text %}
+            <div class="snippet-preview-box">
+                <span class="snippet-tag">{{ t('snippet_label') }}</span>
+                <p class="snippet-text">
+                    {{ highlighted_preview | default(preview_text) | safe }}
+                </p>
+            </div>
+            {% endif %}
 
-    <!-- Section 2: What should you do? -->
-    <div class="explanation-block">
-        <h3 class="section-heading" style="color: var(--primary-color);">
-            {{ t('what_heading') }}
-        </h3>
-        <ul class="actions-list">
-            {% for action in actions %}
-            <li class="{% if 'NOT' in action or 'Never' in action or 'Reject' in action or 'नका' in action or 'न करें' in action %}action-dont{% else %}action-do{% endif %}">
-                {{ action }}
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+            <!-- Section 1: Why did we give this score? -->
+            <div class="explanation-block">
+                <h3 class="section-heading" style="color: var(--text-primary);">
+                    🔍 {{ t('why_heading') }}
+                </h3>
+                <ul class="reasons-list">
+                    {% for reason in reasons %}
+                    <li>{{ reason }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
 
-    <!-- Feedback Mechanism: "Was this helpful?" (HCI Checklist Item 7) -->
-    <div class="result-feedback-widget" role="region" aria-label="Feedback">
-        <span class="feedback-question">{{ t('feedback_title') }}</span>
-        <div class="feedback-btns">
-            <button type="button" class="btn-feedback" data-val="yes">{{ t('feedback_yes') }}</button>
-            <button type="button" class="btn-feedback" data-val="no">{{ t('feedback_no') }}</button>
+            <!-- Section 2: What should you do now? -->
+            <div class="explanation-block">
+                <h3 class="section-heading" style="color: var(--primary-color);">
+                    🛡️ {{ t('what_heading') }}
+                </h3>
+                <ul class="actions-list">
+                    {% for action in actions %}
+                    <li class="{% if 'NOT' in action or 'Never' in action or 'Reject' in action or 'नका' in action or 'न करें' in action %}action-dont{% else %}action-do{% endif %}">
+                        {{ action }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Feedback Mechanism: "Was this helpful?" (HCI Checklist Item 7) -->
+            <div class="result-feedback-widget" role="region" aria-label="Feedback">
+                <span class="feedback-question">{{ t('feedback_title') }}</span>
+                <div class="feedback-btns">
+                    <button type="button" class="btn-feedback" data-val="yes">{{ t('feedback_yes') }}</button>
+                    <button type="button" class="btn-feedback" data-val="no">{{ t('feedback_no') }}</button>
+                </div>
+                <div class="feedback-response" style="display: none;" role="status">
+                    {{ t('feedback_thanks') }}
+                </div>
+            </div>
+
+            <!-- Result Disclaimer Callout (HCI Checklist Item 7) -->
+            <div class="result-disclaimer-note">
+                <span class="disclaimer-icon" aria-hidden="true">ℹ️</span>
+                <span>{{ t('disclaimer_result') }}</span>
+            </div>
         </div>
-        <div class="feedback-response" style="display: none;" role="status">
-            {{ t('feedback_thanks') }}
-        </div>
     </div>
 
-    <!-- Result Disclaimer Callout (HCI Checklist Item 7) -->
-    <div class="result-disclaimer-note">
-        <span class="disclaimer-icon" aria-hidden="true">ℹ️</span>
-        <span>{{ t('disclaimer_result') }}</span>
-    </div>
-
-    <!-- Check Another CTA -->
-    <div style="display: flex; gap: 16px; justify-content: center; margin-top: 32px; flex-wrap: wrap;">
+    <!-- Task Closure: Check Another or View History (Shneiderman Rule #4 Closure) -->
+    <div class="result-closure-buttons">
         <a href="{{ url_for('index') }}" class="btn-primary-large" style="max-width: 280px; margin: 0;">
-            {{ t('btn_check_another') }}
+            🔍 {{ t('btn_check_another') }}
         </a>
-        <a href="{{ url_for('view_history') }}" class="btn-secondary" style="display: flex; align-items: center; justify-content: center;">
-            {{ t('btn_view_history') }}
+        <a href="{{ url_for('view_history') }}" class="btn-secondary" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+            📋 {{ t('btn_view_history') }}
         </a>
     </div>
 </div>
