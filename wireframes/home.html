@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe: Home Dashboard - ScamShield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Wireframe Header -->
+    <header class="wf-gallery-header">
+        <h1>
+            <span class="wf-badge-screen">Screen 01</span>
+            Home Dashboard Wireframe
+        </h1>
+        <p>Route: <code>/</code> &bull; Template: <code>templates/index.html</code> (Extends <code>templates/base.html</code>)</p>
+        <nav class="wf-breadcrumb-nav">
+            <a href="index.html">&larr; Back to Wireframe Gallery</a>
+            <a href="flow.html">User Flow Map</a>
+            <a href="sms.html">Next: SMS Checker &rarr;</a>
+        </nav>
+    </header>
+
+    <!-- Side-by-Side Dual-Viewport Showcase -->
+    <main class="viewport-comparison">
+        <div class="comparison-columns">
+            
+            <!-- ================= MOBILE VIEWPORT (390px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>📱 Mobile Viewport</span>
+                    <span class="device-dimension-tag">390px &times; 844px</span>
+                </div>
+                <div class="device-frame device-mobile">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box">[icon: Shield]</div>
+                                    <div>
+                                        <div class="wf-brand-title">SCAMSHIELD</div>
+                                        <div class="wf-brand-sub">AI Scam Detection</div>
+                                    </div>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <span class="annotation-badge">1</span>
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                    <div class="wf-btn-control">[icon: Moon]</div>
+                                    <div class="wf-lang-pills">
+                                        <div class="wf-lang-pill active">EN</div>
+                                        <div class="wf-lang-pill">MR</div>
+                                        <div class="wf-lang-pill">HI</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav class="wf-nav">
+                                <span class="wf-nav-link active">Home</span>
+                                <span class="wf-nav-link">SMS</span>
+                                <span class="wf-nav-link">Email</span>
+                                <span class="wf-nav-link">URL/QR</span>
+                                <span class="wf-nav-link">Phone</span>
+                                <span class="wf-nav-link">History</span>
+                            </nav>
+                        </div>
+
+                        <!-- Onboarding Guide -->
+                        <div class="wf-onboarding-banner">
+                            <span class="annotation-badge" style="position: absolute; top: -12px; left: -10px;">4</span>
+                            <button class="wf-btn-dismiss">Got it ✕</button>
+                            <div class="wf-onboarding-title">[icon: Shield] New to ScamShield? Quick 3-Step Guide</div>
+                            <div class="wf-onboarding-steps">
+                                <div>1. Choose what to check (SMS, Email, URL, Phone).</div>
+                                <div>2. Paste message text or drop a screenshot.</div>
+                                <div>3. View instant evaluation & clear safety steps.</div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Section -->
+                        <section class="wf-hero">
+                            <div class="wf-icon-box lg">[icon: Shield Large]</div>
+                            <h2>What would you like to check today?</h2>
+                            <p>Check suspicious messages, emails, links, and calls before you act.</p>
+                        </section>
+
+                        <!-- Primary Cards -->
+                        <div class="wf-options-grid">
+                            <span class="annotation-badge" style="grid-column: 1 / -1; margin-bottom: -8px;">2</span>
+                            
+                            <!-- Card 1 -->
+                            <div class="wf-card-option">
+                                <span class="wf-card-shortcut">[Press 1]</span>
+                                <div class="wf-icon-box">[icon: SMS]</div>
+                                <h3 class="wf-card-title">CHECK SMS</h3>
+                                <p class="wf-card-desc">Check a suspicious SMS or WhatsApp message.</p>
+                                <span class="wf-btn-cta">Check Message &rarr;</span>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="wf-card-option">
+                                <span class="wf-card-shortcut">[Press 2]</span>
+                                <div class="wf-icon-box">[icon: Email]</div>
+                                <h3 class="wf-card-title">CHECK EMAIL</h3>
+                                <p class="wf-card-desc">Check an email for suspicious or phishing content.</p>
+                                <span class="wf-btn-cta">Check Email &rarr;</span>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="wf-card-option">
+                                <span class="wf-card-shortcut">[Press 3]</span>
+                                <div class="wf-icon-box">[icon: Link/QR]</div>
+                                <h3 class="wf-card-title">CHECK URL / QR CODE</h3>
+                                <p class="wf-card-desc">Check website link or upload QR screenshot.</p>
+                                <span class="wf-btn-cta">Check Link / QR &rarr;</span>
+                            </div>
+
+                            <!-- Card 4 -->
+                            <div class="wf-card-option">
+                                <span class="wf-card-shortcut">[Press 4]</span>
+                                <div class="wf-icon-box">[icon: Phone]</div>
+                                <h3 class="wf-card-title">CHECK PHONE CALL</h3>
+                                <p class="wf-card-desc">Answer 10 questions about a suspicious call.</p>
+                                <span class="wf-btn-cta">Start Questions &rarr;</span>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div style="margin-bottom: 8px;">
+                                <strong>[icon: Lock] Privacy Guard:</strong> ScamShield evaluates estimated risk. No sensitive passwords or OTPs stored.
+                            </div>
+                            <div>&copy; 2026 ScamShield &bull; Built for Accessibility</div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= DESKTOP VIEWPORT (1280px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>💻 Desktop Viewport</span>
+                    <span class="device-dimension-tag">1280px Width Standard</span>
+                </div>
+                <div class="device-frame device-desktop">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box lg">[icon: Shield Logo]</div>
+                                    <div>
+                                        <div class="wf-brand-title">SCAMSHIELD</div>
+                                        <div class="wf-brand-sub">AI Scam Detection & Risk Assessment</div>
+                                    </div>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <span class="annotation-badge">1</span>
+                                    <div class="wf-btn-control" title="Font Smaller">[A-]</div>
+                                    <div class="wf-btn-control active" title="Default Font">[A]</div>
+                                    <div class="wf-btn-control" title="Font Larger">[A+]</div>
+                                    <div class="wf-btn-control">[icon: Moon] Dark Mode</div>
+                                    <div class="wf-btn-control">[icon: Accessibility] Accessibility Options</div>
+                                    <div class="wf-lang-pills">
+                                        <div class="wf-lang-pill active">English</div>
+                                        <div class="wf-lang-pill">मराठी</div>
+                                        <div class="wf-lang-pill">हिन्दी</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav class="wf-nav">
+                                <span class="wf-nav-link active">Home</span>
+                                <span class="wf-nav-link">SMS</span>
+                                <span class="wf-nav-link">Email</span>
+                                <span class="wf-nav-link">URL / QR</span>
+                                <span class="wf-nav-link">Phone</span>
+                                <span class="wf-nav-link">History</span>
+                                <span class="wf-nav-link">Learn</span>
+                                <span class="wf-nav-link">Report Scam</span>
+                            </nav>
+                        </div>
+
+                        <!-- Onboarding Guide -->
+                        <div class="wf-onboarding-banner" style="max-width: 1200px; margin: 20px auto 0; width: calc(100% - 40px);">
+                            <span class="annotation-badge" style="position: absolute; top: -12px; left: -10px;">4</span>
+                            <button class="wf-btn-dismiss">Got it, thanks! ✕</button>
+                            <div class="wf-onboarding-title">[icon: Shield] New to ScamShield? Quick 3-Step Guide</div>
+                            <div class="wf-onboarding-steps" style="flex-direction: row; gap: 24px;">
+                                <div><strong>1. Choose What to Check:</strong> SMS, Email, URL/QR, or Phone Call questionnaire.</div>
+                                <div><strong>2. Provide Message:</strong> Paste text or drop screenshot for OCR/QR decoding.</div>
+                                <div><strong>3. View Instant Evaluation:</strong> Clear safety score, plain reasons, and safety checklist.</div>
+                            </div>
+                        </div>
+
+                        <!-- Hero Section -->
+                        <section class="wf-hero">
+                            <div class="wf-icon-box lg">[icon: Shield Hero]</div>
+                            <h2>What would you like to check today?</h2>
+                            <p>Check suspicious messages, emails, links, and phone calls before you act or click.</p>
+                        </section>
+
+                        <!-- Primary Options Grid (4 Cards) -->
+                        <div class="wf-options-grid" style="grid-template-columns: repeat(4, 1fr); max-width: 1240px; margin: 0 auto; width: 100%;">
+                            
+                            <!-- Card 1 -->
+                            <div class="wf-card-option">
+                                <span class="annotation-badge" style="position: absolute; top: -10px; left: -10px;">3</span>
+                                <span class="wf-card-shortcut">[Press Key 1]</span>
+                                <div class="wf-icon-box">[icon: SMS 48px]</div>
+                                <h3 class="wf-card-title">CHECK SMS</h3>
+                                <p class="wf-card-desc">Check a suspicious SMS or WhatsApp message.</p>
+                                <span class="wf-btn-cta">Check Message &rarr;</span>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="wf-card-option">
+                                <span class="wf-card-shortcut">[Press Key 2]</span>
+                                <div class="wf-icon-box">[icon: Email 48px]</div>
+                                <h3 class="wf-card-title">CHECK EMAIL</h3>
+                                <p class="wf-card-desc">Check an email for suspicious or phishing content.</p>
+                                <span class="wf-btn-cta">Check Email &rarr;</span>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="wf-card-option">
+                                <span class="wf-card-shortcut">[Press Key 3]</span>
+                                <div class="wf-icon-box">[icon: URL/QR 48px]</div>
+                                <h3 class="wf-card-title">CHECK URL / QR CODE</h3>
+                                <p class="wf-card-desc">Check a website link or upload a QR code screenshot to detect phishing.</p>
+                                <span class="wf-btn-cta">Check Link / QR &rarr;</span>
+                            </div>
+
+                            <!-- Card 4 -->
+                            <div class="wf-card-option">
+                                <span class="wf-card-shortcut">[Press Key 4]</span>
+                                <div class="wf-icon-box">[icon: Phone 48px]</div>
+                                <h3 class="wf-card-title">CHECK PHONE CALL</h3>
+                                <p class="wf-card-desc">Answer a few questions about a suspicious call.</p>
+                                <span class="wf-btn-cta">Start Questions &rarr;</span>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                                <div>
+                                    <strong>[icon: Lock] Privacy & Safety Notice:</strong> ScamShield provides an estimated risk assessment to assist decision-making. No credentials stored permanently.
+                                </div>
+                                <div>
+                                    &copy; 2026 ScamShield &bull; Machine Learning Lab Project &bull; Built for Simplicity and Accessibility
+                                </div>
+                            </div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Numbered Annotations Panel -->
+    <section class="annotations-panel">
+        <h3>Numbered UX & HCI Annotations: Home Dashboard</h3>
+        <ul class="annotations-list">
+            <li class="annotation-item">
+                <span class="annotation-badge">1</span>
+                <div class="annotation-text">
+                    <h4>Senior & Low-Vision Inclusivity Toolbar</h4>
+                    <p>Header provides immediate accessibility controls: A- / A / A+ font zoom factors (0.88x to 1.35x), dark/light mode toggle, high-contrast, dyslexia font, and instant language switching (EN, MR, HI). Adheres to ISO 9241-110 Individualisation.</p>
+                    <span class="annotation-principle-tag">Checklist 9: WCAG 2.2 & Inclusivity</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">2</span>
+                <div class="annotation-text">
+                    <h4>Choice Minimization & Fitts's Law</h4>
+                    <p>Instead of overwhelming users with menus, the dashboard presents 4 prominent cards representing the primary threat channels (SMS, Email, URL/QR, Phone). Large targets (&gt;44px) minimize motor effort and decision fatigue.</p>
+                    <span class="annotation-principle-tag">Checklist 3: Hick-Hyman & Fitts's Law</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">3</span>
+                <div class="annotation-text">
+                    <h4>Direct Keyboard Shortcuts</h4>
+                    <p>Each card displays an explicit keyboard shortcut pill ([1], [2], [3], [4]). Keypresses immediately route to the respective checker without requiring mouse clicks, aiding motor-impaired and power users.</p>
+                    <span class="annotation-principle-tag">Checklist 3: Shneiderman Rule #2 Shortcuts</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">4</span>
+                <div class="annotation-text">
+                    <h4>First-Time Onboarding & User Control</h4>
+                    <p>A high-contrast 3-step banner guides first-time visitors on how ScamShield works. Includes a distinct dismiss button that persists state in <code>localStorage</code>, preventing repetitive clutter.</p>
+                    <span class="annotation-principle-tag">Checklist 12: Onboarding & User Control</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</body>
+</html>

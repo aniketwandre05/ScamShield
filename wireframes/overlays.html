@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe: UI Overlays & Modals - ScamShield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Wireframe Header -->
+    <header class="wf-gallery-header">
+        <h1>
+            <span class="wf-badge-screen">Screen 13</span>
+            UI Overlays, Modals & Microinteractions Wireframe
+        </h1>
+        <p>Global Overlay Components: Analyzing Loader, Confirmation Dialog, Accessibility Menu, Toast Notifications</p>
+        <nav class="wf-breadcrumb-nav">
+            <a href="index.html">&larr; Back to Wireframe Gallery</a>
+            <a href="error.html">&larr; Prev: Error Screen</a>
+            <a href="flow.html">Next: User Flow Map &rarr;</a>
+        </nav>
+    </header>
+
+    <!-- Side-by-Side Dual-Viewport Showcase -->
+    <main class="viewport-comparison">
+        <div class="comparison-columns">
+            
+            <!-- ================= MOBILE VIEWPORT (390px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>📱 Mobile Viewport</span>
+                    <span class="device-dimension-tag">390px Width (Analyzing Loader & Toast)</span>
+                </div>
+                <div class="device-frame device-mobile">
+                    <div class="app-screen-container" style="min-height: 700px; position: relative;">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box">[icon: Shield]</div>
+                                    <span class="wf-brand-title">SCAMSHIELD</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Underlying Page Mock -->
+                        <div class="wf-form-container" style="opacity: 0.2;">
+                            <div class="wf-page-title-box">
+                                <h2>Check SMS / WhatsApp</h2>
+                            </div>
+                            <div class="wf-textarea-field">URGENT: Power cut tonight...</div>
+                            <button class="wf-btn-primary-large" style="margin-top: 10px;">Check Message</button>
+                        </div>
+
+                        <!-- State 1: Active Analyzing Overlay (Mobile) -->
+                        <div class="wf-modal-backdrop-mock" style="position: absolute; inset: 0; z-index: 10;">
+                            <span class="annotation-badge">1</span>
+                            <div class="wf-modal-box" style="text-align: center; padding: 28px 16px;">
+                                <div class="wf-icon-box lg" style="font-size: 32px; width: 64px; height: 64px; margin: 0 auto 14px;">[icon: Spinner]</div>
+                                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 8px;">Analyzing Content...</h3>
+                                <p style="color: var(--wf-text-muted); font-size: 14px;">Inspecting text patterns, urgency signals, and security risks...</p>
+                            </div>
+                        </div>
+
+                        <!-- State 2: Toast Notification Floating Pill -->
+                        <div style="position: absolute; bottom: 20px; right: 20px; z-index: 20;">
+                            <span class="annotation-badge">3</span>
+                            <div class="wf-toast-mock">[icon: Copy] Result summary copied to clipboard!</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= DESKTOP VIEWPORT (1280px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>💻 Desktop Viewport</span>
+                    <span class="device-dimension-tag">1280px Width (Accessible Confirmation Modal & A11y Menu)</span>
+                </div>
+                <div class="device-frame device-desktop">
+                    <div class="app-screen-container" style="min-height: 700px; position: relative;">
+                        
+                        <!-- Header with Open Accessibility Dropdown Menu -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box lg">[icon: Shield Logo]</div>
+                                    <div>
+                                        <div class="wf-brand-title">SCAMSHIELD</div>
+                                        <div class="wf-brand-sub">AI Scam Detection & Risk Assessment</div>
+                                    </div>
+                                </div>
+                                <div class="wf-toolbar" style="position: relative;">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                    <div class="wf-btn-control">[icon: Moon] Dark Mode</div>
+                                    
+                                    <!-- A11y Dropdown Open State -->
+                                    <span class="annotation-badge">4</span>
+                                    <div class="wf-btn-control active" style="position: relative;">
+                                        [icon: Accessibility] Accessibility Options ▼
+                                        <div style="position: absolute; top: calc(100% + 6px); right: 0; background: #ffffff; border: 2px solid #111827; box-shadow: 4px 4px 0px rgba(0,0,0,0.15); width: 220px; z-index: 100; text-align: left; padding: 6px 0;">
+                                            <div style="padding: 8px 14px; font-weight: 700; font-size: 14px; border-bottom: 1px solid var(--wf-border-light); cursor: default;">
+                                                🔤 Dyslexia Font: [Off]
+                                            </div>
+                                            <div style="padding: 8px 14px; font-weight: 700; font-size: 14px; cursor: default;">
+                                                👁️ High Contrast: [Off]
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="wf-lang-pills">
+                                        <div class="wf-lang-pill active">English</div>
+                                        <div class="wf-lang-pill">मराठी</div>
+                                        <div class="wf-lang-pill">हिन्दी</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Underlying Page (History) -->
+                        <div class="wf-form-container" style="opacity: 0.15; max-width: 900px; margin: 30px auto;">
+                            <h2>Recent Scan History</h2>
+                            <div class="wf-history-item">Scan Item 1</div>
+                            <div class="wf-history-item">Scan Item 2</div>
+                        </div>
+
+                        <!-- State: Accessible Confirmation Modal Backdrop -->
+                        <div class="wf-modal-backdrop-mock" style="position: absolute; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center;">
+                            <span class="annotation-badge" style="position: absolute; top: 120px; left: calc(50% - 240px);">2</span>
+                            <div class="wf-modal-box">
+                                <div style="display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px;">
+                                    <div class="wf-icon-box lg" style="font-size: 28px;">[icon: Warning]</div>
+                                    <div>
+                                        <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">Confirm Clear History</h3>
+                                        <p style="color: var(--wf-text-muted); font-size: 15px; line-height: 1.5;">
+                                            Are you sure you want to delete all scans from your current session? This action cannot be undone.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+                                    <button class="wf-btn-secondary" style="min-width: 120px;">Cancel (Esc)</button>
+                                    <button class="wf-btn-primary-large" style="max-width: 140px; margin: 0; background: #111827;">Confirm Delete</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Toast Pill -->
+                        <div style="position: absolute; bottom: 30px; right: 30px; z-index: 60;">
+                            <span class="annotation-badge">3</span>
+                            <div class="wf-toast-mock">[icon: Toast] Dyslexia-friendly font enabled</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Annotations Panel -->
+    <section class="annotations-panel">
+        <h3>Numbered UX & HCI Annotations: Overlays, Modals & Microinteractions</h3>
+        <ul class="annotations-list">
+            <li class="annotation-item">
+                <span class="annotation-badge">1</span>
+                <div class="annotation-text">
+                    <h4>Visibility of System Status (Analyzing Loader)</h4>
+                    <p>Triggered on form submission to prevent multiple clicks and provide instant feedback while ML classifiers and OCR run. Explains system status in plain language ("Inspecting text patterns...").</p>
+                    <span class="annotation-principle-tag">Checklist 2: Nielsen #1 Visibility of System Status</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">2</span>
+                <div class="annotation-text">
+                    <h4>Accessible Confirmation Modal (Error Prevention)</h4>
+                    <p>Protects destructive actions (clearing history). Traps keyboard focus inside the dialog, responds to the Escape key, and sets focus to the Cancel button by default to prevent accidental deletion.</p>
+                    <span class="annotation-principle-tag">Checklist 2: Nielsen #5 Error Prevention</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">3</span>
+                <div class="annotation-text">
+                    <h4>Toast Notification Microinteractions</h4>
+                    <p>Non-blocking floating toast alerts appear in the lower-right corner to acknowledge background events (copying summary, resetting inputs, changing fonts) without interrupting reading flow.</p>
+                    <span class="annotation-principle-tag">Checklist 6: Microinteractions & Snackbars</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">4</span>
+                <div class="annotation-text">
+                    <h4>Inclusivity Dropdown Menu</h4>
+                    <p>Houses specialized accessibility settings (OpenDyslexic typeface and high-contrast CSS overrides) in an accessible toggled dropdown menu with full <code>aria-expanded</code> semantics.</p>
+                    <span class="annotation-principle-tag">Checklist 9: WCAG 2.2 Accessibility Options</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</body>
+</html>

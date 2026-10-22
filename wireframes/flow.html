@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe: Comprehensive User Flow Map - ScamShield</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .flow-diagram-container {
+            background: #ffffff;
+            border: 2px solid var(--wf-border-dark);
+            padding: 32px 24px;
+            box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.08);
+            margin-bottom: 36px;
+        }
+
+        .flow-section-title {
+            font-size: 18px;
+            font-weight: 800;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--wf-border-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .flow-track {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        .flow-row {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .flow-node {
+            border: 2px solid var(--wf-border-dark);
+            background: #ffffff;
+            padding: 14px 18px;
+            min-width: 200px;
+            max-width: 320px;
+            box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        .flow-node-start {
+            background: #111827;
+            color: #ffffff;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .flow-node-decision {
+            background: var(--wf-surface-subtle);
+            border: 2px dashed var(--wf-border-dark);
+        }
+
+        .flow-node-error {
+            background: #ffffff;
+            border: 2px solid #111827;
+            border-left: 6px solid #111827;
+        }
+
+        .flow-node-success {
+            background: #ffffff;
+            border: 2px solid #111827;
+        }
+
+        .flow-arrow {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--wf-text-muted);
+        }
+
+        .flow-branch-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            width: 100%;
+        }
+
+        .flow-node-title {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .flow-node-desc {
+            font-size: 13px;
+            color: var(--wf-text-muted);
+            line-height: 1.4;
+        }
+
+        .flow-route-tag {
+            display: inline-block;
+            font-family: monospace;
+            font-size: 11px;
+            background: var(--wf-surface-subtle);
+            border: 1px solid var(--wf-border-dark);
+            padding: 1px 6px;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="wf-gallery-header">
+        <h1>
+            <span class="wf-badge-screen">Architecture</span>
+            Complete User-Flow Architecture & State Transition Diagram
+        </h1>
+        <p>End-to-End mapping of Primary Happy Paths, Multimodal Input Branches, Machine Learning Risk Evaluation, Error Recovery States, and Ancillary Flows.</p>
+        <nav class="wf-breadcrumb-nav">
+            <a href="index.html">&larr; Back to Wireframe Gallery</a>
+            <a href="home.html">Start Screen-by-Screen Walkthrough &rarr;</a>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        
+        <!-- SECTION 1: PRIMARY SAFETY CHECK HAPPY PATH -->
+        <div class="flow-diagram-container">
+            <div class="flow-section-title">
+                <span>Phase 1: Primary Detection Workflow (Happy Path)</span>
+            </div>
+
+            <div class="flow-track">
+                
+                <!-- Step 1: Entry & Choice -->
+                <div class="flow-row">
+                    <div class="flow-node flow-node-start">
+                        <div class="flow-node-title" style="color: #ffffff;">User Arrives at Home</div>
+                        <div style="font-size: 12px; color: #d1d5db;">Browser loads "/"</div>
+                    </div>
+                    <span class="flow-arrow">&rarr;</span>
+                    
+                    <div class="flow-node flow-node-decision">
+                        <div class="flow-node-title">Choose Threat Channel</div>
+                        <div class="flow-node-desc">Click Card or press number key [1]-[4]</div>
+                        <div class="flow-route-tag">Hick-Hyman & Fitts's Law</div>
+                    </div>
+                    <span class="flow-arrow">&rarr;</span>
+
+                    <div class="flow-node">
+                        <div class="flow-node-title">Select Modality Form</div>
+                        <div class="flow-node-desc">SMS, Email, URL/QR, or Phone</div>
+                        <div class="flow-route-tag">/check/[channel]</div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Input Modes -->
+                <div class="flow-row">
+                    <div class="flow-branch-group">
+                        
+                        <div class="flow-node">
+                            <div class="flow-node-title">Mode A: Paste Text</div>
+                            <div class="flow-node-desc">Use textarea, "Paste" clipboard tool, or click preset Demo Example chip.</div>
+                        </div>
+
+                        <div class="flow-node">
+                            <div class="flow-node-title">Mode B: Upload Image</div>
+                            <div class="flow-node-desc">Drop screenshot or snap photo via mobile camera for OCR / QR decoding.</div>
+                        </div>
+
+                        <div class="flow-node">
+                            <div class="flow-node-title">Mode C: Phone Triage</div>
+                            <div class="flow-node-desc">Answer 10 chunked Yes/No questions with real-time live progress tracking.</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Step 3: Submission & System Status -->
+                <div class="flow-row">
+                    <div class="flow-node flow-node-decision" style="min-width: 280px;">
+                        <div class="flow-node-title">Submit Analysis Form</div>
+                        <div class="flow-node-desc">Click "Check Safety" CTA button</div>
+                        <div class="flow-route-tag">POST /analyze/[channel]</div>
+                    </div>
+                    <span class="flow-arrow">&rarr;</span>
+
+                    <div class="flow-node" style="background: #111827; color: #ffffff;">
+                        <div class="flow-node-title" style="color: #ffffff;">Analyzing Overlay</div>
+                        <div style="font-size: 12px; color: #d1d5db;">Loading modal: "Analyzing for fraud markers..."</div>
+                        <div class="flow-route-tag" style="background: #374151; color: #ffffff;">Nielsen #1 Visibility of Status</div>
+                    </div>
+                    <span class="flow-arrow">&rarr;</span>
+
+                    <div class="flow-node flow-node-decision">
+                        <div class="flow-node-title">Hybrid Risk Engine</div>
+                        <div class="flow-node-desc">Heuristics + ML Classifiers evaluate text, links, and urgency cues.</div>
+                        <div class="flow-route-tag">risk/risk_engine.py</div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Three Risk Result Variants -->
+                <div class="flow-row">
+                    <div class="flow-branch-group">
+                        
+                        <div class="flow-node" style="border: 3px double #111827;">
+                            <div class="flow-node-title">High Risk Result (Score &ge; 70)</div>
+                            <div class="flow-node-desc">Double border, red top action callout ("Do NOT click, block sender"), highlighted suspicious keywords, reason list.</div>
+                            <div class="flow-route-tag">templates/result.html (HIGH)</div>
+                        </div>
+
+                        <div class="flow-node" style="border: 2px dashed #4b5563;">
+                            <div class="flow-node-title">Medium Risk Result (Score 35-69)</div>
+                            <div class="flow-node-desc">Dashed border, warning callout ("Proceed with caution, verify sender directly"), cautionary checklist.</div>
+                            <div class="flow-route-tag">templates/result.html (MEDIUM)</div>
+                        </div>
+
+                        <div class="flow-node" style="border: 2px solid #9ca3af;">
+                            <div class="flow-node-title">Low Risk Result (Score &lt; 35)</div>
+                            <div class="flow-node-desc">Solid border, safe callout ("Potentially Safe - exercise normal caution"), baseline reassurance.</div>
+                            <div class="flow-route-tag">templates/result.html (LOW)</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Step 5: Post-Result Actions & Closure -->
+                <div class="flow-row">
+                    <div class="flow-node flow-node-success" style="width: 100%; max-width: 100%;">
+                        <div class="flow-node-title">Post-Assessment Actions & Closure</div>
+                        <div class="flow-node-desc" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 6px;">
+                            <span>🔊 Listen to Result (TTS Speech API)</span>
+                            <span>📋 Copy Summary (Clipboard API)</span>
+                            <span>📤 Share Warning Alert (Web Share API)</span>
+                            <span>👍 Was this helpful? (Feedback API)</span>
+                            <span>🔄 Check Another Content (Return Home)</span>
+                            <span>📋 View Session History</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION 2: ERROR & EXCEPTION RECOVERY PATHS -->
+        <div class="flow-diagram-container">
+            <div class="flow-section-title">
+                <span>Phase 2: Error Handling & Recovery Branches</span>
+            </div>
+
+            <div class="flow-branch-group">
+                
+                <div class="flow-node flow-node-error">
+                    <div class="flow-node-title">Branch 1: Empty Input Form</div>
+                    <div class="flow-node-desc">User submits empty text area or blank subject/body.</div>
+                    <div style="margin: 8px 0; font-size: 13px; font-weight: 700;">&rarr; Renders "Empty Message Details" Error</div>
+                    <div class="flow-route-tag">Recovery: "Try Again" or Jump Chips (SMS, Email, URL, Phone)</div>
+                </div>
+
+                <div class="flow-node flow-node-error">
+                    <div class="flow-node-title">Branch 2: Unreadable / Blurry Screenshot</div>
+                    <div class="flow-node-desc">Uploaded image has no readable OCR text or valid QR matrix.</div>
+                    <div style="margin: 8px 0; font-size: 13px; font-weight: 700;">&rarr; Renders "Could Not Read Screenshot" Error</div>
+                    <div class="flow-route-tag">Recovery: Polite lighting advice & option to paste link manually</div>
+                </div>
+
+                <div class="flow-node flow-node-error">
+                    <div class="flow-node-title">Branch 3: File Too Large (&gt; 16 MB)</div>
+                    <div class="flow-node-desc">Screenshot exceeds max file upload limit (HTTP 413).</div>
+                    <div style="margin: 8px 0; font-size: 13px; font-weight: 700;">&rarr; Renders "File Too Large" Error</div>
+                    <div class="flow-route-tag">Recovery: Guidance to compress or crop screenshot</div>
+                </div>
+
+                <div class="flow-node flow-node-error">
+                    <div class="flow-node-title">Branch 4: Broken Link / 404 Route</div>
+                    <div class="flow-node-desc">User navigates to invalid URL path.</div>
+                    <div style="margin: 8px 0; font-size: 13px; font-weight: 700;">&rarr; Custom Branded 404 Page</div>
+                    <div class="flow-route-tag">Recovery: "Back to Home" + 4 Quick Navigation chips</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION 3: ANCILLARY WORKFLOWS -->
+        <div class="flow-diagram-container">
+            <div class="flow-section-title">
+                <span>Phase 3: History, Learning & Incident Reporting Subsystems</span>
+            </div>
+
+            <div class="flow-branch-group">
+                
+                <!-- History Flow -->
+                <div class="flow-node">
+                    <div class="flow-node-title">1. Scan History Workflow</div>
+                    <div class="flow-node-desc">
+                        &bull; <strong>Empty State:</strong> Shows empty mailbox + "Go to Home" button.<br>
+                        &bull; <strong>Populated State:</strong> Multi-channel check logs with risk levels.<br>
+                        &bull; <strong>Search & Filter:</strong> Real-time keyword filter + Risk level dropdown.<br>
+                        &bull; <strong>Export:</strong> Download structured CSV for police reporting.<br>
+                        &bull; <strong>Clear History:</strong> Invokes accessible modal dialog confirmation.
+                    </div>
+                    <div class="flow-route-tag">/history &bull; /history/export &bull; /history/clear</div>
+                </div>
+
+                <!-- Learn Hub Flow -->
+                <div class="flow-node">
+                    <div class="flow-node-title">2. Learning & Awareness Hub</div>
+                    <div class="flow-node-desc">
+                        &bull; <strong>4 Common Trap Cards:</strong> Electricity, Bank KYC, Remote Screen Share, Lottery.<br>
+                        &bull; <strong>Interactive Quiz:</strong> 3 scenarios with instant formative feedback.<br>
+                        &bull; <strong>Emergency FAQ:</strong> 4 expandable accordions on compromised links.
+                    </div>
+                    <div class="flow-route-tag">/learn</div>
+                </div>
+
+                <!-- Report Helplines Flow -->
+                <div class="flow-node">
+                    <div class="flow-node-title">3. Helplines & Reporting Flow</div>
+                    <div class="flow-node-desc">
+                        &bull; <strong>Emergency Card:</strong> Click-to-call 1930 within the "Golden Hour".<br>
+                        &bull; <strong>National Portal:</strong> Link to cybercrime.gov.in (MHA India).<br>
+                        &bull; <strong>Triage Checklist:</strong> 4 sequential recovery steps.<br>
+                        &bull; <strong>Community Report Form:</strong> Submits active scam details &rarr; Displays Success confirmation state.
+                    </div>
+                    <div class="flow-route-tag">/report</div>
+                </div>
+
+                <!-- Global Accessibility Flow -->
+                <div class="flow-node">
+                    <div class="flow-node-title">4. Global Accessibility & Preferences</div>
+                    <div class="flow-node-desc">
+                        &bull; <strong>Font Scaler:</strong> [A-] (0.88x) &bull; [A] (1.0x) &bull; [A+] (1.35x).<br>
+                        &bull; <strong>Theme Switcher:</strong> Dark Mode / Light Mode.<br>
+                        &bull; <strong>A11y Menu:</strong> Dyslexia-friendly font & High-Contrast overrides.<br>
+                        &bull; <strong>Trilingual Switcher:</strong> English &bull; मराठी &bull; हिन्दी.
+                    </div>
+                    <div class="flow-route-tag">Global Header &bull; localStorage Persisted</div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Annotations Panel -->
+    <section class="annotations-panel">
+        <h3>User Flow Architectural Notes</h3>
+        <ul class="annotations-list">
+            <li class="annotation-item">
+                <span class="annotation-badge">1</span>
+                <div class="annotation-text">
+                    <h4>Zero Dead-End Architecture</h4>
+                    <p>Every error, empty state, and completion screen includes at least two explicit escape hatches ("Try Again", "Back to Home", or "Check Another Content"), ensuring users never encounter an inescapable dead end.</p>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">2</span>
+                <div class="annotation-text">
+                    <h4>Multi-Modal Input Symmetry</h4>
+                    <p>Text pasting and image uploading (OCR & QR) follow identical processing workflows, resulting in the same standardized explainable risk output card format regardless of input modality.</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</body>
+</html>

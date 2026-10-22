@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScamShield - Master Wireframe Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-card {
+            border: 2px solid var(--wf-border-dark);
+            background: #ffffff;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.15s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .gallery-screen-num {
+            font-size: 12px;
+            font-weight: 800;
+            background: #111827;
+            color: #ffffff;
+            padding: 2px 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .gallery-route-tag {
+            font-family: monospace;
+            font-size: 12px;
+            color: var(--wf-text-muted);
+            border: 1px solid var(--wf-border-light);
+            padding: 2px 6px;
+            background: var(--wf-surface);
+        }
+
+        .gallery-card h2 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .gallery-card p {
+            font-size: 14px;
+            color: var(--wf-text-muted);
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .gallery-features-list {
+            list-style: none;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .gallery-features-list li {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .gallery-features-list li::before {
+            content: "✓";
+            font-weight: 900;
+            color: #111827;
+        }
+
+        .gallery-open-btn {
+            display: block;
+            width: 100%;
+            min-height: var(--wf-touch-target);
+            background: #111827;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 800;
+            text-align: center;
+            padding: 12px 16px;
+            border: 2px solid #111827;
+        }
+
+        .gallery-open-btn:hover {
+            background: #374151;
+            border-color: #374151;
+        }
+
+        .spec-table-box {
+            background: #ffffff;
+            border: 2px solid var(--wf-border-dark);
+            padding: 24px;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.08);
+            margin-bottom: 36px;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-top: 14px;
+        }
+
+        .spec-table th, .spec-table td {
+            border: 1px solid var(--wf-border-light);
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        .spec-table th {
+            background: var(--wf-surface);
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="wf-gallery-header">
+        <h1>
+            <span class="wf-badge-screen">Master Gallery</span>
+            ScamShield: Low-Fidelity Wireframe System & HCI Architecture
+        </h1>
+        <p>Comprehensive, low-fidelity wireframe portfolio covering every user-facing screen, modal, error state, and user journey in the ScamShield codebase.</p>
+        <nav class="wf-breadcrumb-nav">
+            <a href="flow.html"><strong>📊 User Flow Architecture Map</strong></a>
+            <a href="PLAN.md"><strong>📋 Architectural Audit & Manifest (PLAN.md)</strong></a>
+        </nav>
+    </header>
+
+    <!-- Master Wireframes Grid -->
+    <main>
+        
+        <div class="gallery-grid">
+            
+            <!-- Screen 1: Home Dashboard -->
+            <div class="gallery-card">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 01</span>
+                        <span class="gallery-route-tag">/</span>
+                    </div>
+                    <h2>Home Dashboard</h2>
+                    <p>Primary triage dashboard presenting 4 check cards with keyboard navigation shortcuts and dismissible onboarding.</p>
+                    <ul class="gallery-features-list">
+                        <li>Hero banner & Senior Inclusivity Toolbar</li>
+                        <li>4 Main Threat Cards: SMS, Email, URL/QR, Phone</li>
+                        <li>Keyboard Shortcuts [1] to [4] for direct navigation</li>
+                        <li>Dismissible 3-step Quick Start onboarding guide</li>
+                    </ul>
+                </div>
+                <a href="home.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 2: SMS Checker -->
+            <div class="gallery-card">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 02</span>
+                        <span class="gallery-route-tag">/check/sms</span>
+                    </div>
+                    <h2>Check SMS / WhatsApp</h2>
+                    <p>Dual-modal checker supporting text paste with clipboard helpers and screenshot OCR dropzone upload.</p>
+                    <ul class="gallery-features-list">
+                        <li>Textarea with "Paste" & "Clear" clipboard tools</li>
+                        <li>Screenshot Drag & Drop zone with file preview</li>
+                        <li>Preset safe and scam demo scenario chips</li>
+                        <li>Privacy tip banner with auto-masking assurance</li>
+                    </ul>
+                </div>
+                <a href="sms.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 3: Email Phishing Checker -->
+            <div class="gallery-card">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 03</span>
+                        <span class="gallery-route-tag">/check/email</span>
+                    </div>
+                    <h2>Check Email Phishing</h2>
+                    <p>Form tailored for email scams, evaluating spoofed sender domains, urgency subject lines, and body text.</p>
+                    <ul class="gallery-features-list">
+                        <li>Sender (optional), Subject (optional), Body (required)</li>
+                        <li>Multi-field atomic form reset helper</li>
+                        <li>Spear-phishing test demo chips (PayPal, IRS)</li>
+                        <li>Screenshot dropzone for full email client photos</li>
+                    </ul>
+                </div>
+                <a href="email.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 4: URL & QR Code Checker -->
+            <div class="gallery-card">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 04</span>
+                        <span class="gallery-route-tag">/check/url</span>
+                    </div>
+                    <h2>Check URL & QR Code ("Quishing")</h2>
+                    <p>Evaluates web links and automatically decodes uploaded QR code matrix images for malicious redirects.</p>
+                    <ul class="gallery-features-list">
+                        <li>Direct link input with protocol auto-normalization</li>
+                        <li>QR Code scanner dropzone with camera capture support</li>
+                        <li>Demos: Raw IP, Deceptive Subdomains, Bit.ly shorteners</li>
+                        <li>⚡ Dedicated QR code Quishing trap sample chip</li>
+                    </ul>
+                </div>
+                <a href="url.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 5: Phone Questionnaire -->
+            <div class="gallery-card">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 05</span>
+                        <span class="gallery-route-tag">/check/phone</span>
+                    </div>
+                    <h2>Phone Call Questionnaire</h2>
+                    <p>10-question evaluation structured into two 5-item cognitive chunks with dynamic live progress tracking.</p>
+                    <ul class="gallery-features-list">
+                        <li>Miller's Law 5-question cognitive chunking</li>
+                        <li>Real-time dynamic progress bar (0% to 100%)</li>
+                        <li>Large symmetrical touch targets (🛡️ No / ⚠️ Yes)</li>
+                        <li>Evaluates OTP, banking, screen-sharing, & arrest threats</li>
+                    </ul>
+                </div>
+                <a href="phone.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 6: High Risk Result -->
+            <div class="gallery-card" style="border: 3px double #111827;">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 06</span>
+                        <span class="gallery-route-tag">Result: High</span>
+                    </div>
+                    <h2>Assessment Result: High Risk</h2>
+                    <p>Double-bordered fraud verdict with prominent red danger directive and explainable AI breakdown.</p>
+                    <ul class="gallery-features-list">
+                        <li>Double-border styling + [HIGH RISK] textual badge</li>
+                        <li>Top danger directive: "Do NOT click, block sender"</li>
+                        <li>Highlighted suspicious keywords & why/what list</li>
+                        <li>Audio narration (TTS), Copy summary, & Share alert</li>
+                    </ul>
+                </div>
+                <a href="result_high.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 7: Medium Risk Result -->
+            <div class="gallery-card" style="border: 2px dashed #4b5563;">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 07</span>
+                        <span class="gallery-route-tag">Result: Med</span>
+                    </div>
+                    <h2>Assessment Result: Medium Risk</h2>
+                    <p>Dashed-bordered suspicious verdict training users in calibrated skepticism without false certainty.</p>
+                    <ul class="gallery-features-list">
+                        <li>Dashed-border styling + [MEDIUM RISK] badge</li>
+                        <li>Warning directive: "Proceed with extreme caution"</li>
+                        <li>Heuristic flags: uncommon domains, missing HTTPS</li>
+                        <li>Safe out-of-band verification recommendations</li>
+                    </ul>
+                </div>
+                <a href="result_medium.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 8: Low Risk Result -->
+            <div class="gallery-card" style="border: 2px solid #9ca3af;">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 08</span>
+                        <span class="gallery-route-tag">Result: Low</span>
+                    </div>
+                    <h2>Assessment Result: Low Risk</h2>
+                    <p>Solid-bordered safe baseline delivering guarded assurance while preventing automated over-trust.</p>
+                    <ul class="gallery-features-list">
+                        <li>Solid-border styling + [LOW RISK - POTENTIALLY SAFE]</li>
+                        <li>Reassurance directive: "Content appears safe"</li>
+                        <li>Transparent explanation of absent red flags</li>
+                        <li>Preserves analyzed snippet for context retention</li>
+                    </ul>
+                </div>
+                <a href="result_low.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 9: Scan History -->
+            <div class="gallery-card">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 09</span>
+                        <span class="gallery-route-tag">/history</span>
+                    </div>
+                    <h2>Scan History (Populated & Empty)</h2>
+                    <p>Session-contained scan records with real-time keyword search, risk filter, CSV export, and clear modal.</p>
+                    <ul class="gallery-features-list">
+                        <li>Populated history cards with masked text snippets</li>
+                        <li>Live client-side search & risk level filter</li>
+                        <li>Institutional CSV export & print report stylesheet</li>
+                        <li>Empathetic empty mailbox state with Home redirect</li>
+                    </ul>
+                </div>
+                <a href="history.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 10: Learning Center -->
+            <div class="gallery-card">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 10</span>
+                        <span class="gallery-route-tag">/learn</span>
+                    </div>
+                    <h2>Scam Awareness & Learning Center</h2>
+                    <p>Deconstructs psychological manipulation tactics, offers an interactive quiz, and provides emergency FAQs.</p>
+                    <ul class="gallery-features-list">
+                        <li>4 Common Trap Cards: Trick vs 🚩 Red Flags</li>
+                        <li>Interactive 3-Scenario Quiz with instant feedback</li>
+                        <li>Expandable emergency FAQ semantic accordions</li>
+                        <li>Direct linkages to National Cybercrime Portal</li>
+                    </ul>
+                </div>
+                <a href="learn.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 11: Report Scam & Helplines -->
+            <div class="gallery-card">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 11</span>
+                        <span class="gallery-route-tag">/report</span>
+                    </div>
+                    <h2>Report Scam & Official Helplines</h2>
+                    <p>Prominently highlights India's 1930 emergency number, 4-step triage checklist, and crowdsourced reporting form.</p>
+                    <ul class="gallery-features-list">
+                        <li>Direct click-to-call Helpline 1930 (Golden Hour freeze)</li>
+                        <li>Official National Cybercrime Reporting Portal link</li>
+                        <li>Step-by-step panic-mitigating triage checklist</li>
+                        <li>Community threat report form & submitted success view</li>
+                    </ul>
+                </div>
+                <a href="report.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 12: Error Recovery -->
+            <div class="gallery-card">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 12</span>
+                        <span class="gallery-route-tag">Error Views</span>
+                    </div>
+                    <h2>Error Handling & Recovery</h2>
+                    <p>Handles 404, file size limits, empty submissions, and unreadable OCR with polite plain-language alternatives.</p>
+                    <ul class="gallery-features-list">
+                        <li>Polite, non-blaming plain-language diagnostic copy</li>
+                        <li>Direct "Try Again" return path and "Back to Home"</li>
+                        <li>Error recovery jump chips for quick modality switching</li>
+                        <li>Bypasses technical HTTP codes with user-friendly advice</li>
+                    </ul>
+                </div>
+                <a href="error.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Screen 13: Overlays & Modals -->
+            <div class="gallery-card">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Screen 13</span>
+                        <span class="gallery-route-tag">Overlays</span>
+                    </div>
+                    <h2>UI Overlays & Modals</h2>
+                    <p>Visual specs for transient system states: analyzing loading overlay, confirmation dialog, and toast pills.</p>
+                    <ul class="gallery-features-list">
+                        <li>Analyzing loader for system status visibility (Nielsen #1)</li>
+                        <li>Accessible confirmation dialog for destructive actions</li>
+                        <li>Non-blocking toast notifications for clipboard actions</li>
+                        <li>Accessibility dropdown menu (Dyslexia & High Contrast)</li>
+                    </ul>
+                </div>
+                <a href="overlays.html" class="gallery-open-btn">View Wireframe & Annotations &rarr;</a>
+            </div>
+
+            <!-- Flow Architecture -->
+            <div class="gallery-card" style="background: var(--wf-surface);">
+                <div>
+                    <div class="gallery-card-header">
+                        <span class="gallery-screen-num">Architecture</span>
+                        <span class="gallery-route-tag">flow.html</span>
+                    </div>
+                    <h2>Complete User Flow Diagram</h2>
+                    <p>Full architectural map showing primary user journeys, OCR/QR branches, ML scoring, and error paths.</p>
+                    <ul class="gallery-features-list">
+                        <li>Primary happy paths from landing to closure</li>
+                        <li>Multimodal input branches (Text vs Screenshot vs Phone)</li>
+                        <li>Error recovery loops & empty state handling</li>
+                        <li>Ancillary learning and helpline escalation workflows</li>
+                    </ul>
+                </div>
+                <a href="flow.html" class="gallery-open-btn" style="background: #ffffff; color: #111827;">View Flow Map &rarr;</a>
+            </div>
+
+        </div>
+
+        <!-- Specifications & HCI Alignment Table -->
+        <section class="spec-table-box">
+            <h3 style="font-size: 18px; font-weight: 800;">ScamShield Low-Fidelity Design System Specifications</h3>
+            <p style="color: var(--wf-text-muted); font-size: 14px; margin-top: 4px;">
+                Constructed in accordance with the <strong>ScamShield HCI Implementation Checklist</strong> and ISO 9241 ergonomics standards.
+            </p>
+
+            <table class="spec-table">
+                <thead>
+                    <tr>
+                        <th>Design Variable</th>
+                        <th>Low-Fidelity Wireframe Specification</th>
+                        <th>HCI Checklist Reference & Rationales</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Palette</strong></td>
+                        <td>Greyscale (White <code>#fff</code>, Greys <code>#f3f4f6</code>, <code>#e5e7eb</code>, <code>#9ca3af</code>, Dark <code>#111827</code>)</td>
+                        <td>Prevents aesthetic bias; focuses feedback purely on information architecture, cognitive hierarchy, and affordances.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Typography</strong></td>
+                        <td>System sans-serif stack; Minimum 16px body font; 24-28px page headings</td>
+                        <td>WCAG 2.2 Guideline 1.4 (Distinguishable text); senior-friendly readability without eye strain.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Touch Targets</strong></td>
+                        <td>Minimum 44px &times; 44px for all buttons, inputs, pills, and cards</td>
+                        <td>WCAG 2.2 Success Criterion 2.5.8 (Target Size); Fitts's Law optimization for mobile thumb operation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Risk Encoding</strong></td>
+                        <td>Solid Border (Low), Dashed Border (Medium), Double Border (High) + Text Badges</td>
+                        <td>WCAG 2.2 Guideline 1.4.1 (Non-color-alone); fully accessible to color-blind and low-vision users.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Iconography</strong></td>
+                        <td>Deliberate bounding boxes labeled <code>[icon: Name]</code></td>
+                        <td>Clear low-fidelity signifiers showing placement and semantic meaning without distracting illustrations.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Viewports</strong></td>
+                        <td>Side-by-side Mobile (390px) & Desktop (1280px)</td>
+                        <td>Responsive parity verification across modern smartphone viewports and wide desktop displays.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="wf-footer" style="text-align: center;">
+        <div>&copy; 2026 ScamShield &bull; Low-Fidelity Wireframe & HCI Evaluation Suite</div>
+    </footer>
+
+</body>
+</html>

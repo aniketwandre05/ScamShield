@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe: Check URL / QR Code - ScamShield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Wireframe Header -->
+    <header class="wf-gallery-header">
+        <h1>
+            <span class="wf-badge-screen">Screen 04</span>
+            Check Website Link & QR Code Wireframe
+        </h1>
+        <p>Route: <code>/check/url</code> &bull; Template: <code>templates/url.html</code> &bull; POST to <code>/analyze/url</code></p>
+        <nav class="wf-breadcrumb-nav">
+            <a href="index.html">&larr; Back to Wireframe Gallery</a>
+            <a href="email.html">&larr; Prev: Email Checker</a>
+            <a href="phone.html">Next: Phone Questionnaire &rarr;</a>
+        </nav>
+    </header>
+
+    <!-- Side-by-Side Viewport Showcase -->
+    <main class="viewport-comparison">
+        <div class="comparison-columns">
+            
+            <!-- ================= MOBILE VIEWPORT (390px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>📱 Mobile Viewport</span>
+                    <span class="device-dimension-tag">390px Width (QR Code Tab Active)</span>
+                </div>
+                <div class="device-frame device-mobile">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box">[icon: Shield]</div>
+                                    <span class="wf-brand-title">SCAMSHIELD</span>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Content -->
+                        <div class="wf-form-container">
+                            <span class="wf-top-nav-link">&larr; Home / Choose Another Check</span>
+
+                            <div class="wf-page-title-box">
+                                <div class="wf-icon-box lg">[icon: QR Code]</div>
+                                <div>
+                                    <h2>Check URL / QR Code</h2>
+                                    <p>Scan QR codes or paste website links.</p>
+                                </div>
+                            </div>
+
+                            <div class="wf-privacy-tip">
+                                <strong>[icon: Lock] Privacy Guard:</strong> Never upload banking credentials or passwords.
+                            </div>
+
+                            <!-- Tabs -->
+                            <div class="wf-tabs">
+                                <div class="wf-tab-btn">✏️ Paste Link</div>
+                                <span class="annotation-badge">1</span>
+                                <div class="wf-tab-btn active">📷 Scan QR Code</div>
+                            </div>
+
+                            <!-- QR Upload Tab Active View -->
+                            <div class="wf-form-group">
+                                <label class="wf-label">Scan QR Code or Link Screenshot:</label>
+                                <div class="wf-dropzone">
+                                    <span class="annotation-badge">4</span>
+                                    <div class="wf-icon-box lg">[icon: QR Code / Camera 48px]</div>
+                                    <div class="wf-dropzone-title">Click or Drag QR Image Here</div>
+                                    <div class="wf-dropzone-sub">Supports PNG, JPG, WEBP &bull; Camera Capture Enabled</div>
+                                    <button class="wf-btn-secondary" style="margin-top: 8px;">📷 Scan QR / Take Photo</button>
+                                </div>
+
+                                <div class="wf-file-preview">
+                                    <div>
+                                        <strong>[icon: QR] sample_quish_qr.png</strong>
+                                        <span style="color: var(--wf-text-muted); font-size: 13px;">(18.2 KB)</span>
+                                    </div>
+                                    <button class="wf-btn-tool" style="font-weight: 800;">✕ Remove</button>
+                                </div>
+                            </div>
+
+                            <div class="wf-form-buttons-row">
+                                <button class="wf-btn-primary-large">Scan QR Code / Link Safety &rarr;</button>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div>&copy; 2026 ScamShield &bull; Quishing Detection Pipeline</div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= DESKTOP VIEWPORT (1280px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>💻 Desktop Viewport</span>
+                    <span class="device-dimension-tag">1280px Width (URL Text Input Tab Active)</span>
+                </div>
+                <div class="device-frame device-desktop">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box lg">[icon: Shield Logo]</div>
+                                    <div>
+                                        <div class="wf-brand-title">SCAMSHIELD</div>
+                                        <div class="wf-brand-sub">AI Scam Detection & Risk Assessment</div>
+                                    </div>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                    <div class="wf-btn-control">[icon: Moon] Dark Mode</div>
+                                    <div class="wf-btn-control">[icon: Accessibility] Accessibility Options</div>
+                                    <div class="wf-lang-pills">
+                                        <div class="wf-lang-pill active">English</div>
+                                        <div class="wf-lang-pill">मराठी</div>
+                                        <div class="wf-lang-pill">हिन्दी</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav class="wf-nav">
+                                <span class="wf-nav-link">Home</span>
+                                <span class="wf-nav-link">SMS</span>
+                                <span class="wf-nav-link">Email</span>
+                                <span class="wf-nav-link active">URL / QR</span>
+                                <span class="wf-nav-link">Phone</span>
+                                <span class="wf-nav-link">History</span>
+                                <span class="wf-nav-link">Learn</span>
+                                <span class="wf-nav-link">Report Scam</span>
+                            </nav>
+                        </div>
+
+                        <!-- Form Container -->
+                        <div class="wf-form-container" style="max-width: 960px; margin: 30px auto;">
+                            <span class="wf-top-nav-link">&larr; Home / Choose Another Check</span>
+
+                            <div class="wf-page-title-box">
+                                <div class="wf-icon-box lg" style="font-size: 20px;">[icon: Link / QR 48px]</div>
+                                <div>
+                                    <h2>Check Website Link (URL) or QR Code</h2>
+                                    <p>Paste a website link or upload a QR code screenshot to detect phishing attacks, deceptive domains, and scam portals.</p>
+                                </div>
+                            </div>
+
+                            <div class="wf-privacy-tip">
+                                <div>
+                                    <strong>[icon: Lock] Privacy Guard:</strong> Never enter sensitive banking credentials on unverified websites. ScamShield checks destination legitimacy in safe isolation.
+                                </div>
+                            </div>
+
+                            <!-- Tabs -->
+                            <div class="wf-tabs">
+                                <div class="wf-tab-btn active">✏️ Paste Link (URL)</div>
+                                <span class="annotation-badge">1</span>
+                                <div class="wf-tab-btn">📷 Scan QR Code / Screenshot</div>
+                            </div>
+
+                            <!-- Paste URL Form -->
+                            <div class="wf-form-group">
+                                <div class="wf-form-label-row">
+                                    <span class="annotation-badge">2</span>
+                                    <label class="wf-label">Website Link (URL): *</label>
+                                    <div class="wf-input-actions">
+                                        <button class="wf-btn-tool">📋 Paste Link</button>
+                                        <button class="wf-btn-tool">🧹 Clear</button>
+                                    </div>
+                                </div>
+                                <input type="url" class="wf-input-field" placeholder="e.g., http://bit.ly/electricity-bill-pay-officer or http://192.168.1.100/login">
+                                <div class="wf-char-hint">Tip: You can paste shortened links (bit.ly, tinyurl), raw IP addresses, or suspicious domain names.</div>
+                            </div>
+
+                            <div class="wf-form-buttons-row">
+                                <button class="wf-btn-primary-large" style="max-width: 280px;">Check Link Safety &rarr;</button>
+                                <button class="wf-btn-secondary">🔄 Clear Form</button>
+                            </div>
+
+                            <!-- Demo Samples -->
+                            <div class="wf-demo-samples">
+                                <div class="wf-demo-title">
+                                    <span class="annotation-badge">3</span>
+                                    <span>💡 Try an Example: (Click to test common URL vectors)</span>
+                                </div>
+                                
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                                    <div>
+                                        <div class="wf-demo-category-label">🟢 Safe Websites:</div>
+                                        <div class="wf-demo-btn-row">
+                                            <span class="wf-chip">Google Search</span>
+                                            <span class="wf-chip">Wikipedia Security</span>
+                                            <span class="wf-chip">GitHub</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="wf-demo-category-label">🔴 Phishing Traps:</div>
+                                        <div class="wf-demo-btn-row">
+                                            <span class="wf-chip">Raw IP Address</span>
+                                            <span class="wf-chip">Deceptive Subdomain</span>
+                                            <span class="wf-chip">Obfuscated Bit.ly</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="wf-demo-category-label">⚡ Quishing / QR Code Trap:</div>
+                                        <div class="wf-demo-btn-row">
+                                            <span class="wf-chip">⚡ QR Scam (Electricity Bill)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between;">
+                                <div><strong>[icon: Lock] Security Isolation:</strong> ScamShield extracts and evaluates links statically without executing remote scripts.</div>
+                                <div>&copy; 2026 ScamShield &bull; Machine Learning URL Classifier</div>
+                            </div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Annotations Panel -->
+    <section class="annotations-panel">
+        <h3>Numbered UX & HCI Annotations: Check URL & QR Code</h3>
+        <ul class="annotations-list">
+            <li class="annotation-item">
+                <span class="annotation-badge">1</span>
+                <div class="annotation-text">
+                    <h4>Quishing (QR Code Phishing) Extension</h4>
+                    <p>Tab clearly communicates dual functionality: users can inspect textual URLs or upload QR code screenshot images. The backend OpenCV pipeline automatically decodes the embedded payload without manual typing.</p>
+                    <span class="annotation-principle-tag">Checklist 6: Multimodal OCR/QR Input</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">2</span>
+                <div class="annotation-text">
+                    <h4>Forgiving Input & Protocol Normalization</h4>
+                    <p>The input accepts partial URLs (e.g. <code>google.com</code> or <code>192.168.1.50</code>) without enforcing strict protocol typing, normalizing them gracefully before ML scoring (Nielsen #5 Error Prevention).</p>
+                    <span class="annotation-principle-tag">Checklist 2: Nielsen #5 Error Prevention</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">3</span>
+                <div class="annotation-text">
+                    <h4>Technical Scam Vector Demonstrators</h4>
+                    <p>Provides explicit demo chips categorized into raw numeric IP addresses, excessive multi-level subdomains, and obfuscated shortened URLs, educating users on common evasion techniques.</p>
+                    <span class="annotation-principle-tag">Checklist 7: Educational Feedback & Explainability</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">4</span>
+                <div class="annotation-text">
+                    <h4>Mobile Camera Capture Support</h4>
+                    <p>On mobile viewports, the upload input specifies <code>capture="environment"</code>, allowing users to photograph physical QR posters (e.g. at parking meters or cafes) with a single tap.</p>
+                    <span class="annotation-principle-tag">Checklist 11: Mobile-First Touch Design</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</body>
+</html>

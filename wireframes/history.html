@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe: Scan History - ScamShield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Wireframe Header -->
+    <header class="wf-gallery-header">
+        <h1>
+            <span class="wf-badge-screen">Screen 09</span>
+            Scan History Wireframe (Populated & Empty States)
+        </h1>
+        <p>Route: <code>/history</code> &bull; Template: <code>templates/history.html</code> &bull; Actions: <code>/history/export</code>, <code>/history/clear</code></p>
+        <nav class="wf-breadcrumb-nav">
+            <a href="index.html">&larr; Back to Wireframe Gallery</a>
+            <a href="result_low.html">&larr; Prev: Low Risk Result</a>
+            <a href="learn.html">Next: Learning Center &rarr;</a>
+        </nav>
+    </header>
+
+    <!-- Side-by-Side Dual-Viewport Showcase -->
+    <main class="viewport-comparison">
+        <div class="comparison-columns">
+            
+            <!-- ================= MOBILE VIEWPORT (390px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>📱 Mobile Viewport</span>
+                    <span class="device-dimension-tag">390px Width (Empty State View)</span>
+                </div>
+                <div class="device-frame device-mobile">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box">[icon: Shield]</div>
+                                    <span class="wf-brand-title">SCAMSHIELD</span>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content: Empty History State -->
+                        <div class="wf-form-container" style="text-align: center; padding: 48px 20px;">
+                            <span class="annotation-badge">5</span>
+                            <div class="wf-icon-box lg" style="margin: 0 auto 16px; font-size: 28px; width: 64px; height: 64px;">[icon: Empty Box]</div>
+                            <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">No Scans Performed Yet</h3>
+                            <p style="color: var(--wf-text-muted); font-size: 15px; margin-bottom: 24px; line-height: 1.5;">
+                                Check an SMS, Email, website link, or phone call to see your local evaluation history here.
+                            </p>
+                            <a href="home.html" class="wf-btn-primary-large" style="text-decoration: none;">Go to Home &rarr;</a>
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div>&copy; 2026 ScamShield &bull; Ephemeral Session Storage</div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= DESKTOP VIEWPORT (1280px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>💻 Desktop Viewport</span>
+                    <span class="device-dimension-tag">1280px Width (Populated History with Filter & Search)</span>
+                </div>
+                <div class="device-frame device-desktop">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box lg">[icon: Shield Logo]</div>
+                                    <div>
+                                        <div class="wf-brand-title">SCAMSHIELD</div>
+                                        <div class="wf-brand-sub">AI Scam Detection & Risk Assessment</div>
+                                    </div>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                    <div class="wf-btn-control">[icon: Moon] Dark Mode</div>
+                                    <div class="wf-lang-pills">
+                                        <div class="wf-lang-pill active">English</div>
+                                        <div class="wf-lang-pill">मराठी</div>
+                                        <div class="wf-lang-pill">हिन्दी</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav class="wf-nav">
+                                <span class="wf-nav-link">Home</span>
+                                <span class="wf-nav-link">SMS</span>
+                                <span class="wf-nav-link">Email</span>
+                                <span class="wf-nav-link">URL / QR</span>
+                                <span class="wf-nav-link">Phone</span>
+                                <span class="wf-nav-link active">History</span>
+                                <span class="wf-nav-link">Learn</span>
+                                <span class="wf-nav-link">Report Scam</span>
+                            </nav>
+                        </div>
+
+                        <!-- History Main Container -->
+                        <div class="wf-form-container" style="max-width: 1000px; margin: 30px auto;">
+                            
+                            <!-- Header Bar with Actions -->
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;">
+                                <div style="display: flex; align-items: center; gap: 14px;">
+                                    <div class="wf-icon-box lg" style="font-size: 20px;">[icon: History 48px]</div>
+                                    <div>
+                                        <h2>Recent Scan History</h2>
+                                        <span class="annotation-badge">1</span>
+                                        <p style="color: var(--wf-text-muted); font-size: 14px;">Saved locally in your active session. No sensitive data is permanently stored on external servers.</p>
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; gap: 8px;">
+                                    <span class="annotation-badge">4</span>
+                                    <button class="wf-btn-secondary">📥 Export CSV</button>
+                                    <button class="wf-btn-secondary">🖨️ Print / Save Report</button>
+                                    <span class="annotation-badge">3</span>
+                                    <button class="wf-btn-secondary" style="border-color: #111827; font-weight: 800;">🗑️ Clear History</button>
+                                </div>
+                            </div>
+
+                            <!-- Filter Toolbar -->
+                            <div class="wf-history-filter-bar">
+                                <span class="annotation-badge">2</span>
+                                <div style="flex: 1; display: flex; align-items: center; border: 2px solid var(--wf-border-dark); background: #ffffff; padding: 0 10px;">
+                                    <span>[icon: Search]</span>
+                                    <input type="text" style="border: none; outline: none; width: 100%; padding: 10px; font-size: 15px;" placeholder="Search history by keyword (e.g. bank, electricity, url)...">
+                                </div>
+                                <select class="wf-input-field" style="width: 200px;">
+                                    <option>All Risk Levels</option>
+                                    <option>High Risk Only</option>
+                                    <option>Medium Risk Only</option>
+                                    <option>Safe Only</option>
+                                </select>
+                                <span class="wf-chip" style="font-weight: 700;">Showing 4 scans</span>
+                            </div>
+
+                            <!-- History Cards List -->
+                            <div style="display: flex; flex-direction: column; gap: 12px;">
+                                
+                                <!-- Item 1 -->
+                                <div class="wf-history-item" style="border-left: 4px double #111827;">
+                                    <div style="flex: 1;">
+                                        <div class="wf-history-meta">
+                                            <span class="wf-history-type-badge">QR CODE</span>
+                                            <span>Today &bull; 20:13</span>
+                                        </div>
+                                        <p style="font-weight: 700; font-size: 15px;">http://bit.ly/electricity-bill-disconnection-officer</p>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 16px;">
+                                        <div style="text-align: right;">
+                                            <div style="font-size: 22px; font-weight: 900;">73 / 100</div>
+                                        </div>
+                                        <span class="wf-risk-badge-box wf-risk-badge-high" style="font-size: 13px; padding: 4px 10px;">HIGH RISK</span>
+                                    </div>
+                                </div>
+
+                                <!-- Item 2 -->
+                                <div class="wf-history-item" style="border-left: 4px double #111827;">
+                                    <div style="flex: 1;">
+                                        <div class="wf-history-meta">
+                                            <span class="wf-history-type-badge">SMS</span>
+                                            <span>Today &bull; 20:11</span>
+                                        </div>
+                                        <p style="font-weight: 700; font-size: 15px;">URGENT: Your power will be disconnected at 9:30 PM tonight. Call officer immediately...</p>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 16px;">
+                                        <div style="text-align: right;">
+                                            <div style="font-size: 22px; font-weight: 900;">85 / 100</div>
+                                        </div>
+                                        <span class="wf-risk-badge-box wf-risk-badge-high" style="font-size: 13px; padding: 4px 10px;">HIGH RISK</span>
+                                    </div>
+                                </div>
+
+                                <!-- Item 3 -->
+                                <div class="wf-history-item" style="border-left: 3px dashed #4b5563;">
+                                    <div style="flex: 1;">
+                                        <div class="wf-history-meta">
+                                            <span class="wf-history-type-badge">URL</span>
+                                            <span>Today &bull; 19:45</span>
+                                        </div>
+                                        <p style="font-weight: 700; font-size: 15px;">http://order-tracking-courier.xyz/track/delivery</p>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 16px;">
+                                        <div style="text-align: right;">
+                                            <div style="font-size: 22px; font-weight: 900;">52 / 100</div>
+                                        </div>
+                                        <span class="wf-risk-badge-box wf-risk-badge-med" style="font-size: 13px; padding: 4px 10px;">MEDIUM RISK</span>
+                                    </div>
+                                </div>
+
+                                <!-- Item 4 -->
+                                <div class="wf-history-item" style="border-left: 3px solid #9ca3af;">
+                                    <div style="flex: 1;">
+                                        <div class="wf-history-meta">
+                                            <span class="wf-history-type-badge">SMS</span>
+                                            <span>Today &bull; 18:30</span>
+                                        </div>
+                                        <p style="font-weight: 700; font-size: 15px;">Hey Mom, let's meet for lunch at 12:30 PM tomorrow at the cafe.</p>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 16px;">
+                                        <div style="text-align: right;">
+                                            <div style="font-size: 22px; font-weight: 900;">12 / 100</div>
+                                        </div>
+                                        <span class="wf-risk-badge-box wf-risk-badge-low" style="font-size: 13px; padding: 4px 10px;">SAFE</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between;">
+                                <div><strong>[icon: Lock] Privacy Guard:</strong> All session records remain client-contained.</div>
+                                <div>&copy; 2026 ScamShield &bull; Accessibility First</div>
+                            </div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Annotations Panel -->
+    <section class="annotations-panel">
+        <h3>Numbered UX & HCI Annotations: Scan History (Populated & Empty)</h3>
+        <ul class="annotations-list">
+            <li class="annotation-item">
+                <span class="annotation-badge">1</span>
+                <div class="annotation-text">
+                    <h4>Transparent Data Ephemerality</h4>
+                    <p>Header clearly states that records are stored purely inside active browser session memory and are never persisted to a remote relational database, satisfying privacy compliance and user trust needs.</p>
+                    <span class="annotation-principle-tag">Checklist 8: Trust, Safety & Ethics</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">2</span>
+                <div class="annotation-text">
+                    <h4>Real-Time Client-Side Filter & Search</h4>
+                    <p>Enables instant multi-criteria sorting (filtering by Risk Level and instant substring search across message text). Reduces cognitive load for users inspecting multiple suspicious items.</p>
+                    <span class="annotation-principle-tag">Checklist 4: Search & Filter Information Architecture</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">3</span>
+                <div class="annotation-text">
+                    <h4>Error Prevention on Destructive Actions</h4>
+                    <p>Clicking "Clear History" does not blindly delete data; it invokes a modal dialog (with Escape key support and keyboard focus trap) requiring explicit confirmation before clearing session items.</p>
+                    <span class="annotation-principle-tag">Checklist 2: Nielsen #5 Error Prevention</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">4</span>
+                <div class="annotation-text">
+                    <h4>Institutional Export (CSV & Print)</h4>
+                    <p>Users who need to report extortion or financial fraud to banks or law enforcement can export clean structured CSV records or print a formal audit log with a single click.</p>
+                    <span class="annotation-principle-tag">Checklist 6: Interaction Design & Export</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">5</span>
+                <div class="annotation-text">
+                    <h4>Empathetic Empty State Guidance</h4>
+                    <p>When no scans have occurred (or after history is cleared), the screen displays an illustrated empty mailbox state with positive guidance directing users back to the home dashboard.</p>
+                    <span class="annotation-principle-tag">Checklist 2: Nielsen #9 Recover from Empty States</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</body>
+</html>

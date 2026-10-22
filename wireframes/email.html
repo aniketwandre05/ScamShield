@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe: Check Email Phishing - ScamShield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Wireframe Header -->
+    <header class="wf-gallery-header">
+        <h1>
+            <span class="wf-badge-screen">Screen 03</span>
+            Check Email Phishing Wireframe
+        </h1>
+        <p>Route: <code>/check/email</code> &bull; Template: <code>templates/email.html</code> &bull; POST to <code>/analyze/email</code></p>
+        <nav class="wf-breadcrumb-nav">
+            <a href="index.html">&larr; Back to Wireframe Gallery</a>
+            <a href="sms.html">&larr; Prev: SMS Checker</a>
+            <a href="url.html">Next: URL / QR Checker &rarr;</a>
+        </nav>
+    </header>
+
+    <!-- Side-by-Side Showcase -->
+    <main class="viewport-comparison">
+        <div class="comparison-columns">
+            
+            <!-- ================= MOBILE VIEWPORT (390px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>📱 Mobile Viewport</span>
+                    <span class="device-dimension-tag">390px Width (Field Hierarchy)</span>
+                </div>
+                <div class="device-frame device-mobile">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box">[icon: Shield]</div>
+                                    <span class="wf-brand-title">SCAMSHIELD</span>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Content -->
+                        <div class="wf-form-container">
+                            <span class="wf-top-nav-link">&larr; Home / Choose Another Check</span>
+
+                            <div class="wf-page-title-box">
+                                <div class="wf-icon-box lg">[icon: Email]</div>
+                                <div>
+                                    <h2>Check Email Phishing</h2>
+                                    <p>Detect fake senders, spoofed links, and wire scams.</p>
+                                </div>
+                            </div>
+
+                            <div class="wf-privacy-tip">
+                                <strong>[icon: Lock] Privacy Guard:</strong> Passwords, OTPs, and credit cards are masked automatically.
+                            </div>
+
+                            <!-- Tabs -->
+                            <div class="wf-tabs">
+                                <div class="wf-tab-btn active">✏️ Paste Details</div>
+                                <div class="wf-tab-btn">📷 Screenshot</div>
+                            </div>
+
+                            <!-- Field 1: Sender (Optional) -->
+                            <div class="wf-form-group">
+                                <span class="annotation-badge">1</span>
+                                <label class="wf-label">Sender Email: <span class="wf-label-optional">(Optional)</span></label>
+                                <input type="text" class="wf-input-field" placeholder="e.g., security-alert@paypaI-notice.com">
+                            </div>
+
+                            <!-- Field 2: Subject (Optional) -->
+                            <div class="wf-form-group">
+                                <label class="wf-label">Subject Line: <span class="wf-label-optional">(Optional)</span></label>
+                                <input type="text" class="wf-input-field" placeholder="e.g., Account Suspended - Action Required">
+                            </div>
+
+                            <!-- Field 3: Body (Required) -->
+                            <div class="wf-form-group">
+                                <div class="wf-form-label-row">
+                                    <label class="wf-label">Email Body: *</label>
+                                    <div class="wf-input-actions">
+                                        <button class="wf-btn-tool">📋 Paste</button>
+                                        <button class="wf-btn-tool">🧹 Clear</button>
+                                    </div>
+                                </div>
+                                <textarea class="wf-textarea-field" placeholder="Paste the complete email content here..."></textarea>
+                            </div>
+
+                            <div class="wf-form-buttons-row">
+                                <button class="wf-btn-primary-large">Check Email Safety &rarr;</button>
+                                <span class="annotation-badge">2</span>
+                                <button class="wf-btn-secondary">🔄 Clear Form</button>
+                            </div>
+
+                            <!-- Demo Samples -->
+                            <div class="wf-demo-samples">
+                                <div class="wf-demo-title">
+                                    <span class="annotation-badge">3</span>
+                                    <span>💡 Try an Example:</span>
+                                </div>
+                                <div class="wf-demo-chips-group">
+                                    <div class="wf-demo-category-label">🟢 Safe Work Emails:</div>
+                                    <div class="wf-demo-btn-row">
+                                        <span class="wf-chip">Project Roadmap</span>
+                                        <span class="wf-chip">Invoice Receipt</span>
+                                    </div>
+                                </div>
+                                <div class="wf-demo-chips-group">
+                                    <div class="wf-demo-category-label">🔴 Phishing Traps:</div>
+                                    <div class="wf-demo-btn-row">
+                                        <span class="wf-chip">PayPal Account Limited</span>
+                                        <span class="wf-chip">IRS Tax Refund</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div>&copy; 2026 ScamShield &bull; Inclusivity First</div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= DESKTOP VIEWPORT (1280px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>💻 Desktop Viewport</span>
+                    <span class="device-dimension-tag">1280px Width (Full Multi-Field Form)</span>
+                </div>
+                <div class="device-frame device-desktop">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box lg">[icon: Shield Logo]</div>
+                                    <div>
+                                        <div class="wf-brand-title">SCAMSHIELD</div>
+                                        <div class="wf-brand-sub">AI Scam Detection & Risk Assessment</div>
+                                    </div>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                    <div class="wf-btn-control">[icon: Moon] Dark Mode</div>
+                                    <div class="wf-btn-control">[icon: Accessibility] Accessibility Options</div>
+                                    <div class="wf-lang-pills">
+                                        <div class="wf-lang-pill active">English</div>
+                                        <div class="wf-lang-pill">मराठी</div>
+                                        <div class="wf-lang-pill">हिन्दी</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav class="wf-nav">
+                                <span class="wf-nav-link">Home</span>
+                                <span class="wf-nav-link">SMS</span>
+                                <span class="wf-nav-link active">Email</span>
+                                <span class="wf-nav-link">URL / QR</span>
+                                <span class="wf-nav-link">Phone</span>
+                                <span class="wf-nav-link">History</span>
+                                <span class="wf-nav-link">Learn</span>
+                                <span class="wf-nav-link">Report Scam</span>
+                            </nav>
+                        </div>
+
+                        <!-- Form Container -->
+                        <div class="wf-form-container" style="max-width: 960px; margin: 30px auto;">
+                            <span class="wf-top-nav-link">&larr; Home / Choose Another Check</span>
+
+                            <div class="wf-page-title-box">
+                                <div class="wf-icon-box lg" style="font-size: 20px;">[icon: Email 48px]</div>
+                                <div>
+                                    <h2>Check Email Phishing & Fraud</h2>
+                                    <p>Paste email text or upload a screenshot to detect phishing attacks, sender spoofing, and malicious links.</p>
+                                </div>
+                            </div>
+
+                            <div class="wf-privacy-tip">
+                                <div>
+                                    <strong>[icon: Lock] Privacy Guard:</strong> Never paste active OTPs, passwords, or complete credit cards. ScamShield automatically masks sensitive numbers for your safety.
+                                </div>
+                            </div>
+
+                            <!-- Tabs -->
+                            <div class="wf-tabs">
+                                <div class="wf-tab-btn active">✏️ Paste Email Details</div>
+                                <div class="wf-tab-btn">📷 Upload Email Screenshot</div>
+                            </div>
+
+                            <!-- Multi-Field Layout -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                <div class="wf-form-group">
+                                    <span class="annotation-badge">1</span>
+                                    <label class="wf-label">Sender Email: <span class="wf-label-optional">(Optional)</span></label>
+                                    <input type="text" class="wf-input-field" placeholder="e.g., security-alert@paypaI-notice.com">
+                                </div>
+                                <div class="wf-form-group">
+                                    <label class="wf-label">Email Subject Line: <span class="wf-label-optional">(Optional)</span></label>
+                                    <input type="text" class="wf-input-field" placeholder="e.g., Account Suspended: Immediate Action Required">
+                                </div>
+                            </div>
+
+                            <div class="wf-form-group">
+                                <div class="wf-form-label-row">
+                                    <label class="wf-label">Email Body Text: *</label>
+                                    <div class="wf-input-actions">
+                                        <button class="wf-btn-tool">📋 Paste from Clipboard</button>
+                                        <button class="wf-btn-tool">🧹 Clear Body</button>
+                                    </div>
+                                </div>
+                                <textarea class="wf-textarea-field" style="min-height: 140px;" placeholder="Dear customer, your PayPal account has been limited due to unusual login attempts. You must confirm your identity within 24 hours at http://paypal-security-update.account-verification.com/login or your account will be permanently closed."></textarea>
+                            </div>
+
+                            <div class="wf-form-buttons-row">
+                                <button class="wf-btn-primary-large" style="max-width: 280px;">Check Email Safety &rarr;</button>
+                                <span class="annotation-badge">2</span>
+                                <button class="wf-btn-secondary">🔄 Clear Form</button>
+                            </div>
+
+                            <!-- Demos -->
+                            <div class="wf-demo-samples">
+                                <div class="wf-demo-title">
+                                    <span class="annotation-badge">3</span>
+                                    <span>💡 Try an Example: (Populates Sender, Subject, and Body automatically)</span>
+                                </div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                    <div>
+                                        <div class="wf-demo-category-label">🟢 Safe Work Examples:</div>
+                                        <div class="wf-demo-btn-row">
+                                            <span class="wf-chip">Project Roadmap Q3</span>
+                                            <span class="wf-chip">Subscription Receipt</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="wf-demo-category-label">🔴 Common Phishing Traps:</div>
+                                        <div class="wf-demo-btn-row">
+                                            <span class="wf-chip">PayPal Account Limited</span>
+                                            <span class="wf-chip">IRS Tax Refund Claim</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between;">
+                                <div><strong>[icon: Lock] Privacy Guard:</strong> ScamShield cleanses email bodies and masks PII in memory.</div>
+                                <div>&copy; 2026 ScamShield &bull; Machine Learning Phishing Protection</div>
+                            </div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Annotations Panel -->
+    <section class="annotations-panel">
+        <h3>Numbered UX & HCI Annotations: Check Email Phishing</h3>
+        <ul class="annotations-list">
+            <li class="annotation-item">
+                <span class="annotation-badge">1</span>
+                <div class="annotation-text">
+                    <h4>Progressive Form Disclosure & Form Usability</h4>
+                    <p>Users only need to provide the email body (marked with <code>*</code>). Sender and Subject fields are explicitly flagged as <code>(Optional)</code>, reducing cognitive barriers for hasty or stressed users.</p>
+                    <span class="annotation-principle-tag">Checklist 2: Nielsen #8 Minimalist Design</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">2</span>
+                <div class="annotation-text">
+                    <h4>Multi-Field Atomic Reset Helper</h4>
+                    <p>The "Clear Form" button uses data attributes (<code>data-target</code>, <code>data-target-extra</code>, <code>data-target-sender</code>) to clear all three inputs atomically with a single tap, reducing repetitive manual backspacing.</p>
+                    <span class="annotation-principle-tag">Checklist 3: Shneiderman #6 Easy Reversal</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">3</span>
+                <div class="annotation-text">
+                    <h4>Composite Scenario Demonstration</h4>
+                    <p>Demo buttons populate all three fields simultaneously with realistic spoofed sender headers, urgent subject lines, and deceptive links, demonstrating real-world spear-phishing mechanics.</p>
+                    <span class="annotation-principle-tag">Checklist 2: Nielsen #6 Recognition over Recall</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</body>
+</html>

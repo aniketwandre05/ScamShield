@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe: Report Scam & Helplines - ScamShield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Wireframe Header -->
+    <header class="wf-gallery-header">
+        <h1>
+            <span class="wf-badge-screen">Screen 11</span>
+            Report Scam & Official Helplines Wireframe
+        </h1>
+        <p>Route: <code>/report</code> &bull; Template: <code>templates/report.html</code> &bull; State: Helplines, Checklist & Community Form / Success</p>
+        <nav class="wf-breadcrumb-nav">
+            <a href="index.html">&larr; Back to Wireframe Gallery</a>
+            <a href="learn.html">&larr; Prev: Learning Center</a>
+            <a href="error.html">Next: Error & Recovery Page &rarr;</a>
+        </nav>
+    </header>
+
+    <!-- Side-by-Side Dual-Viewport Showcase -->
+    <main class="viewport-comparison">
+        <div class="comparison-columns">
+            
+            <!-- ================= MOBILE VIEWPORT (390px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>📱 Mobile Viewport</span>
+                    <span class="device-dimension-tag">390px Width (Helplines & Report Form)</span>
+                </div>
+                <div class="device-frame device-mobile">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box">[icon: Shield]</div>
+                                    <span class="wf-brand-title">SCAMSHIELD</span>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="wf-form-container">
+                            <div class="wf-page-title-box">
+                                <div class="wf-icon-box lg">[icon: Siren]</div>
+                                <div>
+                                    <h2>Report a Scam</h2>
+                                    <p>Emergency hotlines & threat reporting.</p>
+                                </div>
+                            </div>
+
+                            <!-- Emergency 1930 Card -->
+                            <div class="wf-helpline-card" style="border: 3px solid #111827; background: #ffffff;">
+                                <span class="annotation-badge">1</span>
+                                <span style="font-size: 11px; font-weight: 800; border: 1px solid #111827; padding: 2px 6px;">FINANCIAL EMERGENCY</span>
+                                <h3>📞 Dial 1930</h3>
+                                <p style="font-size: 14px; margin-bottom: 12px;">Call immediately if you lost money in last 24 hours to freeze funds.</p>
+                                <button class="wf-btn-primary-large" style="min-height: 44px; padding: 8px;">Call Helpline 1930</button>
+                            </div>
+
+                            <!-- Portal Card -->
+                            <div class="wf-helpline-card" style="margin-top: 12px;">
+                                <span class="annotation-badge">2</span>
+                                <span style="font-size: 11px; font-weight: 800; border: 1px solid #111827; padding: 2px 6px;">NATIONAL PORTAL</span>
+                                <h3>🌐 cybercrime.gov.in</h3>
+                                <p style="font-size: 14px; margin-bottom: 12px;">Official Cyber Crime Portal (Ministry of Home Affairs).</p>
+                                <button class="wf-btn-secondary" style="width: 100%;">Visit cybercrime.gov.in &rarr;</button>
+                            </div>
+
+                            <!-- Checklist -->
+                            <div style="border: 1px solid var(--wf-border-dark); background: var(--wf-surface); padding: 14px; margin: 18px 0;">
+                                <span class="annotation-badge">3</span>
+                                <h4 style="font-size: 15px; font-weight: 800; margin-bottom: 8px;">Checklist: If You Were Scammed</h4>
+                                <ol style="margin-left: 18px; font-size: 13px; line-height: 1.6;">
+                                    <li><strong>Freeze Accounts:</strong> Call bank to block cards.</li>
+                                    <li><strong>Call 1930:</strong> Act within the golden hour.</li>
+                                    <li><strong>Change Passwords:</strong> Revoke any remote tools.</li>
+                                    <li><strong>Keep Evidence:</strong> Save screenshots and chats.</li>
+                                </ol>
+                            </div>
+
+                            <!-- Community Form -->
+                            <div style="border: 2px solid var(--wf-border-dark); padding: 16px; background: #ffffff;">
+                                <span class="annotation-badge">4</span>
+                                <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 6px;">Submit Threat Report</h3>
+                                <p style="font-size: 13px; color: var(--wf-text-muted); margin-bottom: 14px;">Help protect other citizens from active scam numbers.</p>
+                                
+                                <div class="wf-form-group">
+                                    <label class="wf-label">Scam Channel:</label>
+                                    <select class="wf-input-field">
+                                        <option>SMS / WhatsApp</option>
+                                        <option>Email</option>
+                                        <option>Website Link (URL)</option>
+                                        <option>Phone Call</option>
+                                    </select>
+                                </div>
+
+                                <div class="wf-form-group">
+                                    <label class="wf-label">Offender Number / URL:</label>
+                                    <input type="text" class="wf-input-field" placeholder="e.g. +91 9876543210">
+                                </div>
+
+                                <div class="wf-form-group">
+                                    <label class="wf-label">Message Details: *</label>
+                                    <textarea class="wf-textarea-field" style="min-height: 90px;" placeholder="Describe what the scammer asked..."></textarea>
+                                </div>
+
+                                <button class="wf-btn-primary-large">🚨 Submit Threat Report</button>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div>&copy; 2026 ScamShield &bull; Citizen Cyber Safety</div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= DESKTOP VIEWPORT (1280px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>💻 Desktop Viewport</span>
+                    <span class="device-dimension-tag">1280px Width (Helplines, Triage & Submission Success State)</span>
+                </div>
+                <div class="device-frame device-desktop">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box lg">[icon: Shield Logo]</div>
+                                    <div>
+                                        <div class="wf-brand-title">SCAMSHIELD</div>
+                                        <div class="wf-brand-sub">AI Scam Detection & Risk Assessment</div>
+                                    </div>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                    <div class="wf-btn-control">[icon: Moon] Dark Mode</div>
+                                    <div class="wf-lang-pills">
+                                        <div class="wf-lang-pill active">English</div>
+                                        <div class="wf-lang-pill">मराठी</div>
+                                        <div class="wf-lang-pill">हिन्दी</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav class="wf-nav">
+                                <span class="wf-nav-link">Home</span>
+                                <span class="wf-nav-link">SMS</span>
+                                <span class="wf-nav-link">Email</span>
+                                <span class="wf-nav-link">URL / QR</span>
+                                <span class="wf-nav-link">Phone</span>
+                                <span class="wf-nav-link">History</span>
+                                <span class="wf-nav-link">Learn</span>
+                                <span class="wf-nav-link active">Report Scam</span>
+                            </nav>
+                        </div>
+
+                        <!-- Content Container -->
+                        <div class="wf-form-container" style="max-width: 1000px; margin: 30px auto;">
+                            
+                            <div class="wf-page-title-box">
+                                <div class="wf-icon-box lg" style="font-size: 20px;">[icon: Siren 48px]</div>
+                                <div>
+                                    <h2>Report a Scam & Official Helplines</h2>
+                                    <p>Official emergency helplines and quick incident submission to safeguard your community and recover compromised accounts.</p>
+                                </div>
+                            </div>
+
+                            <!-- Official Helplines Grid -->
+                            <div class="wf-helpline-grid">
+                                
+                                <div class="wf-helpline-card" style="border: 3px solid #111827;">
+                                    <span class="annotation-badge">1</span>
+                                    <span style="font-size: 11px; font-weight: 800; border: 1px solid #111827; padding: 2px 8px;">EMERGENCY HELPLINE</span>
+                                    <h3>📞 Dial 1930</h3>
+                                    <p style="font-size: 14px; margin-bottom: 14px; color: var(--wf-text-muted);">
+                                        Dial 1930 immediately if you suffered financial fraud within the last 24 hours to freeze transferred money in transit.
+                                    </p>
+                                    <button class="wf-btn-primary-large" style="max-width: 240px; margin: 0 auto;">Call Helpline 1930</button>
+                                </div>
+
+                                <div class="wf-helpline-card">
+                                    <span class="annotation-badge">2</span>
+                                    <span style="font-size: 11px; font-weight: 800; border: 1px solid #111827; padding: 2px 8px;">NATIONAL CYBERCRIME PORTAL</span>
+                                    <h3>🌐 cybercrime.gov.in</h3>
+                                    <p style="font-size: 14px; margin-bottom: 14px; color: var(--wf-text-muted);">
+                                        Official National Cyber Crime Reporting Portal operated by Ministry of Home Affairs (MHA), Government of India.
+                                    </p>
+                                    <button class="wf-btn-secondary" style="max-width: 240px; margin: 0 auto;">Visit cybercrime.gov.in &rarr;</button>
+                                </div>
+
+                            </div>
+
+                            <!-- Emergency Steps Checklist -->
+                            <div style="border: 2px solid var(--wf-border-dark); background: var(--wf-surface); padding: 20px; margin-bottom: 28px;">
+                                <span class="annotation-badge">3</span>
+                                <h3 style="font-size: 17px; font-weight: 800; margin-bottom: 10px;">Immediate Checklist If Money or Passwords Were Shared:</h3>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 14px; line-height: 1.5;">
+                                    <div><strong>1. Freeze Cards & Net Banking:</strong> Log into bank app or call official branch helpline to lock ATM debit cards and freeze UPI payments.</div>
+                                    <div><strong>2. Call 1930 (Golden Hour):</strong> Reporting within 2 to 4 hours drastically increases chances of cyber police freezing destination accounts.</div>
+                                    <div><strong>3. Reset Credentials:</strong> Change email and net banking passwords from a separate clean phone or computer.</div>
+                                    <div><strong>4. Preserve Digital Evidence:</strong> Take clear screenshots of SMS, WhatsApp chats, call history, and transaction UPI reference IDs.</div>
+                                </div>
+                            </div>
+
+                            <!-- Community Report Form (Displaying Successful Submission State) -->
+                            <div style="border: 2px solid var(--wf-border-dark); background: #ffffff; padding: 24px;">
+                                <span class="annotation-badge">4</span>
+                                <div style="display: flex; gap: 18px; align-items: center; border: 2px solid var(--wf-border-dark); background: var(--wf-surface); padding: 20px;">
+                                    <div class="wf-icon-box lg" style="font-size: 32px; width: 64px; height: 64px;">[icon: Check]</div>
+                                    <div>
+                                        <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px;">Incident Report Successfully Submitted</h3>
+                                        <p style="color: var(--wf-text-muted); font-size: 15px; margin-bottom: 8px;">
+                                            Your report has been logged to assist community threat intelligence and improve ScamShield detection heuristics.
+                                        </p>
+                                        <div style="font-size: 13px; font-weight: 700;">Thank you for safeguarding your community!</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between;">
+                                <div><strong>[icon: Shield] National Integration:</strong> Coordinated with Indian cybercrime reporting standards.</div>
+                                <div>&copy; 2026 ScamShield &bull; Community First</div>
+                            </div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Annotations Panel -->
+    <section class="annotations-panel">
+        <h3>Numbered UX & HCI Annotations: Report Scam & Helplines</h3>
+        <ul class="annotations-list">
+            <li class="annotation-item">
+                <span class="annotation-badge">1</span>
+                <div class="annotation-text">
+                    <h4>Direct Telephony Callout (The "Golden Hour")</h4>
+                    <p>Places the national financial fraud emergency number <strong>1930</strong> at the top of the visual hierarchy with a click-to-call link, ensuring panic-stricken victims can trigger bank money freezes without searching.</p>
+                    <span class="annotation-principle-tag">Checklist 4: Primary Nav & Helplines</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">2</span>
+                <div class="annotation-text">
+                    <h4>Legitimate Institutional Anchoring</h4>
+                    <p>Provides an explicit outbound link to the official Indian Cyber Crime Portal (<code>cybercrime.gov.in</code>), establishing institutional authority and transparent escalation paths.</p>
+                    <span class="annotation-principle-tag">Checklist 8: Trust, Safety & Ethics</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">3</span>
+                <div class="annotation-text">
+                    <h4>Panic-Mitigating Sequential Checklist</h4>
+                    <p>Victims suffering severe emotional stress frequently experience cognitive freezing. The numbered 4-step checklist breaks down immediate actions into small, achievable tasks (Freeze &rarr; 1930 &rarr; Reset &rarr; Evidence).</p>
+                    <span class="annotation-principle-tag">Checklist 2: Nielsen #9 Help Users Recover</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">4</span>
+                <div class="annotation-text">
+                    <h4>Community Crowdsourcing & Task Closure</h4>
+                    <p>Lightweight community reporting form collects scam channel, offender information, and text samples. Form submission presents a high-contrast confirmation state confirming that the threat data was received.</p>
+                    <span class="annotation-principle-tag">Checklist 3: Shneiderman #4 Design for Closure</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</body>
+</html>

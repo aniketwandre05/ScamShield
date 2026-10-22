@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe: Learning Center - ScamShield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Wireframe Header -->
+    <header class="wf-gallery-header">
+        <h1>
+            <span class="wf-badge-screen">Screen 10</span>
+            Scam Awareness & Learning Center Wireframe
+        </h1>
+        <p>Route: <code>/learn</code> &bull; Template: <code>templates/learn.html</code></p>
+        <nav class="wf-breadcrumb-nav">
+            <a href="index.html">&larr; Back to Wireframe Gallery</a>
+            <a href="history.html">&larr; Prev: History</a>
+            <a href="report.html">Next: Report Scam &rarr;</a>
+        </nav>
+    </header>
+
+    <!-- Side-by-Side Dual-Viewport Showcase -->
+    <main class="viewport-comparison">
+        <div class="comparison-columns">
+            
+            <!-- ================= MOBILE VIEWPORT (390px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>📱 Mobile Viewport</span>
+                    <span class="device-dimension-tag">390px Width (Quiz & Cards)</span>
+                </div>
+                <div class="device-frame device-mobile">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box">[icon: Shield]</div>
+                                    <span class="wf-brand-title">SCAMSHIELD</span>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="wf-form-container">
+                            <div class="wf-page-title-box">
+                                <div class="wf-icon-box lg">[icon: Learn]</div>
+                                <div>
+                                    <h2>Learning Center</h2>
+                                    <p>Spot warning red flags and test your instincts.</p>
+                                </div>
+                            </div>
+
+                            <!-- Common Traps -->
+                            <h3 style="font-size: 17px; font-weight: 800; margin: 16px 0 10px;">🚨 Common Scam Patterns</h3>
+                            
+                            <div class="wf-pattern-card">
+                                <span class="annotation-badge">1</span>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <span style="font-size: 11px; font-weight: 700; border: 1px solid #111827; padding: 2px 6px;">COMMON TRAP</span>
+                                </div>
+                                <h4>⚡ Electricity Bill Disconnection</h4>
+                                <p style="font-size: 13px; margin-bottom: 6px;"><strong>The Trick:</strong> SMS claiming power cut tonight at 9:30 PM due to unpaid bill.</p>
+                                <div style="font-size: 13px; background: var(--wf-surface-subtle); padding: 6px 10px; border-left: 3px solid #111827;">
+                                    <strong>🚩 Red Flags:</strong> Urgent same-night deadline, personal mobile number.
+                                </div>
+                            </div>
+
+                            <div class="wf-pattern-card" style="margin-top: 10px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                                    <span style="font-size: 11px; font-weight: 700; border: 1px solid #111827; padding: 2px 6px;">PHISHING</span>
+                                </div>
+                                <h4>🏦 Bank KYC / PAN Block</h4>
+                                <p style="font-size: 13px; margin-bottom: 6px;"><strong>The Trick:</strong> Claims debit card has been frozen due to missing PAN.</p>
+                                <div style="font-size: 13px; background: var(--wf-surface-subtle); padding: 6px 10px; border-left: 3px solid #111827;">
+                                    <strong>🚩 Red Flags:</strong> Shortened URL (bit.ly), requests net banking credentials.
+                                </div>
+                            </div>
+
+                            <!-- Interactive Quiz -->
+                            <h3 style="font-size: 17px; font-weight: 800; margin: 24px 0 10px;">🧠 Interactive Quiz</h3>
+                            <div class="wf-quiz-card">
+                                <span class="annotation-badge">2</span>
+                                <div class="wf-quiz-q">Scenario 1: You get an SMS: "Power will be cut at 9:30 PM. Call Electricity Officer at 9876543210." What should you do?</div>
+                                <div class="wf-quiz-options">
+                                    <button class="wf-quiz-opt-btn">1. Call number immediately.</button>
+                                    <button class="wf-quiz-opt-btn" style="border: 2px solid #111827; font-weight: 700;">2. Check bill on official state portal.</button>
+                                    <button class="wf-quiz-opt-btn">3. Forward to family group.</button>
+                                </div>
+                                <div class="wf-quiz-feedback" style="background: var(--wf-surface); margin-top: 8px;">
+                                    ✅ Correct! Official utilities never demand secret codes or immediate threats.
+                                </div>
+                            </div>
+
+                            <!-- FAQ Accordion -->
+                            <h3 style="font-size: 17px; font-weight: 800; margin: 24px 0 10px;">❓ Frequently Asked Questions</h3>
+                            <div class="wf-faq-item">
+                                <span class="annotation-badge">3</span>
+                                <div class="wf-faq-summary">What to do if I already clicked a link?</div>
+                                <div class="wf-faq-content">
+                                    1. Do not enter passwords or OTPs.<br>
+                                    2. Close browser tab immediately.<br>
+                                    3. Freeze bank cards if details were typed.
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div>&copy; 2026 ScamShield &bull; Educational Awareness Center</div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= DESKTOP VIEWPORT (1280px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>💻 Desktop Viewport</span>
+                    <span class="device-dimension-tag">1280px Width (Full Educational Curriculum)</span>
+                </div>
+                <div class="device-frame device-desktop">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box lg">[icon: Shield Logo]</div>
+                                    <div>
+                                        <div class="wf-brand-title">SCAMSHIELD</div>
+                                        <div class="wf-brand-sub">AI Scam Detection & Risk Assessment</div>
+                                    </div>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                    <div class="wf-btn-control">[icon: Moon] Dark Mode</div>
+                                    <div class="wf-lang-pills">
+                                        <div class="wf-lang-pill active">English</div>
+                                        <div class="wf-lang-pill">मराठी</div>
+                                        <div class="wf-lang-pill">हिन्दी</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav class="wf-nav">
+                                <span class="wf-nav-link">Home</span>
+                                <span class="wf-nav-link">SMS</span>
+                                <span class="wf-nav-link">Email</span>
+                                <span class="wf-nav-link">URL / QR</span>
+                                <span class="wf-nav-link">Phone</span>
+                                <span class="wf-nav-link">History</span>
+                                <span class="wf-nav-link active">Learn</span>
+                                <span class="wf-nav-link">Report Scam</span>
+                            </nav>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="wf-form-container" style="max-width: 1040px; margin: 30px auto;">
+                            
+                            <div class="wf-page-title-box">
+                                <div class="wf-icon-box lg" style="font-size: 20px;">[icon: Learn 48px]</div>
+                                <div>
+                                    <h2>Scam Awareness & Learning Center</h2>
+                                    <p>Learn how scammers manipulate victims using psychological urgency, recognize common fraud patterns, and test your skills.</p>
+                                </div>
+                            </div>
+
+                            <!-- Section 1: Common Patterns Grid -->
+                            <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 16px;">🚨 Common Scam Tactics & Red Flags</h3>
+                            <div class="wf-pattern-grid">
+                                
+                                <div class="wf-pattern-card">
+                                    <span class="annotation-badge">1</span>
+                                    <span style="font-size: 11px; font-weight: 800; border: 1px solid #111827; padding: 2px 6px;">COMMON TRAP</span>
+                                    <h4 style="margin-top: 6px;">⚡ Electricity Bill Disconnection</h4>
+                                    <p style="font-size: 14px; margin-bottom: 8px;"><strong>The Trick:</strong> You receive an SMS claiming power will be cut at 9:30 PM due to an unpaid bill, urging a call to a personal number.</p>
+                                    <div style="font-size: 13px; background: var(--wf-surface-subtle); padding: 8px; border-left: 3px solid #111827;">
+                                        <strong>🚩 Red Flags:</strong> Same-night deadline panic, unofficial 10-digit mobile number, demands app installation.
+                                    </div>
+                                </div>
+
+                                <div class="wf-pattern-card">
+                                    <span style="font-size: 11px; font-weight: 800; border: 1px solid #111827; padding: 2px 6px;">PHISHING</span>
+                                    <h4 style="margin-top: 6px;">🏦 Bank KYC / PAN Card Block</h4>
+                                    <p style="font-size: 14px; margin-bottom: 8px;"><strong>The Trick:</strong> SMS claiming your bank account or debit card has been frozen due to expired KYC documents or missing PAN card.</p>
+                                    <div style="font-size: 13px; background: var(--wf-surface-subtle); padding: 8px; border-left: 3px solid #111827;">
+                                        <strong>🚩 Red Flags:</strong> Shortened URL (bit.ly/tinyurl), requests net banking credentials or OTP on fake login forms.
+                                    </div>
+                                </div>
+
+                                <div class="wf-pattern-card">
+                                    <span style="font-size: 11px; font-weight: 800; border: 1px solid #111827; padding: 2px 6px;">HIGH LOSS</span>
+                                    <h4 style="margin-top: 6px;">🖥️ Remote Screen Sharing Trap</h4>
+                                    <p style="font-size: 14px; margin-bottom: 8px;"><strong>The Trick:</strong> Caller poses as customer support or telecom officer helping you update 5G SIM by installing a remote access utility.</p>
+                                    <div style="font-size: 13px; background: var(--wf-surface-subtle); padding: 8px; border-left: 3px solid #111827;">
+                                        <strong>🚩 Red Flags:</strong> Requests a 9-digit AnyDesk code, allowing criminals to view incoming banking OTPs directly on screen.
+                                    </div>
+                                </div>
+
+                                <div class="wf-pattern-card">
+                                    <span style="font-size: 11px; font-weight: 800; border: 1px solid #111827; padding: 2px 6px;">LURE TRAP</span>
+                                    <h4 style="margin-top: 6px;">🎁 Lottery / Work From Home</h4>
+                                    <p style="font-size: 14px; margin-bottom: 8px;"><strong>The Trick:</strong> Claims you won a cash lottery or promises ₹5,000/day for liking YouTube videos or reviewing hotels on Telegram.</p>
+                                    <div style="font-size: 13px; background: var(--wf-surface-subtle); padding: 8px; border-left: 3px solid #111827;">
+                                        <strong>🚩 Red Flags:</strong> Demands an upfront "processing deposit" or "registration fee" before releasing winnings.
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Section 2: Interactive Quiz -->
+                            <h3 style="font-size: 20px; font-weight: 800; margin: 32px 0 12px;">🧠 Test Your Scam Detection Instincts</h3>
+                            <p style="color: var(--wf-text-muted); margin-bottom: 16px;">Test your fraud instincts across 3 quick scenarios. Answers receive immediate pedagogical feedback.</p>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                <div class="wf-quiz-card">
+                                    <span class="annotation-badge">2</span>
+                                    <div class="wf-quiz-q">Scenario 1: You get an SMS: "Power will be cut tonight at 9:30 PM. Call Electricity Officer at 9876543210." What should you do?</div>
+                                    <div class="wf-quiz-options">
+                                        <button class="wf-quiz-opt-btn">A. Call the number immediately to prevent power loss.</button>
+                                        <button class="wf-quiz-opt-btn" style="border: 2px solid #111827; font-weight: 800; background: var(--wf-surface);">B. Ignore message & check bill on state portal.</button>
+                                        <button class="wf-quiz-opt-btn">C. Forward message to family group.</button>
+                                    </div>
+                                    <div class="wf-quiz-feedback">
+                                        ✅ Correct! Great instincts. Official utility providers never send personal mobile numbers for bill payments.
+                                    </div>
+                                </div>
+
+                                <div class="wf-quiz-card">
+                                    <div class="wf-quiz-q">Scenario 2: Caller claiming to be from your bank asks for the 6-digit OTP sent to your phone to reverse an accidental debit. Share it?</div>
+                                    <div class="wf-quiz-options">
+                                        <button class="wf-quiz-opt-btn">A. Yes, they need it to cancel the wrong debit.</button>
+                                        <button class="wf-quiz-opt-btn" style="border: 2px solid #111827; font-weight: 800; background: var(--wf-surface);">B. NEVER! Real banks never ask for OTPs or PINs.</button>
+                                        <button class="wf-quiz-opt-btn">C. Only if they speak politely and know my name.</button>
+                                    </div>
+                                    <div class="wf-quiz-feedback">
+                                        ✅ Correct! Banks never demand one-time verification passcodes over voice calls.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Section 3: FAQ -->
+                            <h3 style="font-size: 20px; font-weight: 800; margin: 36px 0 16px;">❓ Frequently Asked Questions (FAQ)</h3>
+                            <div class="wf-faq-item">
+                                <span class="annotation-badge">3</span>
+                                <div class="wf-faq-summary">What should I do if I already clicked a suspicious link?</div>
+                                <div class="wf-faq-content">
+                                    1. Do not enter any passwords, OTPs, or credit card numbers on the opened page.<br>
+                                    2. Close the browser tab immediately.<br>
+                                    3. If credentials were submitted, change them immediately from a safe device and enable 2-factor authentication.<br>
+                                    4. Freeze bank cards via your mobile banking app if financial details were exposed.
+                                </div>
+                            </div>
+
+                            <div class="wf-faq-item">
+                                <div class="wf-faq-summary">Why does ScamShield say assessments are estimates rather than 100% guarantees?</div>
+                                <div class="wf-faq-content">
+                                    In accordance with HCI trust calibration principles, no automated system can guarantee 100% accuracy against unseen novel attack variants. ScamShield transparently highlights fraud markers and empowers you with safe decision-making steps.
+                                </div>
+                            </div>
+
+                            <div class="wf-faq-item">
+                                <div class="wf-faq-summary">How do I file an official police complaint in India?</div>
+                                <div class="wf-faq-content">
+                                    <span class="annotation-badge">4</span>
+                                    Dial <strong>1930</strong> immediately to freeze defrauded money in transit, and file an incident report at <a href="#" style="color: #111827; font-weight: 800;">cybercrime.gov.in</a>.
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between;">
+                                <div><strong>[icon: Lock] Community Protection:</strong> Education is the strongest firewall against social engineering.</div>
+                                <div>&copy; 2026 ScamShield &bull; Awareness & Quiz Hub</div>
+                            </div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Annotations Panel -->
+    <section class="annotations-panel">
+        <h3>Numbered UX & HCI Annotations: Scam Awareness & Learning Center</h3>
+        <ul class="annotations-list">
+            <li class="annotation-item">
+                <span class="annotation-badge">1</span>
+                <div class="annotation-text">
+                    <h4>Two-Column Mental Model Decomposition</h4>
+                    <p>Each scam card isolates "The Trick" (attacker's psychological narrative) from the "🚩 Red Flags" (observable anomalies), structuring actionable mental models in long-term memory.</p>
+                    <span class="annotation-principle-tag">Checklist 12: Onboarding & Learning</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">2</span>
+                <div class="annotation-text">
+                    <h4>Active Retrieval Practice (Formative Feedback)</h4>
+                    <p>Interactive scenarios test threat detection skills with immediate pedagogical feedback (correct/incorrect rationale). Active retrieval strengthens neural encoding far more than passive reading.</p>
+                    <span class="annotation-principle-tag">Checklist 2: Nielsen #6 Recognition over Recall</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">3</span>
+                <div class="annotation-text">
+                    <h4>Accessible Accordion Information Architecture</h4>
+                    <p>Emergency FAQ steps utilize standard semantic <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> components for keyboard focusability and screen-reader accessibility.</p>
+                    <span class="annotation-principle-tag">Checklist 9: WCAG 2.2 Accessible Forms</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">4</span>
+                <div class="annotation-text">
+                    <h4>Governmental Helpline Affordance</h4>
+                    <p>Integrates national emergency hotlines (Dial 1930 & cybercrime.gov.in) directly within FAQs, giving victims clear institutional recourse.</p>
+                    <span class="annotation-principle-tag">Checklist 4: Primary Nav & Help Centers</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</body>
+</html>

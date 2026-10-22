@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe: Phone Questionnaire - ScamShield</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Wireframe Header -->
+    <header class="wf-gallery-header">
+        <h1>
+            <span class="wf-badge-screen">Screen 05</span>
+            Phone Call Questionnaire Wireframe
+        </h1>
+        <p>Route: <code>/check/phone</code> &bull; Template: <code>templates/phone.html</code> &bull; POST to <code>/analyze/phone</code></p>
+        <nav class="wf-breadcrumb-nav">
+            <a href="index.html">&larr; Back to Wireframe Gallery</a>
+            <a href="url.html">&larr; Prev: URL Checker</a>
+            <a href="result_high.html">Next: High Risk Result &rarr;</a>
+        </nav>
+    </header>
+
+    <!-- Side-by-Side Dual-Viewport Showcase -->
+    <main class="viewport-comparison">
+        <div class="comparison-columns">
+            
+            <!-- ================= MOBILE VIEWPORT (390px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>📱 Mobile Viewport</span>
+                    <span class="device-dimension-tag">390px Width (In-Progress State 40%)</span>
+                </div>
+                <div class="device-frame device-mobile">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box">[icon: Shield]</div>
+                                    <span class="wf-brand-title">SCAMSHIELD</span>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Content -->
+                        <div class="wf-form-container">
+                            <span class="wf-top-nav-link">&larr; Home / Choose Another Check</span>
+
+                            <div class="wf-page-title-box">
+                                <div class="wf-icon-box lg">[icon: Phone]</div>
+                                <div>
+                                    <h2>Phone Safety Check</h2>
+                                    <p>10 quick questions about the call.</p>
+                                </div>
+                            </div>
+
+                            <!-- Progress Bar -->
+                            <div class="wf-progress-container">
+                                <span class="annotation-badge">2</span>
+                                <div class="wf-progress-header">
+                                    <span>Questions Answered: <strong>4</strong> of 10</span>
+                                    <span>40%</span>
+                                </div>
+                                <div class="wf-progress-track">
+                                    <div class="wf-progress-fill" style="width: 40%;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Chunk 1 -->
+                            <div class="wf-chunk-header">
+                                <span class="annotation-badge">1</span>
+                                <span class="wf-chunk-badge">Part 1</span>
+                                <span>Immediate Demands & Passwords</span>
+                            </div>
+
+                            <!-- Question 1 -->
+                            <div class="wf-question-item">
+                                <div style="font-size: 12px; color: var(--wf-text-muted); margin-bottom: 4px;">Question 1 of 10</div>
+                                <div class="wf-question-title">1. Did the caller ask for a one-time password (OTP) sent to your mobile phone?</div>
+                                <div class="wf-radio-group">
+                                    <div class="wf-radio-btn">[icon: Shield] No</div>
+                                    <span class="annotation-badge">3</span>
+                                    <div class="wf-radio-btn selected">[icon: Alert] Yes</div>
+                                </div>
+                            </div>
+
+                            <!-- Question 2 -->
+                            <div class="wf-question-item">
+                                <div style="font-size: 12px; color: var(--wf-text-muted); margin-bottom: 4px;">Question 2 of 10</div>
+                                <div class="wf-question-title">2. Did they ask for your ATM card number, PIN, CVV, or net banking password?</div>
+                                <div class="wf-radio-group">
+                                    <div class="wf-radio-btn selected">[icon: Shield] No</div>
+                                    <div class="wf-radio-btn">[icon: Alert] Yes</div>
+                                </div>
+                            </div>
+
+                            <!-- Question 3 -->
+                            <div class="wf-question-item">
+                                <div style="font-size: 12px; color: var(--wf-text-muted); margin-bottom: 4px;">Question 3 of 10</div>
+                                <div class="wf-question-title">3. Did they instruct you to install AnyDesk, TeamViewer, or QuickSupport on your device?</div>
+                                <div class="wf-radio-group">
+                                    <span class="annotation-badge">4</span>
+                                    <div class="wf-radio-btn">[icon: Shield] No</div>
+                                    <div class="wf-radio-btn selected">[icon: Alert] Yes</div>
+                                </div>
+                            </div>
+
+                            <div class="wf-form-buttons-row">
+                                <button class="wf-btn-primary-large">Evaluate Call Risk &rarr;</button>
+                                <button class="wf-btn-secondary">🔄 Clear Answers</button>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div>&copy; 2026 ScamShield &bull; Phone Fraud Scoring</div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= DESKTOP VIEWPORT (1280px) ================= -->
+            <div class="device-column">
+                <div class="device-header">
+                    <span>💻 Desktop Viewport</span>
+                    <span class="device-dimension-tag">1280px Width (2-Part Chunked Layout)</span>
+                </div>
+                <div class="device-frame device-desktop">
+                    <div class="app-screen-container">
+                        
+                        <!-- Header -->
+                        <div class="wf-header">
+                            <div class="wf-header-top">
+                                <div class="wf-brand-group">
+                                    <div class="wf-icon-box lg">[icon: Shield Logo]</div>
+                                    <div>
+                                        <div class="wf-brand-title">SCAMSHIELD</div>
+                                        <div class="wf-brand-sub">AI Scam Detection & Risk Assessment</div>
+                                    </div>
+                                </div>
+                                <div class="wf-toolbar">
+                                    <div class="wf-btn-control">[A-]</div>
+                                    <div class="wf-btn-control active">[A]</div>
+                                    <div class="wf-btn-control">[A+]</div>
+                                    <div class="wf-btn-control">[icon: Moon] Dark Mode</div>
+                                    <div class="wf-lang-pills">
+                                        <div class="wf-lang-pill active">English</div>
+                                        <div class="wf-lang-pill">मराठी</div>
+                                        <div class="wf-lang-pill">हिन्दी</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <nav class="wf-nav">
+                                <span class="wf-nav-link">Home</span>
+                                <span class="wf-nav-link">SMS</span>
+                                <span class="wf-nav-link">Email</span>
+                                <span class="wf-nav-link">URL / QR</span>
+                                <span class="wf-nav-link active">Phone</span>
+                                <span class="wf-nav-link">History</span>
+                                <span class="wf-nav-link">Learn</span>
+                                <span class="wf-nav-link">Report Scam</span>
+                            </nav>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="wf-form-container" style="max-width: 960px; margin: 30px auto;">
+                            <span class="wf-top-nav-link">&larr; Home / Choose Another Check</span>
+
+                            <div class="wf-page-title-box">
+                                <div class="wf-icon-box lg" style="font-size: 20px;">[icon: Phone 48px]</div>
+                                <div>
+                                    <h2>Phone Call Safety Questionnaire</h2>
+                                    <p>Answer 10 quick yes/no questions about the call to estimate fraud probability and protect your bank account.</p>
+                                </div>
+                            </div>
+
+                            <!-- Live Progress Bar -->
+                            <div class="wf-progress-container">
+                                <span class="annotation-badge">2</span>
+                                <div class="wf-progress-header">
+                                    <span>Questions Answered: <strong>7</strong> of 10</span>
+                                    <span>70% Complete</span>
+                                </div>
+                                <div class="wf-progress-track">
+                                    <div class="wf-progress-fill" style="width: 70%;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Chunk 1: Questions 1 to 5 -->
+                            <div class="wf-chunk-header">
+                                <span class="annotation-badge">1</span>
+                                <span class="wf-chunk-badge">Part 1</span>
+                                <span>Immediate Demands: Passwords, Banking & Wire Transfers</span>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                                <div class="wf-question-item">
+                                    <div style="font-size: 12px; color: var(--wf-text-muted); margin-bottom: 4px;">Question 1 of 10</div>
+                                    <div class="wf-question-title">1. Did the caller ask for a one-time password (OTP) sent to your mobile phone?</div>
+                                    <div class="wf-radio-group">
+                                        <div class="wf-radio-btn">[icon: Shield] No</div>
+                                        <div class="wf-radio-btn selected">[icon: Alert] Yes</div>
+                                    </div>
+                                </div>
+
+                                <div class="wf-question-item">
+                                    <div style="font-size: 12px; color: var(--wf-text-muted); margin-bottom: 4px;">Question 2 of 10</div>
+                                    <div class="wf-question-title">2. Did they ask for your ATM card number, PIN, CVV, or net banking password?</div>
+                                    <div class="wf-radio-group">
+                                        <div class="wf-radio-btn selected">[icon: Shield] No</div>
+                                        <div class="wf-radio-btn">[icon: Alert] Yes</div>
+                                    </div>
+                                </div>
+
+                                <div class="wf-question-item">
+                                    <div style="font-size: 12px; color: var(--wf-text-muted); margin-bottom: 4px;">Question 3 of 10</div>
+                                    <div class="wf-question-title">3. Did they instruct you to install AnyDesk, TeamViewer, or QuickSupport?</div>
+                                    <div class="wf-radio-group">
+                                        <div class="wf-radio-btn">[icon: Shield] No</div>
+                                        <div class="wf-radio-btn selected">[icon: Alert] Yes</div>
+                                    </div>
+                                </div>
+
+                                <div class="wf-question-item">
+                                    <div style="font-size: 12px; color: var(--wf-text-muted); margin-bottom: 4px;">Question 4 of 10</div>
+                                    <div class="wf-question-title">4. Did they demand urgent payment via gift cards, crypto, or unknown UPI handle?</div>
+                                    <div class="wf-radio-group">
+                                        <div class="wf-radio-btn selected">[icon: Shield] No</div>
+                                        <div class="wf-radio-btn">[icon: Alert] Yes</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chunk 2: Questions 6 to 10 -->
+                            <div class="wf-chunk-header" style="margin-top: 24px;">
+                                <span class="wf-chunk-badge">Part 2</span>
+                                <span>Caller Behavior: Impersonation, Screen Sharing & Threats</span>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                                <div class="wf-question-item">
+                                    <div style="font-size: 12px; color: var(--wf-text-muted); margin-bottom: 4px;">Question 6 of 10</div>
+                                    <div class="wf-question-title">6. Did the caller claim to be from police, CBI, or telecom authority threatening arrest?</div>
+                                    <div class="wf-radio-group">
+                                        <div class="wf-radio-btn">[icon: Shield] No</div>
+                                        <div class="wf-radio-btn selected">[icon: Alert] Yes</div>
+                                    </div>
+                                </div>
+
+                                <div class="wf-question-item">
+                                    <div style="font-size: 12px; color: var(--wf-text-muted); margin-bottom: 4px;">Question 7 of 10</div>
+                                    <div class="wf-question-title">7. Did they create panic claiming your electricity or SIM card will be deactivated in 1 hour?</div>
+                                    <div class="wf-radio-group">
+                                        <div class="wf-radio-btn">[icon: Shield] No</div>
+                                        <div class="wf-radio-btn selected">[icon: Alert] Yes</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wf-form-buttons-row" style="margin-top: 24px;">
+                                <button class="wf-btn-primary-large" style="max-width: 280px;">Evaluate Call Risk &rarr;</button>
+                                <button class="wf-btn-secondary">🔄 Clear All Answers</button>
+                            </div>
+
+                        </div>
+
+                        <!-- Footer -->
+                        <footer class="wf-footer">
+                            <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between;">
+                                <div><strong>[icon: Phone] Emergency Notice:</strong> If you shared an OTP on call, dial <strong>1930</strong> immediately.</div>
+                                <div>&copy; 2026 ScamShield &bull; Telephony Heuristic Engine</div>
+                            </div>
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Annotations Panel -->
+    <section class="annotations-panel">
+        <h3>Numbered UX & HCI Annotations: Phone Call Questionnaire</h3>
+        <ul class="annotations-list">
+            <li class="annotation-item">
+                <span class="annotation-badge">1</span>
+                <div class="annotation-text">
+                    <h4>Miller's Law (Information Chunking)</h4>
+                    <p>The 10 questions are structured into two distinct 5-question cognitive chunks (Part 1: Demands & Passwords; Part 2: Impersonation & Panic Threats). This honors the <code>7 ± 2</code> working memory threshold and avoids overwhelming anxious victims.</p>
+                    <span class="annotation-principle-tag">Checklist 3: Miller's Law (Chunking)</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">2</span>
+                <div class="annotation-text">
+                    <h4>Visibility of System Status (Nielsen #1)</h4>
+                    <p>Dynamic live progress bar recalculates progress percentage (0% to 100%) and updates the count indicator in real-time as questions are answered, giving users immediate task closure feedback.</p>
+                    <span class="annotation-principle-tag">Checklist 2: Nielsen #1 Visibility of System Status</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">3</span>
+                <div class="annotation-text">
+                    <h4>Symmetrical Binary Selection (WCAG 2.2)</h4>
+                    <p>Each question uses large, touch-friendly binary cards for "🛡️ No" and "⚠️ Yes" with clear high-contrast active states. Fulfills the &gt;44px touch target requirement for shaky or senior hands.</p>
+                    <span class="annotation-principle-tag">Checklist 9: Accessible Forms & Touch Targets</span>
+                </div>
+            </li>
+            <li class="annotation-item">
+                <span class="annotation-badge">4</span>
+                <div class="annotation-text">
+                    <h4>Plain-Language Red Flag Indicators</h4>
+                    <p>Mentions common real-world application names ("AnyDesk, TeamViewer, QuickSupport") and specific tactics (electricity cut, courier parcel, police arrest) rather than abstract cybersecurity jargon.</p>
+                    <span class="annotation-principle-tag">Checklist 2: Nielsen #2 Match Real World</span>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+</body>
+</html>
