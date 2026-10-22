@@ -127,7 +127,7 @@ def test_result_page_hci_elements(client):
     })
     assert res.status_code == 200
     html = res.data.decode('utf-8')
-    assert 'btn-read-aloud' in html
+    assert 'btn-read-aloud' not in html
     assert 'btn-copy-summary' in html
     assert 'btn-share-warning' in html
     assert 'result-feedback-widget' in html
