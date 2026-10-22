@@ -520,6 +520,23 @@ def download_poster_pdf():
         return_url=url_for('index')), 404
 
 
+@app.route('/download/ml-guide-pdf')
+def download_ml_guide_pdf():
+    """Serves the comprehensive Machine Learning and Viva defense guide PDF for 1-click browser download."""
+    pdf_path = BASE_DIR / "ScamShield_Machine_Learning_Comprehensive_Guide.pdf"
+    if pdf_path.exists():
+        return send_file(
+            pdf_path,
+            as_attachment=True,
+            download_name="ScamShield_Machine_Learning_Comprehensive_Guide.pdf",
+            mimetype="application/pdf"
+        )
+    return render_template('error.html',
+        error_title="File Not Found",
+        error_message="The Machine Learning Guide PDF has not been generated yet.",
+        return_url=url_for('index')), 404
+
+
 
 @app.errorhandler(404)
 def page_not_found(e):
