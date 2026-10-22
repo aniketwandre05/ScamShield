@@ -122,6 +122,16 @@ RISK_MESSAGES = {
         "en": "Machine learning email classifier identified phishing intent in email content.",
         "mr": "मशीन लर्निंग ईमेल मॉडेलने या मजकुरात फिशिंगचा हेतू ओळखला आहे.",
         "hi": "मशीन लर्निंग ईमेल मॉडल ने इस सामग्री में फ़िशिंग के इरादे की पहचान की है।"
+    },
+    "qr_scam_reason": {
+        "en": "QR code directs to a suspicious or unverified website link (Quishing trap).",
+        "mr": "हा QR कोड संशयास्पद किंवा असत्यापित वेबसाइट लिंककडे नेतो (क्विशिंग फसवणूक).",
+        "hi": "यह क्यूआर कोड किसी संदिग्ध या असत्यापित वेबसाइट लिंक पर ले जाता है (क्विशिंग धोखाधड़ी)।"
+    },
+    "qr_scam_action": {
+        "en": "Do not proceed to the website or approve any digital payments prompted by this QR code.",
+        "mr": "या QR कोडद्वारे उघडलेल्या वेबसाइटवर जाऊ नका किंवा कोणतेही डिजिटल पेमेंट मंजूर करू नका.",
+        "hi": "इस क्यूआर कोड द्वारा खोली गई वेबसाइट पर न जाएं और न ही कोई डिजिटल भुगतान स्वीकृत करें।"
     }
 }
 
@@ -143,6 +153,7 @@ def compute_hybrid_risk(
     sender: str = "",
     url: str = "",
     override_urls: Optional[List[str]] = None,
+    is_qr: bool = False,
     lang: str = "en"
 ) -> Dict[str, Any]:
     """
@@ -219,6 +230,11 @@ def compute_hybrid_risk(
             actions.append(_get_msg("url_ml_scam_action", valid_lang))
             
         risk_score = int(round(min(100, max(0, raw_score))))
+
+        # If detected via QR Code and assessed as medium/high risk, highlight Quishing warning
+        if is_qr and risk_score >= 35:
+            reasons.insert(0, _get_msg("qr_scam_reason", valid_lang))
+            actions.insert(0, _get_msg("qr_scam_action", valid_lang))
         
     # =========================================================================
     # 2. Evaluate SMS / WhatsApp module

@@ -8,7 +8,11 @@
     <div class="result-completion-banner" role="status">
         <span class="completion-icon" aria-hidden="true">✅</span>
         <span><strong>{{ t('result_assessment_complete') }}</strong> &bull; {{ t('content_checked') }} <strong>{{ display_type | default(content_type|upper) }}</strong></span>
-        {% if ocr_used %}<span class="ocr-badge-pill" style="color: var(--primary-color);">({{ t('ocr_extracted_badge') }})</span>{% endif %}
+        {% if qr_used %}
+            <span class="ocr-badge-pill" style="color: var(--primary-color);">({{ t('qr_extracted_badge') }})</span>
+        {% elif ocr_used %}
+            <span class="ocr-badge-pill" style="color: var(--primary-color);">({{ t('ocr_extracted_badge') }})</span>
+        {% endif %}
     </div>
 
     <div class="result-header">

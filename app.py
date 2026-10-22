@@ -21,6 +21,7 @@ from config import (
     UPLOADS_DIR, SMS_MODEL_PATH, EMAIL_MODEL_PATH, URL_MODEL_PATH
 )
 from ocr.ocr_engine import extract_text_from_image
+from ocr.qr_detector import extract_qr_code
 from ocr.content_detector import detect_content_structure
 from risk.risk_engine import compute_hybrid_risk
 from risk.phone_risk import PHONE_QUESTIONS, assess_phone_call_risk, get_localized_phone_questions
@@ -134,6 +135,9 @@ def analyze_sms():
         temp_path = UPLOADS_DIR / safe_name
         try:
             file.save(temp_path)
+            qr_res = extract_qr_code(str(temp_path))
+            if qr_res.get("found") and qr_res.get("extracted_url"):
+                override_urls = [qr_res.get("extracted_url")]
             ocr_res = extract_text_from_image(str(temp_path), lang=lang)
         finally:
             # Clean up temp file immediately
@@ -144,17 +148,21 @@ def analyze_sms():
                     pass
                     
         if not ocr_res.get("success"):
-            return render_template('error.html',
-                error_title="Could Not Read Screenshot",
-                error_message=ocr_res.get("error", "The image was blurry or contained no readable text. Please try pasting the message text instead."),
-                return_url=url_for('check_sms'))
-                
-        ocr_used = True
-        analyzed_text = ocr_res["text"]
-        
-        # Detect content structure and extracted URLs
-        detected = detect_content_structure(analyzed_text)
-        override_urls = detected.get("urls", [])
+            if qr_res.get("found") and qr_res.get("extracted_url"):
+                ocr_used = True
+                analyzed_text = f"QR Code link: {qr_res.get('extracted_url')}"
+            else:
+                return render_template('error.html',
+                    error_title="Could Not Read Screenshot",
+                    error_message=ocr_res.get("error", "The image was blurry or contained no readable text or QR code. Please try pasting the message text instead."),
+                    return_url=url_for('check_sms'))
+        else:
+            ocr_used = True
+            analyzed_text = ocr_res["text"]
+            # Detect content structure and extracted URLs
+            detected = detect_content_structure(analyzed_text)
+            if not override_urls:
+                override_urls = detected.get("urls", [])
         
     else:
         analyzed_text = request.form.get('sms_text', '').strip()
@@ -284,6 +292,7 @@ def analyze_url():
     lang = session.get('lang', 'en')
     input_mode = request.form.get('input_mode', 'text')
     ocr_used = False
+    qr_used = False
     target_url = ""
 
     if input_mode == 'screenshot':
@@ -308,43 +317,52 @@ def analyze_url():
                 
         safe_name = f"url_{uuid.uuid4().hex}_{secure_filename(file.filename)}"
         temp_path = UPLOADS_DIR / safe_name
+        qr_used = False
         try:
             file.save(temp_path)
-            ocr_res = extract_text_from_image(str(temp_path), lang=lang)
+            
+            # Step 1: Attempt QR Code Detection & Decoding
+            qr_res = extract_qr_code(str(temp_path))
+            if qr_res.get("found") and qr_res.get("extracted_url"):
+                target_url = qr_res.get("extracted_url")
+                qr_used = True
+                ocr_used = True
+            else:
+                # Step 2: Fallback to Optical Character Recognition (OCR)
+                ocr_res = extract_text_from_image(str(temp_path), lang=lang)
+                if not ocr_res.get("success"):
+                    return render_template('error.html',
+                        error_title="Could Not Read Screenshot",
+                        error_message=ocr_res.get("error", "The image was blurry or contained no readable QR code or text. Please try pasting the link manually."),
+                        return_url=url_for('check_url'))
+
+                ocr_used = True
+                extracted_text = ocr_res["text"]
+                detected = detect_content_structure(extracted_text)
+                urls = detected.get("urls", [])
+
+                if not urls:
+                    # Check if raw text might be a URL without http scheme
+                    words = extracted_text.split()
+                    for w in words:
+                        cleaned_w = w.strip('.,!?:;)"\'>]}')
+                        if '.' in cleaned_w and len(cleaned_w) > 4:
+                            urls.append(cleaned_w)
+                            break
+
+                if not urls:
+                    return render_template('error.html',
+                        error_title="No Link or QR Code Found",
+                        error_message=f"We could read text from this image ('{extracted_text[:100]}...'), but could not identify a valid QR code or website link (URL). Please paste the link manually.",
+                        return_url=url_for('check_url'))
+
+                target_url = urls[0]
         finally:
             if temp_path.exists():
                 try:
                     os.remove(temp_path)
                 except Exception:
                     pass
-
-        if not ocr_res.get("success"):
-            return render_template('error.html',
-                error_title="Could Not Read Screenshot",
-                error_message=ocr_res.get("error", "The image was blurry or contained no readable text. Please try pasting the link manually."),
-                return_url=url_for('check_url'))
-
-        ocr_used = True
-        extracted_text = ocr_res["text"]
-        detected = detect_content_structure(extracted_text)
-        urls = detected.get("urls", [])
-
-        if not urls:
-            # Check if raw text might be a URL without http scheme
-            words = extracted_text.split()
-            for w in words:
-                cleaned_w = w.strip('.,!?:;)"\'>]}')
-                if '.' in cleaned_w and len(cleaned_w) > 4:
-                    urls.append(cleaned_w)
-                    break
-
-        if not urls:
-            return render_template('error.html',
-                error_title="No Link Found in Screenshot",
-                error_message=f"We could read text from this image ('{extracted_text[:100]}...'), but could not identify a valid website link (URL). Please paste the link manually.",
-                return_url=url_for('check_url'))
-
-        target_url = urls[0]
 
     else:
         target_url = request.form.get('url_input', '').strip()
@@ -354,14 +372,15 @@ def analyze_url():
                 error_message="Please paste a website link (URL) to check.",
                 return_url=url_for('check_url'))
             
-    result = compute_hybrid_risk('url', url=target_url, lang=lang)
+    result = compute_hybrid_risk('url', url=target_url, is_qr=qr_used, lang=lang)
     result['risk_label'] = get_text(f"risk_{result['risk_level'].lower()}", lang)
     result['summary'] = get_text(f"risk_{result['risk_level'].lower()}_summary", lang)
     masked_url = mask_sensitive_data(target_url)
-    add_to_history('URL', masked_url, result)
+    add_to_history('QR Code' if qr_used else 'URL', masked_url, result)
     
-    result['display_type'] = get_text('url_display_type', lang)
+    result['display_type'] = get_text('url_qr_display_type', lang) if qr_used else get_text('url_display_type', lang)
     result['ocr_used'] = ocr_used
+    result['qr_used'] = qr_used
     result['preview_text'] = masked_url
     result['highlighted_preview'] = highlight_suspicious_keywords(masked_url)
     

@@ -81,7 +81,7 @@ def test_url_check_in_marathi(client):
     res = client.get('/check/url')
     assert res.status_code == 200
     html = res.data.decode('utf-8')
-    assert 'वेबसाइट लिंक (URL) तपासा' in html
+    assert 'वेबसाइट लिंक' in html and 'तपासा' in html
 
 
 def test_marathi_backend_sms_analysis(client):

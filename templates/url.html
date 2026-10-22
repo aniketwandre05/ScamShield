@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ t('url_title') }} - {{ t('brand_title') }}{% endblock %}
+{% block title %}{{ t('url_header_title') }} - {{ t('brand_title') }}{% endblock %}
 
 {% block content %}
 <div class="form-card">
@@ -101,28 +101,37 @@
                     </button>
                 </div>
             </div>
+
+            <div class="demo-category-group" style="margin-top: 10px;">
+                <div class="demo-category-label scam-label">{{ t('demo_qr_label') }}</div>
+                <div class="demo-btn-group">
+                    <button type="button" class="btn-demo btn-demo-scam" data-target="url_input" data-text="http://bit.ly/electricity-bill-pay-officer">
+                        ⚡ {{ t('demo_qr_btn') }}
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Form 2: Upload Screenshot -->
+    <!-- Form 2: Upload QR Code or Link Screenshot -->
     <div id="upload-tab" class="tab-panel" style="display: none;" role="tabpanel">
         <form action="{{ url_for('analyze_url') }}" method="POST" enctype="multipart/form-data" id="url-upload-form">
             <input type="hidden" name="input_mode" value="screenshot">
             <div class="form-group">
                 <label class="form-label" id="url-upload-label">{{ t('tab_upload_url_screenshot') }}</label>
-                <div class="upload-zone" tabindex="0" role="button" aria-labelledby="url-upload-label" aria-describedby="url-help-text">
-                    <div class="upload-zone-icon" aria-hidden="true">🖼️</div>
-                    <div class="upload-zone-text">{{ t('upload_drag_drop') }}</div>
-                    <div class="upload-zone-sub" id="url-upload-help">{{ t('upload_formats') }} &bull; Max 16 MB</div>
+                <div class="upload-zone" tabindex="0" role="button" aria-labelledby="url-upload-label" aria-describedby="url-upload-help">
+                    <div class="upload-zone-icon" aria-hidden="true">📷</div>
+                    <div class="upload-zone-text">{{ t('upload_qr_drag_drop') }}</div>
+                    <div class="upload-zone-sub" id="url-upload-help">{{ t('upload_qr_formats') }} &bull; Max 16 MB</div>
                     <button type="button" class="btn-browse-file" tabindex="-1">
-                        📁 {{ t('upload_browse_btn') }}
+                        {{ t('upload_qr_browse_btn') }}
                     </button>
-                    <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" capture="environment" style="display: none;" required aria-label="Upload link screenshot">
+                    <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" capture="environment" style="display: none;" required aria-label="Upload QR code or link screenshot">
                 </div>
                 
                 <div class="file-preview" aria-live="polite">
                     <div>
-                        <strong class="preview-filename">url.png</strong>
+                        <strong class="preview-filename">image.png</strong>
                         <span class="preview-filesize" style="color: var(--text-muted);"></span>
                     </div>
                     <button type="button" class="btn-demo btn-clear-file" style="color: var(--danger-color);">{{ t('upload_remove') }}</button>
