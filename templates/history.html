@@ -16,14 +16,14 @@
         {% if history %}
         <div class="history-actions-group">
             <a href="{{ url_for('export_history') }}" class="btn-demo" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
-                📥 {{ t('history_export_csv') }}
+                {{ t('history_export_csv') }}
             </a>
             <button type="button" id="btn-print-history" class="btn-demo" style="display: inline-flex; align-items: center; gap: 6px;">
-                🖨️ {{ t('history_print') }}
+                {{ t('history_print') }}
             </button>
             <form action="{{ url_for('clear_history') }}" method="POST" id="form-clear-history" style="display: inline;">
                 <button type="button" id="btn-open-clear-modal" class="btn-demo" style="color: var(--danger-color); border-color: var(--danger-border); font-weight: bold;">
-                    🗑️ {{ t('history_clear_btn') }}
+                    {{ t('history_clear_btn') }}
                 </button>
             </form>
         </div>

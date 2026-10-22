@@ -171,6 +171,12 @@ TRANSLATIONS = {
         "report_form_submit": "🚨 Submit Threat Report",
         "report_form_success": "Your incident report has been submitted to assist threat awareness. Thank you for protecting the community!",
 
+        # Error Page
+        "error_default_title": "Page Not Found",
+        "error_default_message": "The page you requested could not be found.",
+        "error_try_again": "Try Again",
+        "error_back_home": "Back to Home",
+
         # Footer & Disclaimer
         "footer_disclaimer": "🔒 Privacy & Safety Notice: ScamShield provides an estimated risk assessment to assist your decision-making and is not a guaranteed security verdict. Avoid uploading sensitive passwords or banking credentials.",
         "footer_copy": "© 2026 ScamShield • Machine Learning Lab Project • Built for Simplicity and Accessibility"
@@ -341,6 +347,12 @@ TRANSLATIONS = {
         "report_form_submit": "🚨 तक्रार सादर करा",
         "report_form_success": "इतरांचे संरक्षण करण्यासाठी तुमची तक्रार नोंदवली गेली आहे. सहकार्याबद्दल धन्यवाद!",
 
+        # Error Page
+        "error_default_title": "पृष्ठ आढळले नाही",
+        "error_default_message": "तुम्ही विनंती केलेले पृष्ठ सापडले नाही.",
+        "error_try_again": "पुन्हा प्रयत्न करा",
+        "error_back_home": "मुख्य पृष्ठावर परत जा",
+
         # Footer & Disclaimer
         "footer_disclaimer": "🔒 गोपनीयता आणि सुरक्षितता सूचना: स्कॅमशील्ड तुमच्या निर्णयाला मदत करण्यासाठी अंदाजित जोखीम मूल्यमापन देते. संवेदनशील पासवर्ड किंवा बँक तपशील अपलोड करणे टाळा.",
         "footer_copy": "© २०२६ स्कॅमशील्ड • मशीन लर्निंग लॅब प्रकल्प • साधेपणा आणि सहजतेसाठी डिझाइन केलेले"
@@ -510,6 +522,12 @@ TRANSLATIONS = {
         "report_form_details": "विवरण / संदेश टेक्स्ट:",
         "report_form_submit": "🚨 रिपोर्ट दर्ज करें",
         "report_form_success": "दूसरों की सुरक्षा में मदद के लिए आपकी रिपोर्ट दर्ज कर ली गई है। धन्यवाद!",
+
+        # Error Page
+        "error_default_title": "पृष्ठ नहीं मिला",
+        "error_default_message": "आपके द्वारा अनुरोधित पृष्ठ नहीं मिल सका।",
+        "error_try_again": "पुनः प्रयास करें",
+        "error_back_home": "होम पेज पर वापस जाएं",
 
         # Footer & Disclaimer
         "footer_disclaimer": "🔒 गोपनीयता और सुरक्षा सूचना: स्कैमशील्ड आपके निर्णय में सहायता के लिए अनुमानित जोखिम मूल्यांकन प्रदान करता है। संवेदनशील पासवर्ड या बैंकिंग विवरण अपलोड करने से बचें।",

@@ -59,13 +59,13 @@
     <!-- Quick Result Actions: Read Aloud, Copy Summary, Share Warning (HCI Checklist Item 6 & 9) -->
     <div class="result-quick-actions" role="toolbar" aria-label="Result Actions">
         <button type="button" id="btn-read-aloud" class="btn-result-action" data-lang="{{ current_lang }}">
-            🔊 {{ t('btn_read_aloud') }}
+            {{ t('btn_read_aloud') }}
         </button>
         <button type="button" id="btn-copy-summary" class="btn-result-action">
-            📋 {{ t('btn_copy_summary') }}
+            {{ t('btn_copy_summary') }}
         </button>
         <button type="button" id="btn-share-warning" class="btn-result-action">
-            📲 {{ t('btn_share_warning') }}
+            {{ t('btn_share_warning') }}
         </button>
     </div>
 
@@ -90,7 +90,7 @@
             <!-- Section 1: Why did we give this score? -->
             <div class="explanation-block">
                 <h3 class="section-heading" style="color: var(--text-primary);">
-                    🔍 {{ t('why_heading') }}
+                    {{ t('why_heading') }}
                 </h3>
                 <ul class="reasons-list">
                     {% for reason in reasons %}
@@ -102,7 +102,7 @@
             <!-- Section 2: What should you do now? -->
             <div class="explanation-block">
                 <h3 class="section-heading" style="color: var(--primary-color);">
-                    🛡️ {{ t('what_heading') }}
+                    {{ t('what_heading') }}
                 </h3>
                 <ul class="actions-list">
                     {% for action in actions %}
@@ -136,10 +136,10 @@
     <!-- Task Closure: Check Another or View History (Shneiderman Rule #4 Closure) -->
     <div class="result-closure-buttons">
         <a href="{{ url_for('index') }}" class="btn-primary-large" style="max-width: 280px; margin: 0;">
-            🔍 {{ t('btn_check_another') }}
+            {{ t('btn_check_another') }}
         </a>
         <a href="{{ url_for('view_history') }}" class="btn-secondary" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-            📋 {{ t('btn_view_history') }}
+            {{ t('btn_view_history') }}
         </a>
     </div>
 </div>
