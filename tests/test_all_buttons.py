@@ -1,3 +1,4 @@
+import io
 import pytest
 from app import app
 
@@ -61,11 +62,22 @@ def test_sms_page_buttons_and_interactions(client):
     assert 'id="btn-submit-sms"' in html
     assert 'btn-demo-safe' in html
     assert 'btn-demo-scam' in html
+    assert 'btn-choose-file' in html
+    assert 'btn-take-photo' in html
+    assert 'file-input-choose' in html
+    assert 'file-input-camera' in html
 
-    # Test POST submission button
+    # Test POST submission button (text)
     post_res = client.post('/analyze/sms', data={'sms_text': 'URGENT: Verify your account now http://scam.xyz'})
     assert post_res.status_code == 200
     assert 'ScamShield' in post_res.data.decode('utf-8') or 'स्कॅमशील्ड' in post_res.data.decode('utf-8') or 'स्कैमशील्ड' in post_res.data.decode('utf-8')
+
+    # Test POST submission button (camera upload)
+    cam_res = client.post('/analyze/sms', data={
+        'input_mode': 'screenshot',
+        'screenshot_camera': (io.BytesIO(b'dummy image bytes'), 'camera.jpg')
+    }, content_type='multipart/form-data')
+    assert cam_res.status_code == 200
 
 
 def test_email_page_buttons_and_interactions(client):
@@ -77,6 +89,8 @@ def test_email_page_buttons_and_interactions(client):
     assert 'btn-reset-form' in html
     assert 'btn-demo-safe' in html
     assert 'btn-demo-scam' in html
+    assert 'btn-choose-file' in html
+    assert 'btn-take-photo' in html
 
     # Test POST submission
     post_res = client.post('/analyze/email', data={
@@ -96,6 +110,8 @@ def test_url_page_buttons_and_interactions(client):
     assert 'btn-reset-form' in html
     assert 'btn-demo-safe' in html
     assert 'btn-demo-scam' in html
+    assert 'btn-choose-file' in html
+    assert 'btn-take-photo' in html
 
     # Test POST submission
     post_res = client.post('/analyze/url', data={'url_input': 'https://google.com'})

@@ -58,6 +58,16 @@ def is_allowed_file(filename: str) -> bool:
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+def get_uploaded_screenshot(req):
+    """Safely retrieves uploaded screenshot, inspecting standard, file-picker, and camera fields."""
+    for key in ('screenshot', 'screenshot_file', 'screenshot_camera'):
+        if key in req.files:
+            f = req.files[key]
+            if f and f.filename and f.filename.strip():
+                return f
+    return req.files.get('screenshot')
+
+
 def add_to_history(content_type: str, snippet: str, result: dict):
     """Safely saves non-sensitive scan result summary into user session history."""
     if 'scan_history' not in session:
@@ -111,17 +121,11 @@ def analyze_sms():
     override_urls = None
     
     if input_mode == 'screenshot':
-        if 'screenshot' not in request.files:
+        file = get_uploaded_screenshot(request)
+        if not file or not file.filename or file.filename.strip() == '':
             return render_template('error.html', 
                 error_title="No File Selected",
-                error_message="Please choose a screenshot image file to scan.",
-                return_url=url_for('check_sms'))
-                
-        file = request.files['screenshot']
-        if file.filename == '':
-            return render_template('error.html',
-                error_title="No File Selected",
-                error_message="Please select a valid image file from your device.",
+                error_message="Please choose a screenshot image file or take a photo to scan.",
                 return_url=url_for('check_sms'))
                 
         if not is_allowed_file(file.filename):
@@ -206,17 +210,11 @@ def analyze_email():
     override_urls = None
     
     if input_mode == 'screenshot':
-        if 'screenshot' not in request.files:
+        file = get_uploaded_screenshot(request)
+        if not file or not file.filename or file.filename.strip() == '':
             return render_template('error.html', 
                 error_title="No File Selected",
-                error_message="Please choose a screenshot image file to scan.",
-                return_url=url_for('check_email'))
-                
-        file = request.files['screenshot']
-        if file.filename == '':
-            return render_template('error.html',
-                error_title="No File Selected",
-                error_message="Please select a valid image file from your device.",
+                error_message="Please choose a screenshot image file or take a photo to scan.",
                 return_url=url_for('check_email'))
                 
         if not is_allowed_file(file.filename):
@@ -296,17 +294,11 @@ def analyze_url():
     target_url = ""
 
     if input_mode == 'screenshot':
-        if 'screenshot' not in request.files:
+        file = get_uploaded_screenshot(request)
+        if not file or not file.filename or file.filename.strip() == '':
             return render_template('error.html',
                 error_title="No File Selected",
-                error_message="Please choose a screenshot image file to scan.",
-                return_url=url_for('check_url'))
-                
-        file = request.files['screenshot']
-        if file.filename == '':
-            return render_template('error.html',
-                error_title="No File Selected",
-                error_message="Please select a valid image file from your device.",
+                error_message="Please choose a screenshot image file or take a photo to scan.",
                 return_url=url_for('check_url'))
                 
         if not is_allowed_file(file.filename):

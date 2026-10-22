@@ -61,22 +61,95 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // =========================================================================
-    // 2. File Upload & Drag-and-Drop Handling
+    // 2. File Upload & Drag-and-Drop Handling (Dual "Choose File" & "Take Photo")
     // =========================================================================
     const uploadZones = document.querySelectorAll(".upload-zone");
     uploadZones.forEach(zone => {
-        const fileInput = zone.querySelector("input[type='file']");
-        const previewContainer = zone.parentElement.querySelector(".file-preview");
+        const inputChoose = zone.querySelector(".file-input-choose") || zone.querySelector("input[type='file']:not([capture])");
+        const inputCamera = zone.querySelector(".file-input-camera") || zone.querySelector("input[type='file'][capture]");
+        const btnChoose = zone.querySelector(".btn-choose-file");
+        const btnCamera = zone.querySelector(".btn-take-photo");
+        const previewContainer = zone.parentElement ? zone.parentElement.querySelector(".file-preview") : null;
+        const form = zone.closest("form");
 
-        if (!fileInput) return;
+        function syncFileSelection(sourceInput) {
+            if (!sourceInput || !sourceInput.files || !sourceInput.files[0]) return;
+            const selectedFile = sourceInput.files[0];
+            
+            // Ensure the input containing the file has name="screenshot" for submission
+            if (sourceInput === inputChoose) {
+                inputChoose.name = "screenshot";
+                if (inputCamera) inputCamera.name = "";
+            } else if (sourceInput === inputCamera) {
+                inputCamera.name = "screenshot";
+                if (inputChoose) inputChoose.name = "";
+                // Attempt to copy to inputChoose via DataTransfer if supported
+                try {
+                    const dt = new DataTransfer();
+                    dt.items.add(selectedFile);
+                    if (inputChoose) inputChoose.files = dt.files;
+                } catch (err) {
+                    // Fallback: inputCamera is named "screenshot"
+                }
+            }
+            updateFilePreview(selectedFile, previewContainer);
+        }
 
+        // 1. "Choose File" Button Handler (Android opens Gallery / Files)
+        if (btnChoose && inputChoose) {
+            btnChoose.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                inputChoose.name = "screenshot";
+                if (inputCamera) inputCamera.name = "";
+                inputChoose.click();
+            });
+        }
+
+        // 2. "Take Photo" Button Handler (Android opens Camera directly)
+        if (btnCamera && inputCamera) {
+            btnCamera.addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                inputCamera.name = "screenshot";
+                if (inputChoose) inputChoose.name = "";
+                inputCamera.click();
+            });
+        }
+
+        // 3. Click anywhere else on zone -> defaults to Choose File
         zone.addEventListener("click", (e) => {
-            if (e.target !== fileInput) {
-                fileInput.click();
+            if (e.target.closest(".btn-browse-file") || e.target.tagName === "INPUT" || e.target.tagName === "BUTTON") {
+                return;
+            }
+            if (inputChoose) {
+                inputChoose.name = "screenshot";
+                if (inputCamera) inputCamera.name = "";
+                inputChoose.click();
+            } else if (inputCamera) {
+                inputCamera.name = "screenshot";
+                inputCamera.click();
             }
         });
 
-        // Drag & Drop events
+        // 4. Change event listeners
+        if (inputChoose) {
+            inputChoose.addEventListener("change", () => {
+                if (inputChoose.files && inputChoose.files[0]) {
+                    syncFileSelection(inputChoose);
+                }
+            });
+        }
+
+        if (inputCamera) {
+            inputCamera.addEventListener("change", () => {
+                if (inputCamera.files && inputCamera.files[0]) {
+                    syncFileSelection(inputCamera);
+                }
+            });
+        }
+
+        // 5. Drag & Drop events
         ['dragenter', 'dragover'].forEach(eventName => {
             zone.addEventListener(eventName, (e) => {
                 e.preventDefault();
@@ -95,18 +168,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
         zone.addEventListener("drop", (e) => {
             const dt = e.dataTransfer;
-            const files = dt.files;
-            if (files && files.length > 0) {
-                fileInput.files = files;
-                updateFilePreview(files[0], previewContainer);
+            const files = dt ? dt.files : null;
+            if (files && files.length > 0 && inputChoose) {
+                inputChoose.files = files;
+                syncFileSelection(inputChoose);
             }
         });
 
-        fileInput.addEventListener("change", () => {
-            if (fileInput.files && fileInput.files[0]) {
-                updateFilePreview(fileInput.files[0], previewContainer);
-            }
-        });
+        // 6. Form submit validation for screenshot mode
+        if (form) {
+            form.addEventListener("submit", (e) => {
+                const modeInput = form.querySelector("input[name='input_mode']");
+                if (modeInput && modeInput.value === "screenshot") {
+                    const hasChooseFile = inputChoose && inputChoose.files && inputChoose.files.length > 0;
+                    const hasCameraFile = inputCamera && inputCamera.files && inputCamera.files.length > 0;
+                    if (!hasChooseFile && !hasCameraFile) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        showToast("Please choose a screenshot file or take a photo first.");
+                        zone.focus();
+                    }
+                }
+            });
+        }
     });
 
     function updateFilePreview(file, container) {
@@ -126,10 +210,16 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.addEventListener("click", () => {
             const form = btn.closest("form");
             if (form) {
-                const fileInput = form.querySelector("input[type='file']");
-                if (fileInput) fileInput.value = "";
+                const fileInputs = form.querySelectorAll("input[type='file']");
+                fileInputs.forEach(fi => { fi.value = ""; });
+                const inputChoose = form.querySelector(".file-input-choose");
+                const inputCamera = form.querySelector(".file-input-camera");
+                if (inputChoose) inputChoose.name = "screenshot";
+                if (inputCamera) inputCamera.name = "";
+
                 const preview = form.querySelector(".file-preview");
                 if (preview) preview.style.display = "none";
+                showToast("File removed.");
             }
         });
     });

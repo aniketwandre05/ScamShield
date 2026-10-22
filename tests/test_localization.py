@@ -164,7 +164,8 @@ def test_all_pages_localized_marathi(client):
     html = res.data.decode('utf-8')
     assert 'दुसरी तपासणी निवडा' in html
     assert 'फॉर्म साफ करा' in html
-    assert 'फाइल निवडा किंवा फोटो काढा' in html
+    assert 'फाइल निवडा' in html
+    assert 'फोटो काढा' in html
     assert 'अधिकृत संदेश (सुरक्षित):' in html
 
     # Email
@@ -201,7 +202,8 @@ def test_all_pages_localized_hindi(client):
     html = res.data.decode('utf-8')
     assert 'दूसरी जांच चुनें' in html
     assert 'फ़ॉर्म साफ़ करें' in html
-    assert 'फ़ाइल चुनें या फ़ोटो लें' in html
+    assert 'फ़ाइल चुनें' in html
+    assert 'फ़ोटो लें' in html
     assert 'वैध संदेश (सुरक्षित):' in html
 
     # Email

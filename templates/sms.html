@@ -110,10 +110,16 @@
                     <div class="upload-zone-icon" aria-hidden="true">🖼️</div>
                     <div class="upload-zone-text">{{ t('upload_drag_drop') }}</div>
                     <div class="upload-zone-sub" id="upload-help-text">{{ t('upload_formats') }} &bull; Max 16 MB</div>
-                    <button type="button" class="btn-browse-file" tabindex="-1">
-                        📁 {{ t('upload_browse_btn') }}
-                    </button>
-                    <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" capture="environment" style="display: none;" required aria-label="Upload message screenshot">
+                    <div class="upload-buttons-row">
+                        <button type="button" class="btn-browse-file btn-choose-file" aria-label="Choose file from storage">
+                            📁 {{ t('upload_choose_file_btn') }}
+                        </button>
+                        <button type="button" class="btn-browse-file btn-take-photo" aria-label="Take photo with camera">
+                            📷 {{ t('upload_take_photo_btn') }}
+                        </button>
+                    </div>
+                    <input type="file" class="file-input-choose" name="screenshot" accept=".png,.jpg,.jpeg,.webp,image/*" style="display: none;" aria-label="Upload message screenshot">
+                    <input type="file" class="file-input-camera" accept=".png,.jpg,.jpeg,.webp,image/*" capture="environment" style="display: none;" aria-label="Take photo with camera">
                 </div>
                 
                 <div class="file-preview" aria-live="polite">
