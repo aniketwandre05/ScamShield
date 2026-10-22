@@ -366,8 +366,29 @@ def build_pdf(filename="ScamShield_HCI_Continuous_Evaluation_Assignment.pdf"):
     story.append(Paragraph("Project: ScamShield - Accessible, Multilingual Scam Detection &amp; Decision-Support System", subtitle_style))
     story.append(Paragraph("<b>Target Region:</b> Pune Metropolitan &amp; Peri-Urban Region, Maharashtra | <b>Academic Year:</b> 2026-2027", meta_style))
     story.append(Paragraph("<b>Course:</b> Human-Computer Interaction | <b>Submission:</b> Comprehensive 7-Stage Engineering &amp; Field Report", meta_style))
-    story.append(Spacer(1, 8))
-    story.append(HRFlowable(width="100%", thickness=1.5, color=primary_color, spaceAfter=8))
+    story.append(Spacer(1, 5))
+
+    # Student Submission & 20-Mark Evaluation Rubric Box
+    rubric_text = (
+        "<b>STUDENT SUBMISSION &amp; CONTINUOUS EVALUATION ASSESSMENT RECORD (20 MARKS)</b><br/>"
+        "<b>Student Name:</b> ___________________________ &nbsp;&nbsp;|&nbsp;&nbsp; "
+        "<b>Roll No / PRN:</b> ___________________________ &nbsp;&nbsp;|&nbsp;&nbsp; "
+        "<b>Batch / Division:</b> ____________<br/>"
+        "<b>Evaluation Rubric:</b> User Groups &amp; Field Interviews (5M) &bull; Personas (4M) &bull; "
+        "Literature Review &amp; Gaps (4M) &bull; Prototype Wireframes (4M) &bull; Academic Poster (3M)<br/>"
+        "<b>Marks Awarded:</b> ______ / 20 &nbsp;&nbsp;|&nbsp;&nbsp; "
+        "<b>Faculty Evaluator:</b> ___________________________ &nbsp;&nbsp;|&nbsp;&nbsp; "
+        "<b>Evaluation Date:</b> ____________"
+    )
+    t_rubric = Table([[Paragraph(rubric_text, ParagraphStyle('RubricStyle', parent=body_style, fontSize=7.6, leading=11))]], colWidths=[523])
+    t_rubric.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor("#F8FAFC")),
+        ('BOX', (0,0), (-1,-1), 1, colors.HexColor("#94A3B8")),
+        ('PADDING', (0,0), (-1,-1), 5),
+    ]))
+    story.append(t_rubric)
+    story.append(Spacer(1, 5))
+    story.append(HRFlowable(width="100%", thickness=1.5, color=primary_color, spaceAfter=6))
 
     # Executive Summary Box
     exec_summary_text = (
@@ -484,7 +505,7 @@ def build_pdf(filename="ScamShield_HCI_Continuous_Evaluation_Assignment.pdf"):
         [Paragraph("Q9", table_cell_bold), Paragraph("Explainability", table_cell_style), Paragraph("What kind of explanation helps you more: a technical score (e.g., 85% risk) or simple Marathi/Hindi instructions on what to do?", table_cell_style)],
         [Paragraph("Q10", table_cell_bold), Paragraph("Reporting", table_cell_style), Paragraph("Are you aware of the official National Cybercrime Helpline number (1930) or the cybercrime.gov.in reporting portal?", table_cell_style)]
     ]
-    q_table = Table(q_data, colWidths=[25, 95, 403])
+    q_table = Table(q_data, colWidths=[34, 95, 394])
     q_table.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), secondary_color),
         ('GRID', (0,0), (-1,-1), 0.5, border_color),
