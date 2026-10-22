@@ -1,27 +1,27 @@
 ============================================================
 SCAMSHIELD URL MODEL EVALUATION REPORT
 ============================================================
-Algorithm: Random Forest (100 estimators, max_depth=15) on 17 Handcrafted Lexical Features
-Features: url_length, hostname_length, path_length, query_length, count_dots, count_hyphens, count_at, count_question, count_equal, count_slash, count_digits, count_special_chars, subdomain_count, has_https, has_ip_address, is_shortened, suspicious_keyword_count
+Algorithm: Random Forest (100 estimators, max_depth=15) on 22 Handcrafted Lexical & Structural Features
+Features: url_length, hostname_length, path_length, query_length, count_dots, count_hyphens, count_at, count_question, count_equal, count_slash, count_digits, count_special_chars, subdomain_count, has_https, has_ip_address, is_shortened, suspicious_keyword_count, entropy, has_high_risk_tld, host_hyphen_count, brand_keyword_count, digit_ratio_host
 Total Processed Samples: 40000
 Train Size: 32000, Test Size: 8000
 ------------------------------------------------------------
-Accuracy:  0.9892
-Precision: 0.9982
-Recall:    0.9802
-F1 Score:  0.9892
-ROC-AUC:   0.9980
+Accuracy:  0.9905
+Precision: 0.9990
+Recall:    0.9820
+F1 Score:  0.9904
+ROC-AUC:   0.9984
 
 Confusion Matrix:
-[[TN=3993, FP=7],
- [FN=79, TP=3921]]
+[[TN=3996, FP=4],
+ [FN=72, TP=3928]]
 
 Top 5 Feature Importances:
-  1. has_https: 0.6872
-  2. subdomain_count: 0.1157
-  3. count_special_chars: 0.0370
-  4. count_dots: 0.0331
-  5. count_slash: 0.0287
+  1. has_https: 0.6541
+  2. subdomain_count: 0.0965
+  3. count_dots: 0.0383
+  4. count_special_chars: 0.0376
+  5. count_slash: 0.0276
 
 Detailed Classification Report:
                     precision    recall  f1-score   support

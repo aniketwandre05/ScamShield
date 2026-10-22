@@ -1,26 +1,26 @@
 ============================================================
 SCAMSHIELD SMS MODEL EVALUATION REPORT
 ============================================================
-Algorithm: TF-IDF (1-2 ngrams, 5000 max features) + Logistic Regression (C=2.0, balanced)
+Algorithm: FeatureUnion (Word 1-3 ngrams + Char-wb 3-5 ngrams) + Balanced Logistic Regression (C=5.0)
 Total Dataset Size: 5572
 Train Size: 4457, Test Size: 1115
 ------------------------------------------------------------
-Accuracy:  0.9839
-Precision: 0.9925
-Recall:    0.8859
-F1 Score:  0.9362
-ROC-AUC:   0.9903
+Accuracy:  0.9919
+Precision: 0.9930
+Recall:    0.9463
+F1 Score:  0.9691
+ROC-AUC:   0.9944
 
 Confusion Matrix:
 [[TN=965, FP=1],
- [FN=17, TP=132]]
+ [FN=8, TP=141]]
 
 Detailed Classification Report:
               precision    recall  f1-score   support
 
-        Safe       0.98      1.00      0.99       966
-   Scam/Spam       0.99      0.89      0.94       149
+        Safe       0.99      1.00      1.00       966
+   Scam/Spam       0.99      0.95      0.97       149
 
-    accuracy                           0.98      1115
-   macro avg       0.99      0.94      0.96      1115
-weighted avg       0.98      0.98      0.98      1115
+    accuracy                           0.99      1115
+   macro avg       0.99      0.97      0.98      1115
+weighted avg       0.99      0.99      0.99      1115

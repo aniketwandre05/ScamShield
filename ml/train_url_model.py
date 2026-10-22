@@ -139,7 +139,7 @@ def train_url_model():
         f.write("=" * 60 + "\n")
         f.write("SCAMSHIELD URL MODEL EVALUATION REPORT\n")
         f.write("=" * 60 + "\n")
-        f.write(f"Algorithm: Random Forest (100 estimators, max_depth=15) on 17 Handcrafted Lexical Features\n")
+        f.write(f"Algorithm: Random Forest (100 estimators, max_depth=15) on {len(FEATURE_NAMES)} Handcrafted Lexical & Structural Features\n")
         f.write(f"Features: {', '.join(FEATURE_NAMES)}\n")
         f.write(f"Total Processed Samples: {len(df)}\n")
         f.write(f"Train Size: {len(X_train)}, Test Size: {len(X_test)}\n")

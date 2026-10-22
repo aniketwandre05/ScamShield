@@ -117,7 +117,10 @@ class EmailPredictor(BasePredictor):
                 "label": "Unknown"
             }
             
-        combined_text = f"{subject} {body}".strip()
+        if subject:
+            combined_text = f"{subject} {subject} {body}".strip()
+        else:
+            combined_text = body.strip()
         cleaned = clean_text(combined_text)
         
         if not cleaned:

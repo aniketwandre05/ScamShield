@@ -11,6 +11,7 @@ import numpy as np
 import joblib
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.pipeline import FeatureUnion
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, accuracy_score, precision_score, recall_score, f1_score
 
@@ -76,23 +77,32 @@ def train_sms_model():
     )
     print(f"Training set: {len(X_train)} samples, Test set: {len(X_test)} samples")
     
-    # Vectorize with TF-IDF (unigrams and bigrams, min_df=2)
-    print("Fitting TF-IDF Vectorizer...")
-    vectorizer = TfidfVectorizer(
-        max_features=6000,
-        ngram_range=(1, 2),
-        sublinear_tf=True,
-        min_df=2
-    )
+    # Vectorize with FeatureUnion: Word (1-3) n-grams + Char-wb (3-5) n-grams
+    print("Fitting Enhanced FeatureUnion TF-IDF Vectorizer (Word + Character n-grams)...")
+    vectorizer = FeatureUnion([
+        ('word', TfidfVectorizer(
+            ngram_range=(1, 3),
+            max_features=7000,
+            sublinear_tf=True,
+            min_df=2
+        )),
+        ('char', TfidfVectorizer(
+            analyzer='char_wb',
+            ngram_range=(3, 5),
+            max_features=7000,
+            sublinear_tf=True,
+            min_df=2
+        ))
+    ])
     X_train_vec = vectorizer.fit_transform(X_train)
     X_test_vec = vectorizer.transform(X_test)
     
-    # Train Logistic Regression with mild balanced weighting
-    print("Training Logistic Regression Model...")
+    # Train Logistic Regression with balanced weighting and tuned C
+    print("Training Balanced Logistic Regression Model (C=5.0)...")
     model = LogisticRegression(
-        C=2.0,
+        C=5.0,
         max_iter=1000,
-        class_weight={0: 1.0, 1: 2.2},
+        class_weight='balanced',
         random_state=42
     )
     model.fit(X_train_vec, y_train)
@@ -133,7 +143,7 @@ def train_sms_model():
         f.write("=" * 60 + "\n")
         f.write("SCAMSHIELD SMS MODEL EVALUATION REPORT\n")
         f.write("=" * 60 + "\n")
-        f.write(f"Algorithm: TF-IDF (1-2 ngrams, 5000 max features) + Logistic Regression (C=2.0, balanced)\n")
+        f.write(f"Algorithm: FeatureUnion (Word 1-3 ngrams + Char-wb 3-5 ngrams) + Balanced Logistic Regression (C=5.0)\n")
         f.write(f"Total Dataset Size: {len(df)}\n")
         f.write(f"Train Size: {len(X_train)}, Test Size: {len(X_test)}\n")
         f.write("-" * 60 + "\n")

@@ -39,7 +39,8 @@ def load_email_dataset():
         df = df[['text_combined', 'label']].rename(columns={'text_combined': 'text'})
     elif 'body' in df.columns and 'label' in df.columns:
         if 'subject' in df.columns:
-            df['text'] = df['subject'].fillna('') + " " + df['body'].fillna('')
+            # Double-weight subject line for higher scam intent density
+            df['text'] = df['subject'].fillna('') + " " + df['subject'].fillna('') + " " + df['body'].fillna('')
         else:
             df['text'] = df['body']
         df = df[['text', 'label']]
@@ -88,21 +89,22 @@ def train_email_model():
     )
     print(f"Training set: {len(X_train)} samples, Test set: {len(X_test)} samples")
     
-    # Vectorize with TF-IDF (1-2 ngrams, 10,000 max features, min_df=2)
-    print("Fitting TF-IDF Vectorizer...")
+    # Vectorize with TF-IDF (1-3 ngrams, 12,000 max features, sublinear_tf=True, min_df=2)
+    print("Fitting Enhanced TF-IDF Vectorizer (1-3 ngrams, 12,000 features)...")
     vectorizer = TfidfVectorizer(
-        max_features=10000,
-        ngram_range=(1, 2),
+        max_features=12000,
+        ngram_range=(1, 3),
         sublinear_tf=True,
         min_df=2
     )
     X_train_vec = vectorizer.fit_transform(X_train)
     X_test_vec = vectorizer.transform(X_test)
     
-    # Train Logistic Regression
-    print("Training Logistic Regression Model...")
+    # Train Logistic Regression with balanced weights and tuned C
+    print("Training Balanced Logistic Regression Model (C=3.0)...")
     model = LogisticRegression(
-        C=1.0,
+        C=3.0,
+        class_weight='balanced',
         max_iter=1000,
         random_state=42
     )
@@ -144,7 +146,7 @@ def train_email_model():
         f.write("=" * 60 + "\n")
         f.write("SCAMSHIELD EMAIL MODEL EVALUATION REPORT\n")
         f.write("=" * 60 + "\n")
-        f.write(f"Algorithm: TF-IDF (1-2 ngrams, 10,000 max features) + Logistic Regression (C=2.0, balanced)\n")
+        f.write(f"Algorithm: TF-IDF (1-3 ngrams, 12,000 max features, sublinear_tf) + Balanced Logistic Regression (C=3.0)\n")
         f.write(f"Total Processed Samples: {len(df)}\n")
         f.write(f"Train Size: {len(X_train)}, Test Size: {len(X_test)}\n")
         f.write("-" * 60 + "\n")
