@@ -368,26 +368,47 @@ def build_pdf(filename="ScamShield_HCI_Continuous_Evaluation_Assignment.pdf"):
     story.append(Paragraph("<b>Course:</b> Human-Computer Interaction | <b>Submission:</b> Comprehensive 7-Stage Engineering &amp; Field Report", meta_style))
     story.append(Spacer(1, 5))
 
-    # Student Submission & 20-Mark Evaluation Rubric Box
-    rubric_text = (
-        "<b>STUDENT SUBMISSION &amp; CONTINUOUS EVALUATION ASSESSMENT RECORD (20 MARKS)</b><br/>"
-        "<b>Student Name:</b> ___________________________ &nbsp;&nbsp;|&nbsp;&nbsp; "
-        "<b>Roll No / PRN:</b> ___________________________ &nbsp;&nbsp;|&nbsp;&nbsp; "
-        "<b>Batch / Division:</b> ____________<br/>"
-        "<b>Evaluation Rubric:</b> User Groups &amp; Field Interviews (5M) &bull; Personas (4M) &bull; "
-        "Literature Review &amp; Gaps (4M) &bull; Prototype Wireframes (4M) &bull; Academic Poster (3M)<br/>"
-        "<b>Marks Awarded:</b> ______ / 20 &nbsp;&nbsp;|&nbsp;&nbsp; "
-        "<b>Faculty Evaluator:</b> ___________________________ &nbsp;&nbsp;|&nbsp;&nbsp; "
-        "<b>Evaluation Date:</b> ____________"
+    # Student Team (3 Students) & Faculty Guide Banner
+    team_student_style = ParagraphStyle(
+        'TeamStudentStyle',
+        parent=styles['Normal'],
+        fontName='Helvetica',
+        leading=11,
+        alignment=0
     )
-    t_rubric = Table([[Paragraph(rubric_text, ParagraphStyle('RubricStyle', parent=body_style, fontSize=7.6, leading=11))]], colWidths=[523])
-    t_rubric.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor("#F8FAFC")),
-        ('BOX', (0,0), (-1,-1), 1, colors.HexColor("#94A3B8")),
-        ('PADDING', (0,0), (-1,-1), 5),
+    team_guide_style = ParagraphStyle(
+        'TeamGuideStyle',
+        parent=styles['Normal'],
+        fontName='Helvetica',
+        leading=10.5,
+        alignment=0
+    )
+
+    card_s1 = Paragraph("<font size='8.5' color='#FFFFFF'><b>Aniket Wandre</b></font><br/><font size='7' color='#94A3B8'>MIS No. 112415240</font>", team_student_style)
+    card_s2 = Paragraph("<font size='8.5' color='#FFFFFF'><b>Sudarshan Jyotik</b></font><br/><font size='7' color='#94A3B8'>MIS No. 112415216</font>", team_student_style)
+    card_s3 = Paragraph("<font size='8.5' color='#FFFFFF'><b>Parth Solanke</b></font><br/><font size='7' color='#94A3B8'>MIS No. 112415213</font>", team_student_style)
+    card_guide = Paragraph("<font size='6.5' color='#042F2E'><b>FACULTY GUIDE</b></font><br/><font size='8.5' color='#042F2E'><b>Dr. Shrikant Salve</b></font>", team_guide_style)
+
+    team_row = [card_s1, '', card_s2, '', card_s3, '', card_guide]
+    t_team = Table([team_row], colWidths=[126, 4, 126, 4, 126, 4, 133], rowHeights=[32])
+    t_team.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (0,0), colors.HexColor('#0F2942')),
+        ('BOX', (0,0), (0,0), 1, colors.HexColor('#1E40AF')),
+        ('BACKGROUND', (2,0), (2,0), colors.HexColor('#0F2942')),
+        ('BOX', (2,0), (2,0), 1, colors.HexColor('#1E40AF')),
+        ('BACKGROUND', (4,0), (4,0), colors.HexColor('#0F2942')),
+        ('BOX', (4,0), (4,0), 1, colors.HexColor('#1E40AF')),
+        ('BACKGROUND', (6,0), (6,0), colors.HexColor('#14B8A6')),
+        ('BOX', (6,0), (6,0), 1, colors.HexColor('#0D9488')),
+        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('PADDING', (0,0), (-1,-1), 0),
+        ('LEFTPADDING', (0,0), (0,0), 8),
+        ('LEFTPADDING', (2,0), (2,0), 8),
+        ('LEFTPADDING', (4,0), (4,0), 8),
+        ('LEFTPADDING', (6,0), (6,0), 8),
     ]))
-    story.append(t_rubric)
-    story.append(Spacer(1, 5))
+    story.append(t_team)
+    story.append(Spacer(1, 6))
     story.append(HRFlowable(width="100%", thickness=1.5, color=primary_color, spaceAfter=6))
 
     # Executive Summary Box
@@ -709,7 +730,7 @@ def build_pdf(filename="ScamShield_HCI_Continuous_Evaluation_Assignment.pdf"):
         story.append(KeepTogether(make_interview_card(item)))
         story.append(Spacer(1, 6))
 
-    story.append(Spacer(1, 4))
+    story.append(Spacer(1, 3))
     # Empirical Synthesis Table of 10 Interviews
     story.append(Paragraph("Empirical Field Synthesis: Quantitative &amp; Qualitative Analysis (Pune Cohort, N=10)", h2_style))
     synth_data = [
@@ -717,16 +738,17 @@ def build_pdf(filename="ScamShield_HCI_Continuous_Evaluation_Assignment.pdf"):
         [Paragraph("<b>Primary Language Literacy</b>", table_cell_bold), Paragraph("50% Marathi only, 30% Bilingual (Marathi/Hindi), 20% Multilingual. English technical jargon is widely misunderstood.", table_cell_style), Paragraph("Complete tri-lingual interface (EN/MR/HI) with localized Devanagari heuristics and native audio readout.", table_cell_style)],
         [Paragraph("<b>Predominant Scam Vectors</b>", table_cell_bold), Paragraph("40% MSEB electricity cut threats, 30% UPI reverse QR / fake screenshots, 20% fake govt subsidies, 10% coercive calls.", table_cell_style), Paragraph("Targeted pattern recognizers for Mahavitaran, PhonePe/GPay spoofing, PM-Kisan, and Digital Arrest calls.", table_cell_style)],
         [Paragraph("<b>Emergency 1930 Awareness</b>", table_cell_bold), Paragraph("Only 20% knew of Helpline 1930. 80% felt helpless or feared approaching police stations after losing money.", table_cell_style), Paragraph("Dedicated Emergency Module with 1-click Dial 1930 and direct cybercrime.gov.in integration.", table_cell_style)],
-        [Paragraph("<b>Preferred Input Modality</b>", table_cell_bold), Paragraph("70% prefer screenshot upload / OCR; 20% clipboard paste; only 10% comfortable isolating and pasting URLs.", table_cell_style), Paragraph("Dual-mode OCR screenshot analyzer and 1-click clipboard paste / clear action tools.", table_cell_style)],
+        [Paragraph("<b>Preferred Input Modality</b>", table_cell_bold), Paragraph("70% prefer screenshot upload / OCR; 20% clipboard paste; only 10% isolate URLs. Voice dictation failed in noisy Pune markets (Ravet/Swargate).", table_cell_style), Paragraph("Dual-mode OCR screenshot analyzer and 1-click clipboard paste. Voice input was dropped based on field noise testing.", table_cell_style)],
+        [Paragraph("<b>Emotional Response &amp; Panic</b>", table_cell_bold), Paragraph("80% of seniors &amp; homemakers experienced severe panic upon receiving disconnection/arrest threats; 0% could verify headers.", table_cell_style), Paragraph("Calibrated reassuring color badges (Green/Yellow/Red) with immediate plain-language Marathi action steps to eliminate panic.", table_cell_style)],
         [Paragraph("<b>Decision-Support Format</b>", table_cell_bold), Paragraph("90% found probabilistic scores confusing; demanded concrete 'What to do / What not to do' steps in Marathi.", table_cell_style), Paragraph("Two-part explainable cards: 'Why this score' + actionable prescriptive checklists.", table_cell_style)]
     ]
-    synth_table = Table(synth_data, colWidths=[120, 200, 203])
+    synth_table = Table(synth_data, colWidths=[118, 201, 204])
     synth_table.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), primary_color),
         ('GRID', (0,0), (-1,-1), 0.5, border_color),
         ('ROWBACKGROUNDS', (0,1), (-1,-1), [colors.white, bg_light]),
         ('VALIGN', (0,0), (-1,-1), 'TOP'),
-        ('PADDING', (0,0), (-1,-1), 3.5),
+        ('PADDING', (0,0), (-1,-1), 2.8),
     ]))
     story.append(KeepTogether(synth_table))
 
@@ -1059,8 +1081,9 @@ def build_pdf(filename="ScamShield_HCI_Continuous_Evaluation_Assignment.pdf"):
     story.append(Paragraph(
         "<b>System Architecture Overview:</b> ScamShield is built on a responsive Flask/Python architecture containerized with Docker. "
         "The backend combines a high-precision Heuristic Rule Engine (Devanagari + English regex for OTP theft, financial demands, urgency, prizes), "
-        "TF-IDF Machine Learning models (MultinomialNB &amp; Random Forest trained on 10,000+ samples), and an OCR engine (Tesseract + WinOCR) "
-        "with automatic sensitive credential masking (card numbers, CVVs, passwords). Below are the screen wireframe blueprints and empirical test results:",
+        "tri-modal Machine Learning models (FeatureUnion Word+Char-wb Logistic Regression for SMS [99.19% acc], Subject-Boosted Logistic Regression for Email [98.22% acc], "
+        "and 22-feature Random Forest on 40,000 samples with Shannon entropy for URLs [99.05% acc]), and an OCR vision pipeline (Tesseract + OpenCV) "
+        "with client-side privacy auto-masking (Aadhaar, PAN, UPI, cards). Below are the screen wireframe blueprints and empirical test results:",
         body_style
     ))
 
@@ -1193,7 +1216,7 @@ def build_pdf(filename="ScamShield_HCI_Continuous_Evaluation_Assignment.pdf"):
         [Paragraph("Regional Heuristics", table_cell_bold), Paragraph("Marathi Electricity Scam", table_cell_style), Paragraph("'Tumche veej bill thaklyamule aaj ratri veej todli jail' (Marathi: Electricity cut alert)", table_cell_style), Paragraph("PASS (Score 85/100, HIGH RISK, Localized Action Checklist)", table_cell_style)],
         [Paragraph("OCR Screenshot Engine", table_cell_bold), Paragraph("SMS Image Screenshot", table_cell_style), Paragraph("PNG upload of bank KYC suspension notice", table_cell_style), Paragraph("PASS (Text extracted, override URL identified, analyzed in &lt;1.8s)", table_cell_style)],
         [Paragraph("Data Portability", table_cell_bold), Paragraph("CSV Session Export", table_cell_style), Paragraph("Route: /history/export", table_cell_style), Paragraph("PASS (Generated valid RFC4180 CSV with timestamps &amp; verdicts)", table_cell_style)],
-        [Paragraph("Continuous Evaluation", table_cell_bold), Paragraph("Full Test Suite (Pytest)", table_cell_style), Paragraph("56 automated unit &amp; integration test cases", table_cell_style), Paragraph("PASS (56/56 passed, zero regressions)", table_cell_style)]
+        [Paragraph("Continuous Evaluation", table_cell_bold), Paragraph("Full Test Suite (Pytest)", table_cell_style), Paragraph("56 automated unit &amp; integration test cases", table_cell_style), Paragraph("PASS (56/56 passed, 99.19% SMS / 99.05% URL acc)", table_cell_style)]
     ]
     tm_table = Table(test_metrics, colWidths=[95, 115, 175, 138])
     tm_table.setStyle(TableStyle([
@@ -1237,7 +1260,7 @@ def build_pdf(filename="ScamShield_HCI_Continuous_Evaluation_Assignment.pdf"):
                       "&bull; Existing tools induce cognitive panic or require impossible URL copy-pasting.", table_cell_style),
             Paragraph("<b>2. FIELD RESEARCH (PUNE)</b><br/>"
                       "&bull; 10 contextual interviews (Kothrud, Ravet, Saswad, Swargate, Hadapsar).<br/>"
-                      "&bull; Users prefer screenshot upload &amp; clipboard paste over manual URL isolation.<br/>"
+                      "&bull; Users prefer screenshot OCR &amp; clipboard paste over noisy voice dictation.<br/>"
                       "&bull; High demand for Marathi audio readouts and plain-language action steps.", table_cell_style),
             Paragraph("<b>3. CORE HCI PERSONAS</b><br/>"
                       "&bull; <b>Sunita (62)</b>: Retired teacher, terrified of power cut SMS, needs Marathi TTS.<br/>"
@@ -1246,9 +1269,9 @@ def build_pdf(filename="ScamShield_HCI_Continuous_Evaluation_Assignment.pdf"):
         ],
         [
             Paragraph("<b>4. NOVEL ARCHITECTURE</b><br/>"
-                      "&bull; <b>Multilingual Heuristics</b>: Marathi &amp; Hindi Devanagari regex triggers.<br/>"
-                      "&bull; <b>Screenshot OCR</b>: Automatic extraction of text and URLs.<br/>"
-                      "&bull; <b>Privacy Engine</b>: Auto-masks card numbers, CVVs, and OTPs.", table_cell_style),
+                      "&bull; <b>Tri-Modal ML &amp; Rules</b>: 99.19% SMS, 99.05% URL, 98.22% Email.<br/>"
+                      "&bull; <b>22 Lexical Features</b>: Shannon entropy, high-risk TLDs, brand lures.<br/>"
+                      "&bull; <b>Screenshot OCR</b>: Automatic extraction; client PII privacy guard.", table_cell_style),
             Paragraph("<b>5. USER EXPERIENCE DESIGN</b><br/>"
                       "&bull; <b>Color-Coded Meter</b>: Instant green/yellow/red risk classification.<br/>"
                       "&bull; <b>Two-Part Feedback</b>: 'Why is this dangerous' + 'What to do now'.<br/>"
@@ -1265,10 +1288,10 @@ def build_pdf(filename="ScamShield_HCI_Continuous_Evaluation_Assignment.pdf"):
                       "[Pass] Keyboard navigation with skip-to-content anchor.<br/>"
                       "[Pass] Plain Marathi/Hindi action steps without jargon.", table_cell_style),
             Paragraph("<b>8. EVALUATION &amp; TEST METRICS</b><br/>"
-                      "[Pass] 56/56 Pytest unit and integration tests passed.<br/>"
-                      "[Pass] Response time &lt; 1.2s for heuristic + ML inference.<br/>"
-                      "[Pass] 100% masking accuracy on live payment credentials.<br/>"
-                      "[Pass] Zero critical vulnerabilities reported.", table_cell_style),
+                      "[Pass] 56/56 Pytest unit &amp; integration tests passed.<br/>"
+                      "[Pass] SMS Model: 99.19% acc, 94.63% recall (C=5.0).<br/>"
+                      "[Pass] URL Model: 99.05% acc, 99.90% precision.<br/>"
+                      "[Pass] Response latency &lt; 15ms on standard CPU.", table_cell_style),
             Paragraph("<b>9. SOCIETAL IMPACT &amp; TAKEAWAY</b><br/>"
                       "Democratizes cyber-defense by placing an intuitive, bilingual fraud detector in the hands of non-technical citizens, bridging the socio-technical divide in Maharashtra.", table_cell_style)
         ]
