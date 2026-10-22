@@ -438,6 +438,17 @@ document.addEventListener("DOMContentLoaded", function () {
         if (noMatchEl) {
             noMatchEl.style.display = visibleCount === 0 ? "block" : "none";
         }
+
+        const countBadge = document.getElementById("history-count-badge");
+        if (countBadge) {
+            const templateFilter = countBadge.getAttribute("data-template-filter") || "Showing {visible} of {total} scans";
+            const templateAll = countBadge.getAttribute("data-template-all") || "Showing {count} scans";
+            if (visibleCount === historyCards.length) {
+                countBadge.textContent = templateAll.replace("{count}", visibleCount);
+            } else {
+                countBadge.textContent = templateFilter.replace("{visible}", visibleCount).replace("{total}", historyCards.length);
+            }
+        }
     }
 
     historySearch?.addEventListener("input", applyHistoryFilters);
@@ -459,16 +470,18 @@ document.addEventListener("DOMContentLoaded", function () {
                         b.classList.add("opt-correct");
                     }
                 });
+                const correctMsg = card.getAttribute("data-feedback-correct") || "✅ Correct! Great instincts for spotting fraud traps.";
+                const wrongMsg = card.getAttribute("data-feedback-wrong") || "❌ Incorrect. Remember: Official institutions never demand immediate action or secret codes.";
                 if (!isCorrect) {
                     btn.classList.add("opt-wrong");
                     if (feedbackEl) {
-                        feedbackEl.textContent = "❌ Incorrect. Remember: Official institutions never demand immediate action or secret codes.";
+                        feedbackEl.textContent = wrongMsg;
                         feedbackEl.style.color = "var(--danger-color)";
                         feedbackEl.style.display = "block";
                     }
                 } else {
                     if (feedbackEl) {
-                        feedbackEl.textContent = "✅ Correct! Great instincts for spotting fraud traps.";
+                        feedbackEl.textContent = correctMsg;
                         feedbackEl.style.color = "var(--safe-color)";
                         feedbackEl.style.display = "block";
                     }

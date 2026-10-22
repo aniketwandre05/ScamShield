@@ -47,8 +47,8 @@
             </select>
         </div>
 
-        <div class="history-count-pill" id="history-count-badge" aria-live="polite">
-            Showing {{ history|length }} scans
+        <div class="history-count-pill" id="history-count-badge" aria-live="polite" data-total="{{ history|length }}" data-template-all="{{ t('history_showing_count', count='{count}') }}" data-template-filter="{{ t('history_showing_filter', visible='{visible}', total='{total}') }}">
+            {{ t('history_showing_count', count=history|length) }}
         </div>
     </div>
 
@@ -81,7 +81,7 @@
         </div>
         {% endfor %}
         <div id="history-no-match" style="display: none; text-align: center; padding: 32px; color: var(--text-muted);">
-            No scans match your search criteria.
+            {{ t('history_no_matches') }}
         </div>
     </div>
     {% else %}

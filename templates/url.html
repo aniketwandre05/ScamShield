@@ -7,7 +7,7 @@
     <!-- Back to Choices Navigation (Shneiderman Rule #6 Easy Reversal) -->
     <div class="card-top-nav">
         <a href="{{ url_for('index') }}" class="back-link">
-            &larr; {{ t('nav_home') | default('Home') }} / Choose Another Check
+            &larr; {{ t('nav_home') | default('Home') }} / {{ t('choose_another_check') }}
         </a>
     </div>
 
@@ -60,7 +60,7 @@
                     {{ t('url_btn') }}
                 </button>
                 <button type="button" class="btn-secondary btn-reset-form" data-target="url_input">
-                    🔄 Clear Form
+                    🔄 {{ t('btn_clear_form') }}
                 </button>
             </div>
         </form>
@@ -69,35 +69,35 @@
         <div class="demo-samples-box" role="region" aria-label="Demo Examples">
             <div class="demo-title">
                 <span>💡 {{ t('try_example') }}</span>
-                <span class="demo-hint">(Click any example below to test immediately)</span>
+                <span class="demo-hint">{{ t('demo_click_hint') }}</span>
             </div>
             
             <div class="demo-category-group">
-                <div class="demo-category-label safe-label">🟢 Legitimate Websites (Safe):</div>
+                <div class="demo-category-label safe-label">{{ t('demo_safe_url_label') }}</div>
                 <div class="demo-btn-group">
                     <button type="button" class="btn-demo btn-demo-safe" data-target="url_input" data-text="https://www.google.com">
-                        Google Search
+                        {{ t('demo_url_google') }}
                     </button>
                     <button type="button" class="btn-demo btn-demo-safe" data-target="url_input" data-text="https://en.wikipedia.org/wiki/Computer_security">
-                        Wikipedia Article
+                        {{ t('demo_url_wiki') }}
                     </button>
                     <button type="button" class="btn-demo btn-demo-safe" data-target="url_input" data-text="https://github.com/login">
-                        GitHub Portal
+                        {{ t('demo_url_github') }}
                     </button>
                 </div>
             </div>
 
             <div class="demo-category-group" style="margin-top: 10px;">
-                <div class="demo-category-label scam-label">🔴 Common Scam & Phishing Links (High Risk):</div>
+                <div class="demo-category-label scam-label">{{ t('demo_scam_url_label') }}</div>
                 <div class="demo-btn-group">
                     <button type="button" class="btn-demo btn-demo-scam" data-target="url_input" data-text="http://192.168.1.100/secure-bank-login/verify/update-account">
-                        Raw IP Address Phishing
+                        {{ t('demo_url_ip') }}
                     </button>
                     <button type="button" class="btn-demo btn-demo-scam" data-target="url_input" data-text="http://paypal-security-verification.update-account.free-login.xyz/signin">
-                        Deceptive Subdomain Phishing
+                        {{ t('demo_url_subdomain') }}
                     </button>
                     <button type="button" class="btn-demo btn-demo-scam" data-target="url_input" data-text="http://bit.ly/claim-free-prize-bonus-winner">
-                        Shortened Obfuscated Link
+                        {{ t('demo_url_short') }}
                     </button>
                 </div>
             </div>
@@ -110,12 +110,12 @@
             <input type="hidden" name="input_mode" value="screenshot">
             <div class="form-group">
                 <label class="form-label" id="url-upload-label">{{ t('tab_upload_url_screenshot') }}</label>
-                <div class="upload-zone" tabindex="0" role="button" aria-labelledby="url-upload-label" aria-describedby="url-upload-help">
+                <div class="upload-zone" tabindex="0" role="button" aria-labelledby="url-upload-label" aria-describedby="url-help-text">
                     <div class="upload-zone-icon" aria-hidden="true">🖼️</div>
                     <div class="upload-zone-text">{{ t('upload_drag_drop') }}</div>
                     <div class="upload-zone-sub" id="url-upload-help">{{ t('upload_formats') }} &bull; Max 16 MB</div>
                     <button type="button" class="btn-browse-file" tabindex="-1">
-                        📁 Choose File or Take Photo
+                        📁 {{ t('upload_browse_btn') }}
                     </button>
                     <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" capture="environment" style="display: none;" required aria-label="Upload link screenshot">
                 </div>

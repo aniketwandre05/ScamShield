@@ -7,7 +7,7 @@
     <!-- Back to Choices Navigation (Shneiderman Rule #6 Easy Reversal) -->
     <div class="card-top-nav">
         <a href="{{ url_for('index') }}" class="back-link">
-            &larr; {{ t('nav_home') | default('Home') }} / Choose Another Check
+            &larr; {{ t('nav_home') | default('Home') }} / {{ t('choose_another_check') }}
         </a>
     </div>
 
@@ -53,7 +53,7 @@
                 </div>
                 <textarea id="sms_text" name="sms_text" class="form-control" placeholder="{{ t('sms_placeholder') }}" required rows="5" aria-describedby="sms-char-hint"></textarea>
                 <div id="sms-char-hint" class="input-char-hint" aria-live="polite">
-                    Tip: Paste the complete message including any phone numbers or links.
+                    {{ t('sms_hint') }}
                 </div>
             </div>
 
@@ -62,7 +62,7 @@
                     {{ t('sms_btn') }}
                 </button>
                 <button type="button" class="btn-secondary btn-reset-form" data-target="sms_text">
-                    🔄 Clear Form
+                    🔄 {{ t('btn_clear_form') }}
                 </button>
             </div>
         </form>
@@ -71,29 +71,29 @@
         <div class="demo-samples-box" role="region" aria-label="Demo Examples">
             <div class="demo-title">
                 <span>💡 {{ t('try_example') }}</span>
-                <span class="demo-hint">(Click any example below to test immediately)</span>
+                <span class="demo-hint">{{ t('demo_click_hint') }}</span>
             </div>
             
             <div class="demo-category-group">
-                <div class="demo-category-label safe-label">🟢 Legitimate Messages (Safe):</div>
+                <div class="demo-category-label safe-label">{{ t('demo_safe_sms_label') }}</div>
                 <div class="demo-btn-group">
                     <button type="button" class="btn-demo btn-demo-safe" data-target="sms_text" data-text="Hey John, are we still meeting for lunch tomorrow at 1 PM?">
-                        Lunch Meeting
+                        {{ t('demo_sms_lunch') }}
                     </button>
                     <button type="button" class="btn-demo btn-demo-safe" data-target="sms_text" data-text="Your package #US-9821 has arrived at the regional depot. Please confirm delivery address: https://usps.com/track">
-                        Postal Package Update
+                        {{ t('demo_sms_package') }}
                     </button>
                 </div>
             </div>
 
             <div class="demo-category-group" style="margin-top: 10px;">
-                <div class="demo-category-label scam-label">🔴 Common Scam Messages (High Risk):</div>
+                <div class="demo-category-label scam-label">{{ t('demo_scam_sms_label') }}</div>
                 <div class="demo-btn-group">
                     <button type="button" class="btn-demo btn-demo-scam" data-target="sms_text" data-text="URGENT: Your Bank account has been blocked due to suspicious activity. Verify your identity now at http://bit.ly/bank-security-verify or service will be closed.">
-                        Bank KYC Block Threat
+                        {{ t('demo_sms_kyc') }}
                     </button>
                     <button type="button" class="btn-demo btn-demo-scam" data-target="sms_text" data-text="CONGRATULATIONS! You have won $5,000 in our anniversary giveaway! Claim your prize now at http://192.168.0.50/winner-claim before it expires in 2 hours!">
-                        Lottery Winner Scam
+                        {{ t('demo_sms_lottery') }}
                     </button>
                 </div>
             </div>
@@ -105,13 +105,13 @@
         <form action="{{ url_for('analyze_sms') }}" method="POST" enctype="multipart/form-data" id="sms-upload-form">
             <input type="hidden" name="input_mode" value="screenshot">
             <div class="form-group">
-                <label class="form-label" id="sms-upload-label">{{ t('sms_upload_label') | default('Select or drop a screenshot of the message:') }}</label>
+                <label class="form-label" id="sms-upload-label">{{ t('sms_upload_label') }}</label>
                 <div class="upload-zone" tabindex="0" role="button" aria-labelledby="sms-upload-label" aria-describedby="upload-help-text">
                     <div class="upload-zone-icon" aria-hidden="true">🖼️</div>
                     <div class="upload-zone-text">{{ t('upload_drag_drop') }}</div>
                     <div class="upload-zone-sub" id="upload-help-text">{{ t('upload_formats') }} &bull; Max 16 MB</div>
                     <button type="button" class="btn-browse-file" tabindex="-1">
-                        📁 Choose File or Take Photo
+                        📁 {{ t('upload_browse_btn') }}
                     </button>
                     <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" capture="environment" style="display: none;" required aria-label="Upload message screenshot">
                 </div>

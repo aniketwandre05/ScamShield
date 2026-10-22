@@ -124,3 +124,107 @@ def test_marathi_backend_phone_analysis(client):
     html = res.data.decode('utf-8')
     # Should have Marathi explanations and checklist
     assert 'तात्काळ' in html or 'स्क्रीन शेअरिंग' in html or 'कॉल' in html
+
+
+def test_learn_page_fully_localized_hindi(client):
+    client.get('/set_language/hi')
+    res = client.get('/learn')
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    assert 'धोखाधड़ी जागरूकता और शिक्षा केंद्र' in html
+    assert 'बिजली बिल कनेक्शन काटना' in html
+    assert 'धोखे की चाल:' in html
+    assert 'खतरे के संकेत:' in html
+    assert 'बैंक खाता केवाईसी / पैन ब्लॉक' in html
+    assert 'रिमोट स्क्रीन शेयरिंग' in html
+    assert 'अक्सर पूछे जाने वाले प्रश्न' in html
+    assert 'बिजली कटने से बचने के लिए तुरंत उस नंबर पर कॉल करें।' in html
+
+
+def test_learn_page_fully_localized_marathi(client):
+    client.get('/set_language/mr')
+    res = client.get('/learn')
+    assert res.status_code == 200
+    html = res.data.decode('utf-8')
+    assert 'फसवणूक जागृती आणि शिक्षण केंद्र' in html
+    assert 'वीज बिल वीजपुरवठा खंडित करणे' in html
+    assert 'फसवणुकीची पद्धत:' in html
+    assert 'धोक्याचे इशारे:' in html
+    assert 'बँक खाते केवायसी / पॅन ब्लॉक' in html
+    assert 'रिमोट स्क्रीन शेअरिंग' in html
+    assert 'वारंवार विचारले जाणारे प्रश्न' in html
+    assert 'वीज खंडित होऊ नये म्हणून ताबडतोब त्या नंबरवर कॉल करावा.' in html
+
+
+def test_all_pages_localized_marathi(client):
+    client.get('/set_language/mr')
+
+    # SMS
+    res = client.get('/check/sms')
+    html = res.data.decode('utf-8')
+    assert 'दुसरी तपासणी निवडा' in html
+    assert 'फॉर्म साफ करा' in html
+    assert 'फाइल निवडा किंवा फोटो काढा' in html
+    assert 'अधिकृत संदेश (सुरक्षित):' in html
+
+    # Email
+    res = client.get('/check/email')
+    html = res.data.decode('utf-8')
+    assert '(पर्यायी)' in html
+    assert 'कामाचा प्रगती अहवाल' in html
+
+    # URL
+    res = client.get('/check/url')
+    html = res.data.decode('utf-8')
+    assert 'गुगल सर्च' in html
+
+    # Phone
+    res = client.get('/check/phone')
+    html = res.data.decode('utf-8')
+    assert 'भाग १' in html
+    assert 'भाग २' in html
+    assert 'सर्व उत्तरे साफ करा' in html
+
+    # Report
+    res = client.get('/report')
+    html = res.data.decode('utf-8')
+    assert 'आपत्कालीन हेल्पलाईन' in html
+    assert 'आता १९३० वर कॉल करा' in html
+    assert 'पोर्टलला भेट द्या ↗' in html
+
+
+def test_all_pages_localized_hindi(client):
+    client.get('/set_language/hi')
+
+    # SMS
+    res = client.get('/check/sms')
+    html = res.data.decode('utf-8')
+    assert 'दूसरी जांच चुनें' in html
+    assert 'फ़ॉर्म साफ़ करें' in html
+    assert 'फ़ाइल चुनें या फ़ोटो लें' in html
+    assert 'वैध संदेश (सुरक्षित):' in html
+
+    # Email
+    res = client.get('/check/email')
+    html = res.data.decode('utf-8')
+    assert '(वैकल्पिक)' in html
+    assert 'कार्य प्रगति रिपोर्ट' in html
+
+    # URL
+    res = client.get('/check/url')
+    html = res.data.decode('utf-8')
+    assert 'गूगल सर्च' in html
+
+    # Phone
+    res = client.get('/check/phone')
+    html = res.data.decode('utf-8')
+    assert 'भाग १' in html
+    assert 'भाग २' in html
+    assert 'सभी उत्तर साफ़ करें' in html
+
+    # Report
+    res = client.get('/report')
+    html = res.data.decode('utf-8')
+    assert 'आपातकालीन हेल्पलाइन' in html
+    assert 'अभी १९३० पर कॉल करें' in html
+    assert 'पोर्टल पर जाएं ↗' in html

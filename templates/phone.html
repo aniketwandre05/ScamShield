@@ -7,7 +7,7 @@
     <!-- Back to Choices Navigation (Shneiderman Rule #6 Easy Reversal) -->
     <div class="card-top-nav">
         <a href="{{ url_for('index') }}" class="back-link">
-            &larr; {{ t('nav_home') | default('Home') }} / Choose Another Check
+            &larr; {{ t('nav_home') | default('Home') }} / {{ t('choose_another_check') }}
         </a>
     </div>
 
@@ -22,7 +22,7 @@
     <!-- Questionnaire Progress Bar (Nielsen Heuristic #1 Visibility of System Status) -->
     <div class="phone-progress-box" role="region" aria-label="Questionnaire Progress">
         <div class="phone-progress-header">
-            <span class="progress-title" id="progress-status-text">Questions Answered: <strong id="answered-count">0</strong> of 10</span>
+            <span class="progress-title" id="progress-status-text">{{ t('phone_progress_title') }}: <strong id="answered-count">0</strong> {{ t('phone_of_total') }}</span>
             <span class="progress-percent" id="answered-percent">0%</span>
         </div>
         <div class="progress-track" aria-hidden="true">
@@ -34,14 +34,14 @@
         <!-- Chunk 1: Questions 1 to 5 (Miller's Law - 5 items chunk) -->
         <div class="phone-section-chunk" id="chunk-1">
             <div class="chunk-header-pill">
-                <span class="chunk-step-badge">Part 1</span>
-                <span>Immediate Demands: Passwords, Banking & Wire Transfers</span>
+                <span class="chunk-step-badge">{{ t('phone_part_1') }}</span>
+                <span>{{ t('phone_chunk1_title') }}</span>
             </div>
 
             {% for q in questions[:5] %}
             <div class="question-item" data-q-index="{{ loop.index }}">
                 <div class="question-header-row">
-                    <span class="question-number-badge">Question {{ loop.index }} of 10</span>
+                    <span class="question-number-badge">{{ t('question_word') }} {{ loop.index }} {{ t('phone_of_total') }}</span>
                 </div>
                 <div class="question-title" id="label-{{ q.id }}">
                     {{ loop.index }}. {{ q.question }}
@@ -69,15 +69,15 @@
         <!-- Chunk 2: Questions 6 to 10 (Miller's Law - 5 items chunk) -->
         <div class="phone-section-chunk" id="chunk-2" style="margin-top: 24px;">
             <div class="chunk-header-pill">
-                <span class="chunk-step-badge">Part 2</span>
-                <span>Caller Behavior: Impersonation, Screen Sharing & Threats</span>
+                <span class="chunk-step-badge">{{ t('phone_part_2') }}</span>
+                <span>{{ t('phone_chunk2_title') }}</span>
             </div>
 
             {% for q in questions[5:] %}
             {% set q_num = loop.index + 5 %}
             <div class="question-item" data-q-index="{{ q_num }}">
                 <div class="question-header-row">
-                    <span class="question-number-badge">Question {{ q_num }} of 10</span>
+                    <span class="question-number-badge">{{ t('question_word') }} {{ q_num }} {{ t('phone_of_total') }}</span>
                 </div>
                 <div class="question-title" id="label-{{ q.id }}">
                     {{ q_num }}. {{ q.question }}
@@ -107,7 +107,7 @@
                 {{ t('phone_btn') }}
             </button>
             <button type="reset" class="btn-secondary" id="btn-reset-phone">
-                🔄 Clear All Answers
+                🔄 {{ t('phone_btn_reset') }}
             </button>
         </div>
     </form>

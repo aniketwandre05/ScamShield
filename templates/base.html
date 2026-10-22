@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ t('brand_title') }} - {{ t('brand_subtitle') }}{% endblock %}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=5">
 </head>
 <body>
     <!-- WCAG 2.4.1 Skip to Main Content -->
@@ -37,13 +37,13 @@
                 <div class="header-tools-group">
                     <!-- Font Size Scaling Controls (ISO 9241 Individualisation & WCAG 1.4.4) -->
                     <div class="font-size-controls" role="group" aria-label="Text Size Controls">
-                        <button type="button" id="btn-font-decrease" class="header-btn-tool font-ctrl-btn" aria-label="Decrease text size" title="Smaller Text (A-)">
+                        <button type="button" id="btn-font-decrease" class="header-btn-tool font-ctrl-btn" aria-label="{{ t('font_size_smaller') }}" title="{{ t('font_size_smaller') }}">
                             A-
                         </button>
-                        <button type="button" id="btn-font-reset" class="header-btn-tool font-ctrl-btn" aria-label="Reset text size" title="Default Text Size (A)">
+                        <button type="button" id="btn-font-reset" class="header-btn-tool font-ctrl-btn" aria-label="{{ t('font_size_default') }}" title="{{ t('font_size_default') }}">
                             A
                         </button>
-                        <button type="button" id="btn-font-increase" class="header-btn-tool font-ctrl-btn" aria-label="Increase text size" title="Larger Text (A+)">
+                        <button type="button" id="btn-font-increase" class="header-btn-tool font-ctrl-btn" aria-label="{{ t('font_size_larger') }}" title="{{ t('font_size_larger') }}">
                             A+
                         </button>
                     </div>
@@ -55,7 +55,7 @@
 
                     <!-- Accessibility Controls Menu Button -->
                     <div class="a11y-dropdown-wrapper">
-                        <button type="button" id="a11y-menu-btn" class="header-btn-tool" aria-haspopup="true" aria-expanded="false" title="Accessibility Options" aria-label="Accessibility options menu">
+                        <button type="button" id="a11y-menu-btn" class="header-btn-tool" aria-haspopup="true" aria-expanded="false" title="{{ t('a11y_menu_title') }}" aria-label="{{ t('a11y_menu_title') }}">
                             ♿
                         </button>
                         <div id="a11y-dropdown" class="a11y-dropdown" role="menu">
@@ -101,12 +101,12 @@
         <div id="accessible-modal" class="accessible-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
             <div class="modal-header">
                 <span class="modal-icon" aria-hidden="true">⚠️</span>
-                <h3 id="modal-title" class="modal-title">Confirm Action</h3>
+                <h3 id="modal-title" class="modal-title">{{ t('modal_confirm_title') }}</h3>
             </div>
-            <p id="modal-desc" class="modal-desc">Are you sure you want to proceed?</p>
+            <p id="modal-desc" class="modal-desc">{{ t('modal_confirm_desc') }}</p>
             <div class="modal-actions">
-                <button type="button" id="modal-btn-cancel" class="btn-modal-cancel">Cancel</button>
-                <button type="button" id="modal-btn-confirm" class="btn-modal-confirm">Confirm</button>
+                <button type="button" id="modal-btn-cancel" class="btn-modal-cancel">{{ t('modal_btn_cancel') }}</button>
+                <button type="button" id="modal-btn-confirm" class="btn-modal-confirm">{{ t('modal_btn_confirm') }}</button>
             </div>
         </div>
     </div>
@@ -124,7 +124,7 @@
         </p>
     </footer>
 
-    <script src="{{ url_for('static', filename='js/main.js') }}?v=4"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}?v=5"></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>

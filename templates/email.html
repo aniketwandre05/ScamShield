@@ -7,7 +7,7 @@
     <!-- Back to Choices Navigation (Shneiderman Rule #6 Easy Reversal) -->
     <div class="card-top-nav">
         <a href="{{ url_for('index') }}" class="back-link">
-            &larr; {{ t('nav_home') | default('Home') }} / Choose Another Check
+            &larr; {{ t('nav_home') | default('Home') }} / {{ t('choose_another_check') }}
         </a>
     </div>
 
@@ -41,12 +41,12 @@
             <input type="hidden" name="input_mode" value="text">
             
             <div class="form-group">
-                <label for="email_sender" class="form-label">{{ t('email_sender_label') }} <span class="label-optional">(Optional)</span></label>
+                <label for="email_sender" class="form-label">{{ t('email_sender_label') }} <span class="label-optional">{{ t('label_optional') }}</span></label>
                 <input type="email" id="email_sender" name="email_sender" class="form-control" placeholder="{{ t('email_sender_placeholder') }}" autocomplete="off">
             </div>
 
             <div class="form-group">
-                <label for="email_subject" class="form-label">{{ t('email_subject_label') }} <span class="label-optional">(Optional)</span></label>
+                <label for="email_subject" class="form-label">{{ t('email_subject_label') }} <span class="label-optional">{{ t('label_optional') }}</span></label>
                 <input type="text" id="email_subject" name="email_subject" class="form-control" placeholder="{{ t('email_subject_placeholder') }}">
             </div>
 
@@ -70,7 +70,7 @@
                     {{ t('email_btn') }}
                 </button>
                 <button type="button" class="btn-secondary btn-reset-form" data-target="email_body" data-target-extra="email_subject" data-target-sender="email_sender">
-                    🔄 Clear Form
+                    🔄 {{ t('btn_clear_form') }}
                 </button>
             </div>
         </form>
@@ -79,41 +79,41 @@
         <div class="demo-samples-box" role="region" aria-label="Demo Examples">
             <div class="demo-title">
                 <span>💡 {{ t('try_example') }}</span>
-                <span class="demo-hint">(Click any example below to test immediately)</span>
+                <span class="demo-hint">{{ t('demo_click_hint') }}</span>
             </div>
 
             <div class="demo-category-group">
-                <div class="demo-category-label safe-label">🟢 Legitimate Emails (Safe):</div>
+                <div class="demo-category-label safe-label">{{ t('demo_safe_email_label') }}</div>
                 <div class="demo-btn-group">
                     <button type="button" class="btn-demo btn-demo-safe" 
                         data-target="email_body" data-text="Hello Team, Attached is the Q3 project milestone report. Please review the deliverables before our Friday meeting."
                         data-target-extra="email_subject" data-text-extra="Project Roadmap Q3"
                         data-target-sender="email_sender" data-text-sender="manager@company.org">
-                        Work Milestone Roadmap
+                        {{ t('demo_email_work') }}
                     </button>
                     <button type="button" class="btn-demo btn-demo-safe" 
                         data-target="email_body" data-text="Your recent invoice #9482 for $42.50 has been processed successfully. View your receipt at https://receipts.service.com"
                         data-target-extra="email_subject" data-text-extra="Your Subscription Receipt"
                         data-target-sender="email_sender" data-text-sender="billing@service.com">
-                        Subscription Invoice
+                        {{ t('demo_email_invoice') }}
                     </button>
                 </div>
             </div>
 
             <div class="demo-category-group" style="margin-top: 10px;">
-                <div class="demo-category-label scam-label">🔴 Common Phishing Emails (High Risk):</div>
+                <div class="demo-category-label scam-label">{{ t('demo_scam_email_label') }}</div>
                 <div class="demo-btn-group">
                     <button type="button" class="btn-demo btn-demo-scam" 
                         data-target="email_body" data-text="URGENT: Your PayPal account has been limited due to unusual login attempts. You must confirm your identity within 24 hours at http://paypal-security-update.account-verification.com/login or your account will be permanently closed."
                         data-target-extra="email_subject" data-text-extra="Account Limited: Immediate Action Required"
                         data-target-sender="email_sender" data-text-sender="security-alert@paypaI-notice.com">
-                        PayPal Account Limitation
+                        {{ t('demo_email_paypal') }}
                     </button>
                     <button type="button" class="btn-demo btn-demo-scam" 
                         data-target="email_body" data-text="Dear Taxpayer, our records show you are entitled to a refund of $1,280.00 from the Internal Revenue Service. To process your direct deposit payment, verify your SSN and bank details at http://192.168.1.50/irs-gov/refund-claim"
                         data-target-extra="email_subject" data-text-extra="Tax Refund Notification #TX-9842"
                         data-target-sender="email_sender" data-text-sender="refunds@irs-tax-gov-portal.com">
-                        IRS Tax Refund Phish
+                        {{ t('demo_email_tax') }}
                     </button>
                 </div>
             </div>
@@ -125,13 +125,13 @@
         <form action="{{ url_for('analyze_email') }}" method="POST" enctype="multipart/form-data" id="email-upload-form">
             <input type="hidden" name="input_mode" value="screenshot">
             <div class="form-group">
-                <label class="form-label" id="email-upload-label">{{ t('email_upload_label') | default('Select or drop a screenshot of the email:') }}</label>
+                <label class="form-label" id="email-upload-label">{{ t('email_upload_label') }}</label>
                 <div class="upload-zone" tabindex="0" role="button" aria-labelledby="email-upload-label" aria-describedby="email-upload-help">
                     <div class="upload-zone-icon" aria-hidden="true">🖼️</div>
                     <div class="upload-zone-text">{{ t('upload_drag_drop') }}</div>
                     <div class="upload-zone-sub" id="email-upload-help">{{ t('upload_formats') }} &bull; Max 16 MB</div>
                     <button type="button" class="btn-browse-file" tabindex="-1">
-                        📁 Choose File or Take Photo
+                        📁 {{ t('upload_browse_btn') }}
                     </button>
                     <input type="file" name="screenshot" accept=".png,.jpg,.jpeg,.webp" capture="environment" style="display: none;" required aria-label="Upload email screenshot">
                 </div>

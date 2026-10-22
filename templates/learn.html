@@ -19,45 +19,45 @@
         <div class="scam-cards-grid">
             <div class="scam-pattern-card">
                 <div class="scam-pattern-header">
-                    <span class="scam-badge-danger">Common Trap</span>
-                    <h4>⚡ Electricity Bill Disconnection</h4>
+                    <span class="scam-badge-danger">{{ t('learn_badge_common_trap') }}</span>
+                    <h4>{{ t('learn_p1_title') }}</h4>
                 </div>
-                <p><strong>The Trick:</strong> You receive an SMS claiming your power will be cut tonight at 9:30 PM due to an unpaid bill, urging you to call an unknown officer.</p>
+                <p><strong>{{ t('learn_the_trick') }}</strong> {{ t('learn_p1_trick') }}</p>
                 <div class="scam-red-flags">
-                    <strong>🚩 Red Flags:</strong> Urgent deadline (same night), unofficial personal mobile number, demands immediate payment or app install.
+                    <strong>{{ t('learn_red_flags') }}</strong> {{ t('learn_p1_flags') }}
                 </div>
             </div>
 
             <div class="scam-pattern-card">
                 <div class="scam-pattern-header">
-                    <span class="scam-badge-danger">Phishing</span>
-                    <h4>🏦 Bank Account KYC / PAN Block</h4>
+                    <span class="scam-badge-danger">{{ t('learn_badge_phishing') }}</span>
+                    <h4>{{ t('learn_p2_title') }}</h4>
                 </div>
-                <p><strong>The Trick:</strong> Messages stating your bank account or debit card has been frozen due to expired KYC or missing PAN card.</p>
+                <p><strong>{{ t('learn_the_trick') }}</strong> {{ t('learn_p2_trick') }}</p>
                 <div class="scam-red-flags">
-                    <strong>🚩 Red Flags:</strong> Shortened URL (bit.ly/tinyurl), requests your net banking credentials or SMS OTP on a fake login page.
+                    <strong>{{ t('learn_red_flags') }}</strong> {{ t('learn_p2_flags') }}
                 </div>
             </div>
 
             <div class="scam-pattern-card">
                 <div class="scam-pattern-header">
-                    <span class="scam-badge-danger">High Loss</span>
-                    <h4>🖥️ Remote Screen Share (AnyDesk / TeamViewer)</h4>
+                    <span class="scam-badge-danger">{{ t('learn_badge_high_loss') }}</span>
+                    <h4>{{ t('learn_p3_title') }}</h4>
                 </div>
-                <p><strong>The Trick:</strong> Caller poses as customer care or telecom officer claiming to help you update SIM or refund money by installing a remote access tool.</p>
+                <p><strong>{{ t('learn_the_trick') }}</strong> {{ t('learn_p3_trick') }}</p>
                 <div class="scam-red-flags">
-                    <strong>🚩 Red Flags:</strong> Asks you to share a 9-digit code, letting them see your screen and read incoming OTPs to drain accounts.
+                    <strong>{{ t('learn_red_flags') }}</strong> {{ t('learn_p3_flags') }}
                 </div>
             </div>
 
             <div class="scam-pattern-card">
                 <div class="scam-pattern-header">
-                    <span class="scam-badge-danger">Lure Trap</span>
-                    <h4>🎁 Lottery / Giveaway / Work From Home</h4>
+                    <span class="scam-badge-danger">{{ t('learn_badge_lure_trap') }}</span>
+                    <h4>{{ t('learn_p4_title') }}</h4>
                 </div>
-                <p><strong>The Trick:</strong> Claims you won a lottery or promises ₹5,000/day for liking YouTube videos or rating hotels on Telegram.</p>
+                <p><strong>{{ t('learn_the_trick') }}</strong> {{ t('learn_p4_trick') }}</p>
                 <div class="scam-red-flags">
-                    <strong>🚩 Red Flags:</strong> Asks for a "registration fee" or "processing deposit" before releasing your supposed winnings.
+                    <strong>{{ t('learn_red_flags') }}</strong> {{ t('learn_p4_flags') }}
                 </div>
             </div>
         </div>
@@ -66,38 +66,38 @@
     <!-- Section 2: Interactive Scam Quiz (HCI Checklist Item 12) -->
     <div class="learn-section" style="margin-top: 36px;">
         <h3 class="learn-section-title">🧠 {{ t('learn_quiz_title') }}</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 18px;">Test your fraud detection skills with these 3 quick scenarios:</p>
+        <p style="color: var(--text-secondary); margin-bottom: 18px;">{{ t('learn_quiz_desc') }}</p>
         
         <div class="quiz-container">
             <!-- Question 1 -->
-            <div class="quiz-card" data-quiz="1">
-                <p class="quiz-q"><strong>Scenario 1:</strong> You get an SMS from an unknown number: <em>"Dear customer, electricity bill pending. Power will be disconnected at 9:30 PM. Call Electricity Officer at 9876543210."</em> What should you do?</p>
+            <div class="quiz-card" data-quiz="1" data-feedback-correct="{{ t('quiz_feedback_correct') }}" data-feedback-wrong="{{ t('quiz_feedback_incorrect') }}">
+                <p class="quiz-q">{{ t('quiz_q1_text') }}</p>
                 <div class="quiz-options">
-                    <button type="button" class="btn-quiz-opt" data-correct="false">Call the number immediately to avoid power loss.</button>
-                    <button type="button" class="btn-quiz-opt" data-correct="true">Ignore the message and check your bill on the official state electricity board portal.</button>
-                    <button type="button" class="btn-quiz-opt" data-correct="false">Forward the message to your family group.</button>
+                    <button type="button" class="btn-quiz-opt" data-correct="false">{{ t('quiz_q1_opt1') }}</button>
+                    <button type="button" class="btn-quiz-opt" data-correct="true">{{ t('quiz_q1_opt2') }}</button>
+                    <button type="button" class="btn-quiz-opt" data-correct="false">{{ t('quiz_q1_opt3') }}</button>
                 </div>
                 <div class="quiz-feedback" style="display: none;"></div>
             </div>
 
             <!-- Question 2 -->
-            <div class="quiz-card" data-quiz="2" style="margin-top: 16px;">
-                <p class="quiz-q"><strong>Scenario 2:</strong> A caller claiming to be from your bank asks you to read out the 6-digit OTP sent to your phone to reverse an accidental transaction. Should you share it?</p>
+            <div class="quiz-card" data-quiz="2" style="margin-top: 16px;" data-feedback-correct="{{ t('quiz_feedback_correct') }}" data-feedback-wrong="{{ t('quiz_feedback_incorrect') }}">
+                <p class="quiz-q">{{ t('quiz_q2_text') }}</p>
                 <div class="quiz-options">
-                    <button type="button" class="btn-quiz-opt" data-correct="false">Yes, because they need it to cancel the wrong charge.</button>
-                    <button type="button" class="btn-quiz-opt" data-correct="true">NEVER! Real banks never ask for OTPs or PINs over the phone.</button>
-                    <button type="button" class="btn-quiz-opt" data-correct="false">Only if they speak politely and know your name.</button>
+                    <button type="button" class="btn-quiz-opt" data-correct="false">{{ t('quiz_q2_opt1') }}</button>
+                    <button type="button" class="btn-quiz-opt" data-correct="true">{{ t('quiz_q2_opt2') }}</button>
+                    <button type="button" class="btn-quiz-opt" data-correct="false">{{ t('quiz_q2_opt3') }}</button>
                 </div>
                 <div class="quiz-feedback" style="display: none;"></div>
             </div>
 
             <!-- Question 3 -->
-            <div class="quiz-card" data-quiz="3" style="margin-top: 16px;">
-                <p class="quiz-q"><strong>Scenario 3:</strong> You receive an email with link <em>http://192.168.1.100/paypal-security/login</em>. What is suspicious about this?</p>
+            <div class="quiz-card" data-quiz="3" style="margin-top: 16px;" data-feedback-correct="{{ t('quiz_feedback_correct') }}" data-feedback-wrong="{{ t('quiz_feedback_incorrect') }}">
+                <p class="quiz-q">{{ t('quiz_q3_text') }}</p>
                 <div class="quiz-options">
-                    <button type="button" class="btn-quiz-opt" data-correct="true">It uses a raw numeric IP address and unencrypted HTTP instead of paypal.com with HTTPS.</button>
-                    <button type="button" class="btn-quiz-opt" data-correct="false">Nothing, IP addresses are always genuine.</button>
-                    <button type="button" class="btn-quiz-opt" data-correct="false">Only that the email was sent on a weekend.</button>
+                    <button type="button" class="btn-quiz-opt" data-correct="true">{{ t('quiz_q3_opt1') }}</button>
+                    <button type="button" class="btn-quiz-opt" data-correct="false">{{ t('quiz_q3_opt2') }}</button>
+                    <button type="button" class="btn-quiz-opt" data-correct="false">{{ t('quiz_q3_opt3') }}</button>
                 </div>
                 <div class="quiz-feedback" style="display: none;"></div>
             </div>
@@ -110,33 +110,33 @@
         
         <div class="faq-accordion">
             <details class="faq-item">
-                <summary class="faq-question">What should I do if I already clicked a suspicious link?</summary>
+                <summary class="faq-question">{{ t('faq_q1') }}</summary>
                 <div class="faq-answer">
-                    <p>1. Do not enter any passwords, OTPs, or card numbers on the webpage.</p>
-                    <p>2. Close the browser tab immediately.</p>
-                    <p>3. If you submitted passwords, change them immediately from a secure device and enable 2-factor authentication.</p>
-                    <p>4. Check your bank statement and freeze your cards if financial details were exposed.</p>
+                    <p>{{ t('faq_a1_p1') }}</p>
+                    <p>{{ t('faq_a1_p2') }}</p>
+                    <p>{{ t('faq_a1_p3') }}</p>
+                    <p>{{ t('faq_a1_p4') }}</p>
                 </div>
             </details>
 
             <details class="faq-item">
-                <summary class="faq-question">Why does ScamShield say an assessment is an estimate rather than 100% guarantee?</summary>
+                <summary class="faq-question">{{ t('faq_q2') }}</summary>
                 <div class="faq-answer">
-                    <p>In accordance with HCI trust calibration principles, no automated system can guarantee 100% accuracy against brand-new, unseen scam variants. ScamShield transparently highlights fraud markers and empowers you with safe decision-making steps.</p>
+                    <p>{{ t('faq_a2') }}</p>
                 </div>
             </details>
 
             <details class="faq-item">
-                <summary class="faq-question">Is my scanned text or screenshot kept on your servers?</summary>
+                <summary class="faq-question">{{ t('faq_q3') }}</summary>
                 <div class="faq-answer">
-                    <p>No. ScamShield processes screenshots in memory and temporary files are wiped immediately upon OCR completion. Your scan history is stored exclusively inside your active browser session.</p>
+                    <p>{{ t('faq_a3') }}</p>
                 </div>
             </details>
 
             <details class="faq-item">
-                <summary class="faq-question">Where can I report financial cyber fraud in India?</summary>
+                <summary class="faq-question">{{ t('faq_q4') }}</summary>
                 <div class="faq-answer">
-                    <p>Call the National Cyber Crime Helpline at <strong>1930</strong> immediately within the "Golden Hour" (first 2-24 hours). You can also file a complaint online at <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a>.</p>
+                    <p>{{ t('faq_a4_p1') }} <a href="https://cybercrime.gov.in" target="_blank" rel="noopener">cybercrime.gov.in</a>.</p>
                 </div>
             </details>
         </div>

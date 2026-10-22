@@ -38,7 +38,7 @@ def inject_localization():
     if lang not in ('en', 'mr', 'hi'):
         lang = 'en'
     return dict(
-        t=lambda k: get_text(k, lang),
+        t=lambda k, **kw: get_text(k, lang, **kw),
         current_lang=lang
     )
 

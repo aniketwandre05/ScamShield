@@ -7,7 +7,7 @@
     <!-- Task Closure Notification (Shneiderman Rule #4) -->
     <div class="result-completion-banner" role="status">
         <span class="completion-icon" aria-hidden="true">✅</span>
-        <span><strong>Assessment Complete</strong> &bull; {{ t('content_checked') }} <strong>{{ display_type | default(content_type|upper) }}</strong></span>
+        <span><strong>{{ t('result_assessment_complete') }}</strong> &bull; {{ t('content_checked') }} <strong>{{ display_type | default(content_type|upper) }}</strong></span>
         {% if ocr_used %}<span class="ocr-badge-pill" style="color: var(--primary-color);">({{ t('ocr_extracted_badge') }})</span>{% endif %}
     </div>
 
@@ -45,13 +45,13 @@
             {% if risk_level == 'HIGH' %}🛑{% elif risk_level == 'MEDIUM' %}⚠️{% else %}✅{% endif %}
         </div>
         <div class="callout-text">
-            <strong>What to do right now:</strong>
+            <strong>{{ t('what_to_do_now') }}</strong>
             {% if risk_level == 'HIGH' %}
-                Do NOT click any links, do not reply, and NEVER share passwords or OTP codes. Block the sender.
+                {{ t('directive_high') }}
             {% elif risk_level == 'MEDIUM' %}
-                Proceed with extreme caution. Do not share confidential personal information or send money.
+                {{ t('directive_medium') }}
             {% else %}
-                This content appears safe. Still exercise normal caution before sending financial information.
+                {{ t('directive_safe') }}
             {% endif %}
         </div>
     </div>
@@ -70,7 +70,7 @@
     <div class="details-accordion-wrapper">
         <button type="button" id="btn-toggle-details" class="btn-toggle-details" aria-expanded="true" aria-controls="result-details-content">
             <span class="toggle-icon" aria-hidden="true">▼</span>
-            <span class="toggle-text">Detailed Scam Analysis & Safety Steps</span>
+            <span class="toggle-text">{{ t('result_detailed_analysis') }}</span>
         </button>
 
         <div id="result-details-content" class="details-content-box" style="display: block;">

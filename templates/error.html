@@ -23,12 +23,12 @@
 
     <!-- Error Recovery Shortcuts (Nielsen Heuristic #9 Help Users Recover from Errors) -->
     <div class="error-recovery-panel" role="region" aria-label="Quick Navigation Options">
-        <h3 class="recovery-heading">Or jump directly to a safety check:</h3>
+        <h3 class="recovery-heading">{{ t('error_jump_heading') }}</h3>
         <div class="recovery-links-grid">
-            <a href="{{ url_for('check_sms') }}" class="recovery-chip">💬 Check SMS</a>
-            <a href="{{ url_for('check_email') }}" class="recovery-chip">✉️ Check Email</a>
-            <a href="{{ url_for('check_url') }}" class="recovery-chip">🔗 Check Website Link</a>
-            <a href="{{ url_for('check_phone') }}" class="recovery-chip">📞 Check Phone Call</a>
+            <a href="{{ url_for('check_sms') }}" class="recovery-chip">💬 {{ t('card_sms_title') }}</a>
+            <a href="{{ url_for('check_email') }}" class="recovery-chip">✉️ {{ t('card_email_title') }}</a>
+            <a href="{{ url_for('check_url') }}" class="recovery-chip">🔗 {{ t('card_url_title') }}</a>
+            <a href="{{ url_for('check_phone') }}" class="recovery-chip">📞 {{ t('card_phone_title') }}</a>
         </div>
     </div>
 </div>
