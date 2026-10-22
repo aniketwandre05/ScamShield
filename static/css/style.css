@@ -54,6 +54,70 @@ body {
   flex-direction: column;
 }
 
+/* WCAG 2.2 Visible High-Contrast Focus Outline (SC 2.4.7 & SC 2.4.11) */
+:focus-visible {
+  outline: 3px solid #1e40af !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 5px rgba(30, 64, 175, 0.25) !important;
+}
+
+/* WCAG 2.2 Reduced Motion (SC 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ISO 9241 Individualisation: In-Browser Font Size Scaling (WCAG 1.4.4) */
+body.font-size-sm {
+  font-size: 15px !important;
+  zoom: 0.88;
+}
+body.font-size-md {
+  font-size: 18px !important;
+  zoom: 1.0;
+}
+body.font-size-lg {
+  font-size: 21px !important;
+  zoom: 1.18;
+}
+body.font-size-xl {
+  font-size: 24px !important;
+  zoom: 1.35;
+}
+
+@supports not (zoom: 1) {
+  body.font-size-sm h1 { font-size: 28px !important; }
+  body.font-size-sm h2 { font-size: 22px !important; }
+  body.font-size-sm h3 { font-size: 18px !important; }
+  body.font-size-sm p, body.font-size-sm a, body.font-size-sm label,
+  body.font-size-sm input, body.font-size-sm textarea, body.font-size-sm select,
+  body.font-size-sm button:not(.font-ctrl-btn) {
+    font-size: 15px !important;
+  }
+
+  body.font-size-lg h1 { font-size: 38px !important; }
+  body.font-size-lg h2 { font-size: 28px !important; }
+  body.font-size-lg h3 { font-size: 24px !important; }
+  body.font-size-lg p, body.font-size-lg a, body.font-size-lg label,
+  body.font-size-lg input, body.font-size-lg textarea, body.font-size-lg select,
+  body.font-size-lg button:not(.font-ctrl-btn) {
+    font-size: 21px !important;
+  }
+
+  body.font-size-xl h1 { font-size: 42px !important; }
+  body.font-size-xl h2 { font-size: 32px !important; }
+  body.font-size-xl h3 { font-size: 28px !important; }
+  body.font-size-xl p, body.font-size-xl a, body.font-size-xl label,
+  body.font-size-xl input, body.font-size-xl textarea, body.font-size-xl select,
+  body.font-size-xl button:not(.font-ctrl-btn) {
+    font-size: 24px !important;
+  }
+}
+
 /* Header */
 .site-header {
   background-color: #ffffff;

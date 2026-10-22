@@ -485,13 +485,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnFontInc = document.getElementById("btn-font-increase");
 
     const FONT_CLASSES = ["font-size-sm", "font-size-md", "font-size-lg", "font-size-xl"];
+    const ZOOM_FACTORS = [0.88, 1.0, 1.18, 1.35];
+    const BASE_FONT_SIZES = ["15px", "18px", "21px", "24px"];
     let currentFontIndex = 1; // default md (18px)
-
-    const savedFont = localStorage.getItem("scamshield_font_size");
-    if (savedFont && FONT_CLASSES.includes(savedFont)) {
-        currentFontIndex = FONT_CLASSES.indexOf(savedFont);
-        applyFontSize(currentFontIndex, false);
-    }
 
     function applyFontSize(index, notify = true) {
         currentFontIndex = Math.max(0, Math.min(FONT_CLASSES.length - 1, index));
@@ -500,15 +496,36 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.classList.add(selectedClass);
         localStorage.setItem("scamshield_font_size", selectedClass);
 
+        // 1. Direct visual zoom on body (scales all text, cards, buttons proportionally)
+        const factor = ZOOM_FACTORS[currentFontIndex];
+        document.body.style.zoom = factor;
+
+        // 2. Set root CSS custom property for responsive multipliers
+        document.documentElement.style.setProperty("--font-scale", factor);
+
+        // 3. Set base font size on html & body
+        const basePx = BASE_FONT_SIZES[currentFontIndex];
+        document.documentElement.style.fontSize = basePx;
+        document.body.style.fontSize = basePx;
+
+        // Update active button indicators
         [btnFontDec, btnFontReset, btnFontInc].forEach(b => b?.classList.remove("active"));
         if (currentFontIndex === 1) btnFontReset?.classList.add("active");
         else if (currentFontIndex > 1) btnFontInc?.classList.add("active");
         else btnFontDec?.classList.add("active");
 
         if (notify) {
-            const labels = ["Smaller (16px)", "Standard (18px)", "Large (21px)", "Extra Large (24px)"];
+            const labels = ["Smaller (-12%)", "Standard (Default)", "Large (+18%)", "Extra Large (+35%)"];
             showToast(`Text size: ${labels[currentFontIndex]}`);
         }
+    }
+
+    const savedFont = localStorage.getItem("scamshield_font_size");
+    if (savedFont && FONT_CLASSES.includes(savedFont)) {
+        currentFontIndex = FONT_CLASSES.indexOf(savedFont);
+        applyFontSize(currentFontIndex, false);
+    } else {
+        applyFontSize(1, false);
     }
 
     btnFontDec?.addEventListener("click", () => applyFontSize(currentFontIndex - 1));
